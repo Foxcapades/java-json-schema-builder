@@ -1,0 +1,63 @@
+= JSON Schema Builder
+Elizabeth Harper <foxcapade@gmail.com>
+
+https://github.com/FasterXML/jackson[Jackson] based builder for constructing
+JSON Schema in Java.
+
+== Drafts
+
+=== v4
+
+[source, java]
+----
+var writer = new ObjectMapper().withDefaultPrettyPrinter
+var schema = Draft4.newBuilder();
+System.out.println(writer.writeValueAsString(
+  Draft4.newBuilder()
+    .asObject()
+    .requiredProperty("test")
+      .asArray()
+      .items()
+        .asString()
+        .defaultValue("some value")
+        .close()
+      .close()
+    .optionalProperty("other", Draft4.newBuilder().id("test"))
+    .render()));
+----
+
+[source, json]
+----
+{
+  "$schema" : "http://json-schema.org/draft-04/schema",
+  "type" : "object",
+  "required" : [ "test" ],
+  "properties" : {
+    "test" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "default" : "some value"
+      }
+    },
+    "other" : {
+      "id" : "test"
+    }
+  }
+}
+----
+
+== TODO
+
+=== v4
+
+* [ ] Multi-type nodes
+* [ ] oneOf
+* [ ] anyOf
+* [ ] allOf
+
+=== v7
+
+* [ ] support
+
+
