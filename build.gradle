@@ -80,8 +80,8 @@ compileTestJava {
   doFirst {
     options.compilerArgs = [
       '--module-path', classpath.asPath,
-      '--add-modules', 'junit',
-      '--add-reads', "${config.module.name}=junit",
+      '--add-modules', 'org.junit.jupiter.api',
+      '--add-reads', "${config.module.name}=org.junit.jupiter.api",
       '--patch-module', "${config.module.name}=" + files(sourceSets.test.java.srcDirs).asPath,
     ]
     classpath = files()
@@ -94,7 +94,10 @@ test {
     jvmArgs = [
       '--module-path', classpath.asPath,
       '--add-modules', 'ALL-MODULE-PATH',
-      '--add-reads', "${config.module.name}=junit",
+      '--add-reads', "${config.module.name}=org.junit.jupiter.api",
+      '--add-reads', "${config.module.name}=org.junit.platform.commons",
+      '--add-opens', "${config.module.name}/io.vulpine.lib.json.schema.v4.impl=org.junit.platform.commons",
+      '--add-opens', "${config.module.name}/io.vulpine.lib.json.schema.v4=org.junit.platform.commons",
       '--patch-module', "${config.module.name}=" + files(sourceSets.test.java.outputDir).asPath,
     ]
     classpath = files()
