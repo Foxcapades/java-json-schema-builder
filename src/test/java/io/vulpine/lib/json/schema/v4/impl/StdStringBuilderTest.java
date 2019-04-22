@@ -1,6 +1,7 @@
 package io.vulpine.lib.json.schema.v4.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.JsonType;
 import io.vulpine.lib.json.schema.v4.StringBuilder;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,12 +15,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class StdStringBuilderTest
 {
   private static final ObjectMapper JSON = new ObjectMapper();
+  private ObjectNode raw;
   private StringBuilder<?> type;
 
   @BeforeEach
   void setUp()
   {
-    type = new StdStringBuilder(JSON);
+    raw = JSON.createObjectNode();
+    type = new StdStringBuilder(JSON, raw);
   }
 
   @Test
@@ -108,5 +111,16 @@ class StdStringBuilderTest
   void clearPattern()
   {
     assertFalse(type.pattern("a").clearPattern().render().has(PATTERN));
+  }
+
+  @Test
+  void enumValues()
+  {
+    type.enumValues("a", "b");
+    assertTrue(raw.has(ENUM));
+    assertTrue(raw.get(ENUM).isArray());
+    assertEquals(2, raw.get(ENUM).size());
+    assertEquals("a", raw.get(ENUM).get(0).textValue());
+    assertEquals("b", raw.get(ENUM).get(1).textValue());
   }
 }

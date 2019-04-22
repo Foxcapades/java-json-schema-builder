@@ -60,6 +60,12 @@ System.out.println(writer.writeValueAsString(
 * [ ] oneOf
 * [ ] anyOf
 * [ ] allOf
+* [ ] format
+* [ ] enum
+* [ ] dependencies
+* [ ] (min|max)Properties
+* [ ] uniqueItems
+* [ ] definitions
 
 === v7
 

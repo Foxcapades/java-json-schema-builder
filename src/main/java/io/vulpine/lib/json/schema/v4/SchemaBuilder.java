@@ -16,4 +16,10 @@ extends SchemaObject<T>
   ObjectBuilder<? extends ObjectBuilder<?>> asObject();
 
   StringBuilder<? extends StringBuilder<?>> asString();
+
+  VariableBuilder<? extends VariableBuilder<?>> allOf();
+
+  VariableBuilder<? extends VariableBuilder<?>> anyOf();
+
+  VariableBuilder<? extends VariableBuilder<?>> oneOf();
 }

@@ -124,4 +124,6 @@ public interface ArrayBuilder<T extends ArrayBuilder<T>> extends SchemaObject<T>
   T items(SchemaObject val);
 
   T clearItems();
+
+  T enumValues(ArrayNode... vals);
 }

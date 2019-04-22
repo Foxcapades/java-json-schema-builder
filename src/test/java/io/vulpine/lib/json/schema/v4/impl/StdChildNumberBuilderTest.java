@@ -14,7 +14,7 @@ class StdChildNumberBuilderTest
   @Test
   void constructor()
   {
-    var a = new StdChildNumberBuilder<>(new StdSchemaNode<>(JSON), JSON,
+    var a = new StdChildNumberBuilder<>(new StdSchemaObject<>(JSON), JSON,
       JSON.createObjectNode()).render();
     assertTrue(a.has(TYPE));
     assertEquals(JsonType.NUMBER.jsonName(), a.get(TYPE).textValue());
@@ -23,7 +23,7 @@ class StdChildNumberBuilderTest
   @Test
   void close()
   {
-    var a = new StdSchemaNode<>(JSON);
+    var a = new StdSchemaObject<>(JSON);
     assertSame(a, new StdChildNumberBuilder<>(a, JSON, JSON.createObjectNode())
       .close());
   }

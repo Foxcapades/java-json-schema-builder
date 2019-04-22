@@ -15,7 +15,7 @@ class StdChildIntegerBuilderTest
   void constructor1()
   {
     var a = JSON.createObjectNode().put("A", "B");
-    var b = new StdChildIntegerBuilder<>(new StdSchemaNode<>(JSON), JSON, a);
+    var b = new StdChildIntegerBuilder<>(new StdSchemaObject<>(JSON), JSON, a);
     assertEquals(JsonType.INTEGER.jsonName(), b.schema.get(TYPE).textValue());
     assertEquals(a, b.schema);
   }

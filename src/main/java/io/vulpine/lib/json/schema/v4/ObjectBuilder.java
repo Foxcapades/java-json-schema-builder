@@ -172,4 +172,8 @@ extends SchemaObject<T>
    * @return a modified instance of the current {@link ObjectBuilder}.
    */
   T clearAdditionalProperties();
+
+  T enumValues(ObjectBuilder... types);
+
+  ChildObjectBuilder<T> enumValue();
 }

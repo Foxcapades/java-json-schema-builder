@@ -110,4 +110,6 @@ extends SchemaNode
    * @return a modified instance of {@link SchemaObject}
    */
   T clearTitle();
+
+  T clearEnumValues();
 }

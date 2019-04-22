@@ -8,7 +8,7 @@ import io.vulpine.lib.json.schema.v4.NullBuilder;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.TYPE;
 
 class StdNullBuilder<T extends NullBuilder<T>>
-extends StdSchemaNode<T>
+  extends StdSchemaObject<T>
 implements NullBuilder<T>
 {
   public StdNullBuilder(ObjectMapper mapper) {

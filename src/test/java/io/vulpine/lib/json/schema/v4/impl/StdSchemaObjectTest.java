@@ -10,16 +10,16 @@ import java.math.BigInteger;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class StdSchemaNodeTest
+class StdSchemaObjectTest
 {
   private static final ObjectMapper JSON = new ObjectMapper();
 
-  private StdSchemaNode<?> type;
+  private StdSchemaObject<?> type;
 
   @BeforeEach
   void setUp()
   {
-    type = new StdSchemaNode<>(JSON);
+    type = new StdSchemaObject<>(JSON);
   }
 
   @Test

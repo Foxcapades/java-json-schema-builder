@@ -26,4 +26,12 @@ extends SchemaObject<T>
   T pattern(String pattern);
 
   T clearPattern();
+
+  T enumValues(String... vals);
+
+  T format(Format format);
+
+  T format(String format);
+
+  T clearFormat();
 }
