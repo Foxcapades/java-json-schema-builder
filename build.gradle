@@ -1,8 +1,8 @@
 plugins {
-  id 'java'
-  id 'maven'
-  id 'jacoco'
   id 'signing'
+  id 'java'
+  id 'jacoco'
+  id 'maven-publish'
 }
 
 apply from: 'config.gradle'
@@ -19,18 +19,13 @@ final VERSIONS = [
   GRADLE  : '5.4'
 ]
 
-task sourceJar(type: Jar, dependsOn: classes) {
-  classifier = 'sources'
-  from sourceSets.main.allSource
-}
-
-task javadoc(overwrite: true, type: Javadoc) {
-  source = sourceSets.main.allJava
-  destinationDir = file("${project.projectDir}/docs/")
+task sourceJar(type: Jar) {
+  classifier "sources"
+  from sourceSets.main.allJava
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-  classifier = 'javadoc'
+  classifier "javadoc"
   from javadoc.destinationDir
 }
 
@@ -66,90 +61,143 @@ dependencies {
 jacocoTestReport {
   reports {
     xml.enabled true
-    html.enabled true
+    html.enabled false
   }
 }
 
 artifacts {
-  archives jar
+//  archives jar
   archives sourceJar
   archives javadocJar
 }
 
-jacoco {
-  toolVersion = "0.8.3"
-  reportsDir = file("$buildDir/customJacocoReportDir")
-}
-
-javadoc {
-  source = sourceSets.main.allJava
-}
+jacoco { toolVersion = "0.8.3" }
 
 signing {
+  useGpgCmd()
   sign configurations.archives
 }
 
-uploadArchives {
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      updatePom(pom)
+      groupId "${config.organization.slug}.${config.project.group}"
+      artifactId = config.archive.name
+      version config.project.version
 
-  repositories {
-    mavenDeployer {
-      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+      from components.java
 
-      repository( url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/' ) {
-        authentication( userName: OSSRH_USERNAME, password: OSSRH_PASSWORD )
+      // create the sign pom artifact
+      pom.withXml {
+        def pomFile = file("${project.buildDir}/generated-pom.xml")
+        writeTo(pomFile)
+        def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+        artifact(pomAscFile) {
+          classifier = null
+          extension = 'pom.asc'
+        }
       }
 
-//      repository( url: 'https://oss.sonatype.org/content/repositories/snapshots/' ) {
-//        authentication( userName: config.credentials.username, password: config.credentials.password )
-//      }
+      artifact(sourceJar) {
+        classifier = 'sources'
+      }
 
-      pom.project {
-        name "${config.organization.slug}.${config.project.group}:${config.project.name}"
-        packaging 'jar'
-        description config.project.description
+      artifact(javadocJar) {
+        classifier = 'javadoc'
+      }
+
+      // create the signed artifacts
+      project.tasks.signArchives.signatureFiles.each {
+        artifact(it) {
+          def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+          if (matcher.find()) {
+            classifier = matcher.group(1)
+          } else {
+            classifier = null
+          }
+          extension = 'jar.asc'
+        }
+      }
+    }
+  }
+
+  repositories {
+    maven {
+      url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+      credentials {
+        username OSSRH_USERNAME
+        password OSSRH_PASSWORD
+      }
+    }
+  }
+}
+
+def updatePom(pom) {
+  pom.withXml {
+    def root = asNode()
+
+    root.dependencies.removeAll { dep ->
+      dep.scope == "test"
+    }
+
+    root.children().last() + {
+      resolveStrategy = Closure.DELEGATE_FIRST
+
+      name config.project.name
+      description config.project.description
+      url config.project.site
+      inceptionYear '2019'
+
+      organization {
+        name config.organization.title
+        url config.organization.site
+      }
+
+      issueManagement {
+        system 'GitHub'
+        url config.project.tracker
+      }
+
+      ciManagement {
+        system 'Travis CI'
+        url "https://travis-ci.org/${config.organization.key}"
+      }
+
+      scm {
+        connection "scm:git:${config.project.vcs}"
+        developerConnection "scm:git:${config.project.vcs}"
+        tag 'master'
         url config.project.site
+      }
 
-        inceptionYear '2019'
-
-        organization {
-          name config.organization.title
-          url config.organization.site
+      licenses {
+        license {
+          name config.license.name
+          url config.license.url
+          distribution 'repo'
         }
+      }
 
-        issueManagement {
-          system 'Issue Tracker'
-          url config.project.tracker
-        }
-
-        ciManagement {
-          system 'Travis CI'
-          url "https://travis-ci.org/${config.organization.key}"
-        }
-
-        scm {
-          connection "scm:git:${config.project.vcs}"
-          developerConnection "scm:git:${config.project.vcs}"
-          tag 'master'
-          url config.project.site
-        }
-
-        licenses {
-          license {
-            name config.license.name
-            url config.license.url
-            distribution 'repo'
-          }
-        }
-
-        developers {
-          developer {
-            id config.developer.user
-            name config.developer.name
-            email config.developer.email
-          }
+      developers {
+        developer {
+          id config.developer.user
+          name config.developer.name
+          email config.developer.email
         }
       }
     }
   }
 }
 
+model {
+  tasks.generatePomFileForMavenJavaPublication {
+    destination = file("$buildDir/generated-pom.xml")
+  }
+  tasks.publishMavenJavaPublicationToMavenLocal {
+    dependsOn project.tasks.signArchives
+  }
+  tasks.publishMavenJavaPublicationToMavenRepository {
+    dependsOn project.tasks.signArchives
+  }
+}

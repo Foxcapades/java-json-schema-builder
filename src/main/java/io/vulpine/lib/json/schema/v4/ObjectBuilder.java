@@ -77,6 +77,8 @@ extends SchemaObject<T>
    *
    * @param name
    *   name of the property to build
+   * @param node
+   *   constructed property details
    *
    * @return an instance of a builder that can be used to construct the details
    * of the property.
@@ -135,6 +137,9 @@ extends SchemaObject<T>
   /**
    * Sets the {@code "additionalProperties"} field to the given boolean value.
    *
+   * @param val
+   *   {@code "additionalProperties"} flag setting
+   *
    * @return a modified instance of the current {@link ObjectBuilder}.
    */
   T additionalProperties(boolean val);
@@ -152,12 +157,15 @@ extends SchemaObject<T>
    * Sets the {@code "additionalProperties"} field to be a copy of the given
    * schema definition.
    *
+   * @param node
+   *   {@code "additionalProperties"} type definition
+   *
    * @return a modified instance of the current {@link ObjectBuilder}.
    */
   T additionalProperties(SchemaObject node);
 
   /**
-   * Removes the {@link "additionalProperties"} field from the current {@link
+   * Removes the {@code "additionalProperties"} field from the current {@link
    * ObjectBuilder}
    *
 
