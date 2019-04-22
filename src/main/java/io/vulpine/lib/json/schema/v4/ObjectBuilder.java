@@ -1,5 +1,7 @@
 package io.vulpine.lib.json.schema.v4;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 /**
  * @param <T> extension type
  */
@@ -173,7 +175,5 @@ extends SchemaObject<T>
    */
   T clearAdditionalProperties();
 
-  T enumValues(ObjectBuilder... types);
-
-  ChildObjectBuilder<T> enumValue();
+  T enumValues(ObjectNode... types);
 }

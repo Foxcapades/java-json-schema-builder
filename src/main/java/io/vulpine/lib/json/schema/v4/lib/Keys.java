@@ -1,7 +1,7 @@
 package io.vulpine.lib.json.schema.v4.lib;
 
-public final class Keys {
-  public static final String
+public interface Keys {
+  String
     $REF = "$ref",
     $SCHEMA = "$schema",
     ADDTL_ITEMS = "additionalItems",
@@ -30,6 +30,4 @@ public final class Keys {
     REQ = "required",
     TITLE = "title",
     TYPE = "type";
-
-  private Keys() {}
 }

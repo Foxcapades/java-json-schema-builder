@@ -6,7 +6,7 @@ import io.vulpine.lib.json.schema.v4.StringBuilder;
 import io.vulpine.lib.json.schema.v4.lib.Keys;
 
 public class StdSchemaBuilder<T extends SchemaBuilder<T>>
-  extends StdSchemaObject<T>
+extends StdSchemaObject<T>
 implements SchemaBuilder<T>
 {
   public StdSchemaBuilder(ObjectMapper mapper) {

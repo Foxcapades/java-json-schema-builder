@@ -11,8 +11,9 @@ import java.math.BigInteger;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 
 @SuppressWarnings("unchecked")
-class StdIntegerBuilder<T extends IntegerBuilder<T>> extends StdSchemaObject<T>
-  implements IntegerBuilder<T>
+class StdIntegerBuilder<T extends IntegerBuilder<T>>
+extends StdSchemaObject<T>
+implements IntegerBuilder<T>
 {
   StdIntegerBuilder(ObjectMapper mapper, ObjectNode schema)
   {

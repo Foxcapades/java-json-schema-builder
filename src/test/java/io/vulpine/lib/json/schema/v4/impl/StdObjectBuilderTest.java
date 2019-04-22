@@ -188,7 +188,7 @@ class StdObjectBuilderTest
     void removeProp()
     {
       assertTrue(raw.has(PATT_PROPS));
-      test.clearPatternProperties();
+      assertNotNull(test.clearPatternProperties());
       assertFalse(raw.has(PATT_PROPS));
     }
   }
@@ -199,9 +199,7 @@ class StdObjectBuilderTest
     @Test
     void additionalProperties()
     {
-      test.additionalProperties()
-        .asArray();
-
+      assertNotNull(test.additionalProperties().asArray());
       assertTrue(raw.has(ADDTL_PROPS));
       assertTrue(raw.get(ADDTL_PROPS).has(TYPE));
       assertEquals(JsonType.ARRAY.jsonName(),
@@ -215,8 +213,8 @@ class StdObjectBuilderTest
     @Test
     void additionalProperties()
     {
-      test.additionalProperties(new StdArrayBuilder(JSON,
-        JSON.createObjectNode()));
+      assertNotNull(test.additionalProperties(new StdArrayBuilder(JSON,
+        JSON.createObjectNode())));
 
       assertTrue(raw.has(ADDTL_PROPS));
       assertTrue(raw.get(ADDTL_PROPS).has(TYPE));
@@ -231,7 +229,7 @@ class StdObjectBuilderTest
     @Test
     void additionalProperties()
     {
-      test.additionalProperties(false);
+      assertNotNull(test.additionalProperties(false));
       assertTrue(raw.has(ADDTL_PROPS));
       assertFalse(raw.get(ADDTL_PROPS).booleanValue());
     }
@@ -241,7 +239,20 @@ class StdObjectBuilderTest
   void clearAdditionalProperties()
   {
     raw.put(ADDTL_PROPS, false);
-    test.clearAdditionalProperties();
+    assertNotNull(test.clearAdditionalProperties());
     assertFalse(raw.has(ADDTL_PROPS));
+  }
+
+  @Test
+  @DisplayName("enumValues(ObjectNode...)")
+  void enumValues() {
+    var a = JSON.createObjectNode().put("foo", "bar");
+    var b = JSON.createObjectNode().put("fizz", "buzz");
+
+    assertNotNull(test.enumValues(a, b));
+    assertTrue(raw.has(ENUM));
+    assertEquals(2, raw.get(ENUM).size());
+    assertEquals(a, raw.get(ENUM).get(0));
+    assertEquals(b, raw.get(ENUM).get(1));
   }
 }

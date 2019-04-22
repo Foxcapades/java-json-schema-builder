@@ -102,90 +102,91 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
     return schema.deepCopy();
   }
 
-  protected T clear(String key)
+  @Override
+  public T clearEnumValues()
   {
-    schema.remove(key);
-    return (T) this;
+    return clear(ENUM);
   }
 
-  protected T put(String key, boolean val)
+  T put(String key, boolean val)
   {
     schema.put(key, val);
     return (T) this;
   }
 
-  protected T put(String key, JsonNode val)
+  T put(String key, JsonNode val)
   {
     schema.set(key, requireNonNull(val));
     return (T) this;
   }
 
-  protected T put(String key, int val)
+  T put(String key, int val)
   {
     schema.put(key, val);
     return (T) this;
   }
 
-  protected T put(String key, long val)
+  T put(String key, long val)
   {
     schema.put(key, val);
     return (T) this;
   }
 
-  protected T put(String key, double val)
+  T put(String key, double val)
   {
     schema.put(key, val);
     return (T) this;
   }
 
-  protected T put(String key, float val)
+  T put(String key, float val)
   {
     schema.put(key, val);
     return (T) this;
   }
 
-  protected T put(String key, String val)
+  T put(String key, String val)
   {
     schema.put(key, requireNonNull(val));
     return (T) this;
   }
 
-  protected T put(String key, BigInteger val)
+  T put(String key, BigInteger val)
   {
     schema.put(key, requireNonNull(val));
     return (T) this;
   }
 
-  protected T put(String key, BigDecimal val)
+  T put(String key, BigDecimal val)
   {
     schema.put(key, requireNonNull(val));
     return (T) this;
   }
 
-  protected T put(String key, SchemaNode node)
+  T put(String key, SchemaNode node)
   {
     schema.set(key, strip$Schema(requireNonNull(node).render()));
     return (T) this;
   }
 
-  protected JsonNode strip$Schema(JsonNode node)
+  T clear(String key)
+  {
+    schema.remove(key);
+    return (T) this;
+  }
+
+  JsonNode strip$Schema(JsonNode node)
   {
     ((ObjectNode) node).remove($SCHEMA);
     return node;
   }
 
-  protected boolean hasEnum()
-  {
-    return schema.has(ENUM);
-  }
-
-  protected ArrayNode enumArr()
+  ArrayNode enumArr()
   {
     return hasEnum() ? (ArrayNode) schema.get(ENUM) : schema.putArray(ENUM);
   }
 
-  public T clearEnumValues()
+  private boolean hasEnum()
   {
-    return clear(ENUM);
+    return schema.has(ENUM);
   }
 }

@@ -4,16 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.*;
-import io.vulpine.lib.json.schema.v4.lib.Keys;
 
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 
 @SuppressWarnings("unchecked")
 class StdObjectBuilder<T extends ObjectBuilder<T>>
-  extends StdSchemaObject<T>
+extends StdSchemaObject<T>
 implements ObjectBuilder<T>
 {
-  protected StdObjectBuilder(ObjectMapper mapper, ObjectNode schema) {
+  StdObjectBuilder(ObjectMapper mapper, ObjectNode schema) {
     super(mapper, schema);
     this.schema.put(TYPE, JsonType.OBJECT.jsonName());
   }
@@ -115,18 +114,12 @@ implements ObjectBuilder<T>
   { return clear(ADDTL_PROPS); }
 
   @Override
-  public T enumValues(ObjectBuilder... types)
+  public T enumValues(ObjectNode... types)
   {
     var en = enumArr();
     for (final var a : types)
-      en.add(a.render());
+      en.add(a);
     return (T) this;
-  }
-
-  @Override
-  public ChildObjectBuilder<T> enumValue()
-  {
-    return new StdChildObjectBuilder<>((T) this, mapper, enumArr().addObject());
   }
 
   private ObjectNode patternProps() {

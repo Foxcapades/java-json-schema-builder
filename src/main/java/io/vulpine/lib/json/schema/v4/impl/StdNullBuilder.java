@@ -8,15 +8,15 @@ import io.vulpine.lib.json.schema.v4.NullBuilder;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.TYPE;
 
 class StdNullBuilder<T extends NullBuilder<T>>
-  extends StdSchemaObject<T>
+extends StdSchemaObject<T>
 implements NullBuilder<T>
 {
-  public StdNullBuilder(ObjectMapper mapper) {
+  StdNullBuilder(ObjectMapper mapper) {
     super(mapper);
     this.schema.put(TYPE, JsonType.NULL.jsonName());
   }
 
-  protected StdNullBuilder(ObjectMapper mapper, ObjectNode schema) {
+  StdNullBuilder(ObjectMapper mapper, ObjectNode schema) {
     super(mapper, schema);
     this.schema.put(TYPE, JsonType.NULL.jsonName());
   }

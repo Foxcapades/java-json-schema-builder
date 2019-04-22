@@ -11,7 +11,8 @@ import java.math.BigInteger;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 
 @SuppressWarnings("unchecked")
-class StdNumberBuilder<T extends NumberBuilder<T>> extends StdSchemaObject<T>
+class StdNumberBuilder<T extends NumberBuilder<T>>
+extends StdSchemaObject<T>
 implements NumberBuilder<T>
 {
   StdNumberBuilder(ObjectMapper mapper)
@@ -282,7 +283,8 @@ implements NumberBuilder<T>
         en.add(n.byteValue());
       else if (n instanceof Short)
         en.add(n.shortValue());
-      en.add(n.doubleValue()); // safest bet?
+      else
+        en.add(n.doubleValue()); // safest bet?
     }
 
     return (T) this;

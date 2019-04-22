@@ -65,8 +65,50 @@ jacocoTestReport {
   }
 }
 
+compileJava {
+  inputs.property("moduleName", config.module.name)
+  doFirst {
+    options.compilerArgs = [
+      '--module-path', classpath.asPath,
+    ]
+    classpath = files()
+  }
+}
+
+compileTestJava {
+  inputs.property("moduleName", config.module.name)
+  doFirst {
+    options.compilerArgs = [
+      '--module-path', classpath.asPath,
+      '--add-modules', 'junit',
+      '--add-reads', "${config.module.name}=junit",
+      '--patch-module', "${config.module.name}=" + files(sourceSets.test.java.srcDirs).asPath,
+    ]
+    classpath = files()
+  }
+}
+
+test {
+  inputs.property("moduleName", config.module.name)
+  doFirst {
+    jvmArgs = [
+      '--module-path', classpath.asPath,
+      '--add-modules', 'ALL-MODULE-PATH',
+      '--add-reads', "${config.module.name}=junit",
+      '--patch-module', "${config.module.name}=" + files(sourceSets.test.java.outputDir).asPath,
+    ]
+    classpath = files()
+  }
+}
+
+javadoc {
+  inputs.property('moduleName', config.module.name)
+  doFirst {
+    options.addStringOption('-module-path', classpath.asPath)
+  }
+}
+
 artifacts {
-//  archives jar
   archives sourceJar
   archives javadocJar
 }

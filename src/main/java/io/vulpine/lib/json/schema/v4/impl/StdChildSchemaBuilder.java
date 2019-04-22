@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.*;
 
 class StdChildSchemaBuilder<P extends SchemaNode>
-  extends StdSchemaObject<ChildSchemaBuilder<P>>
+extends StdSchemaObject<ChildSchemaBuilder<P>>
 implements ChildSchemaBuilder<P>
 {
   private final P parent;

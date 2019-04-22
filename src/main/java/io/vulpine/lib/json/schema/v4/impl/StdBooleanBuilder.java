@@ -9,7 +9,7 @@ import static io.vulpine.lib.json.schema.v4.lib.Keys.DEFAULT;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.TYPE;
 
 class StdBooleanBuilder<T extends BooleanBuilder<T>>
-  extends StdSchemaObject<T>
+extends StdSchemaObject<T>
 implements BooleanBuilder<T>
 {
   StdBooleanBuilder(ObjectMapper mapper)
