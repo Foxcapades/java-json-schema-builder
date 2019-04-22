@@ -1,5 +1,11 @@
 = JSON Schema Builder
+:source-highlighter: pygments
 Elizabeth Harper <foxcapade@gmail.com>
+
+image:https://img.shields.io/travis/Foxcapades/java-json-schema-builder/master.svg[link="https://travis-ci.org/Foxcapades/java-json-schema-builder"]
+image:https://img.shields.io/maven-central/v/io.vulpine.lib/json-schema-builder.svg[link="https://search.maven.org/search?q=g:io.vulpine.lib%20AND%20a:json-schema-builder"]
+image:https://codecov.io/gh/Foxcapades/java-json-schema-builder/branch/master/graph/badge.svg[link="https://codecov.io/gh/Foxcapades/java-json-schema-builder"]
+image:https://img.shields.io/github/license/Foxcapades/java-json-schema-builder.svg[]
 
 https://github.com/FasterXML/jackson[Jackson] based builder for constructing
 JSON Schema in Java.
@@ -10,11 +16,10 @@ JSON Schema in Java.
 
 [source, java]
 ----
-var writer = new ObjectMapper().withDefaultPrettyPrinter
+var writer = new ObjectMapper().writerWithDefaultPrettyPrinter();
 var schema = Draft4.newBuilder();
 System.out.println(writer.writeValueAsString(
-  Draft4.newBuilder()
-    .asObject()
+  schema.asObject()
     .requiredProperty("test")
       .asArray()
       .items()
@@ -22,7 +27,7 @@ System.out.println(writer.writeValueAsString(
         .defaultValue("some value")
         .close()
       .close()
-    .optionalProperty("other", Draft4.newBuilder().id("test"))
+    .optionalProperty("other", schema.id("test"))
     .render()));
 ----
 
