@@ -14,7 +14,7 @@ class StdChildStringBuilderTest
   @Test
   void constructor()
   {
-    var a = new StdChildStringBuilder<>(new StdSchemaNode<>(JSON), JSON,
+    var a = new StdChildStringBuilder<>(new StdSchemaObject<>(JSON), JSON,
       JSON.createObjectNode()).render();
     assertTrue(a.has(TYPE));
     assertEquals(JsonType.STRING.jsonName(), a.get(TYPE).textValue());
@@ -23,7 +23,7 @@ class StdChildStringBuilderTest
   @Test
   void close()
   {
-    var a = new StdSchemaNode<>(JSON);
+    var a = new StdSchemaObject<>(JSON);
     assertSame(a, new StdChildStringBuilder<>(a, JSON, JSON.createObjectNode())
       .close());
   }

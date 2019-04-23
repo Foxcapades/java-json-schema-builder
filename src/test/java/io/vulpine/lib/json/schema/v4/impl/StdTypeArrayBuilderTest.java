@@ -19,7 +19,7 @@ class StdTypeArrayBuilderTest
   @BeforeEach
   void setUp()
   {
-    type = new StdTypeArrayBuilder<>(new StdSchemaNode<>(JSON), JSON);
+    type = new StdTypeArrayBuilder<>(new StdSchemaObject<>(JSON), JSON);
   }
 
   @Test
@@ -105,7 +105,7 @@ class StdTypeArrayBuilderTest
   @Test
   void close()
   {
-    var a = new StdSchemaNode<>(JSON);
+    var a = new StdSchemaObject<>(JSON);
     assertSame(a, new StdTypeArrayBuilder<>(a, JSON).close());
   }
 

@@ -22,7 +22,7 @@ class StdChildArrayBuilderTest
   @Test
   void close()
   {
-    final var foo = new StdSchemaNode<>(JSON);
+    final var foo = new StdSchemaObject<>(JSON);
     assertSame(foo, new StdChildArrayBuilder<>(foo, JSON,
       JSON.createObjectNode()).close());
   }

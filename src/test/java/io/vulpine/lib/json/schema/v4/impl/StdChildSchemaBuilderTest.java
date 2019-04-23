@@ -14,14 +14,14 @@ class StdChildSchemaBuilderTest
 
   private static final ObjectMapper JSON = new ObjectMapper();
 
-  StdSchemaNode<?> parent;
+  StdSchemaObject<?> parent;
   StdChildSchemaBuilder<?> type;
   ObjectNode raw;
 
   @BeforeEach
   void setUp()
   {
-    parent = new StdSchemaNode<>(JSON);
+    parent = new StdSchemaObject<>(JSON);
     raw = JSON.createObjectNode();
     type = new StdChildSchemaBuilder<>(parent, JSON, raw);
   }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.IntegerBuilder;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -43,6 +44,7 @@ class StdIntegerBuilderTest
   }
 
   @Test
+  @DisplayName("maximum(int)")
   void maximum_int()
   {
     test.maximum(1);
@@ -51,6 +53,16 @@ class StdIntegerBuilderTest
   }
 
   @Test
+  @DisplayName("maximum(long)")
+  void maximum_long()
+  {
+    test.maximum(1L);
+    assertTrue(raw.has(MAXIMUM));
+    assertEquals(1L, raw.get(MAXIMUM).longValue());
+  }
+
+  @Test
+  @DisplayName("maximum(BigInteger)")
   void maximum_bigInt()
   {
     test.maximum(new BigInteger("1"));
@@ -87,6 +99,7 @@ class StdIntegerBuilderTest
   }
 
   @Test
+  @DisplayName("minimum(int)")
   void minimum_int()
   {
     test.minimum(1);
@@ -95,6 +108,16 @@ class StdIntegerBuilderTest
   }
 
   @Test
+  @DisplayName("minimum(long)")
+  void minimum_long()
+  {
+    test.minimum(1L);
+    assertTrue(raw.has(MINIMUM));
+    assertEquals(1L, raw.get(MINIMUM).longValue());
+  }
+
+  @Test
+  @DisplayName("minimum(BigInteger)")
   void minimum_bigInt()
   {
     test.minimum(new BigInteger("1"));
@@ -200,5 +223,45 @@ class StdIntegerBuilderTest
     raw.put(MULTIPLE, 1);
     test.clearMultipleOf();
     assertFalse(raw.has(MULTIPLE));
+  }
+
+  @Test
+  @DisplayName("enumValues(int... vals)")
+  void enumValues1()
+  {
+    test.enumValues(3, 2, 1);
+    assertTrue(raw.has(ENUM));
+    assertTrue(raw.get(ENUM).isArray());
+    assertEquals(3, raw.get(ENUM).size());
+    assertEquals(3, raw.get(ENUM).get(0).intValue());
+    assertEquals(2, raw.get(ENUM).get(1).intValue());
+    assertEquals(1, raw.get(ENUM).get(2).intValue());
+  }
+
+  @Test
+  @DisplayName("enumValues(long... vals)")
+  void enumValues2()
+  {
+    test.enumValues(3L, 2L, 1L);
+    assertTrue(raw.has(ENUM));
+    assertTrue(raw.get(ENUM).isArray());
+    assertEquals(3, raw.get(ENUM).size());
+    assertEquals(3L, raw.get(ENUM).get(0).longValue());
+    assertEquals(2L, raw.get(ENUM).get(1).longValue());
+    assertEquals(1L, raw.get(ENUM).get(2).longValue());
+  }
+
+  @Test
+  @DisplayName("enumValues(BigInteger... vals)")
+  void enumValues3()
+  {
+    test.enumValues(new BigInteger("3"), new BigInteger("2"),
+      new BigInteger("1"));
+    assertTrue(raw.has(ENUM));
+    assertTrue(raw.get(ENUM).isArray());
+    assertEquals(3, raw.get(ENUM).size());
+    assertEquals(new BigInteger("3"), raw.get(ENUM).get(0).bigIntegerValue());
+    assertEquals(new BigInteger("2"), raw.get(ENUM).get(1).bigIntegerValue());
+    assertEquals(new BigInteger("1"), raw.get(ENUM).get(2).bigIntegerValue());
   }
 }

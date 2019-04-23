@@ -1,27 +1,31 @@
 package io.vulpine.lib.json.schema.v4.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.JsonType;
 import io.vulpine.lib.json.schema.v4.NumberBuilder;
 import io.vulpine.lib.json.schema.v4.lib.Keys;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import static io.vulpine.lib.json.schema.v4.lib.Keys.EXCL_MAX;
-import static io.vulpine.lib.json.schema.v4.lib.Keys.EXCL_MIN;
+import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StdNumberBuilderTest {
   private static final ObjectMapper JSON = new ObjectMapper();
 
-  NumberBuilder<?> type;
+  private ObjectNode raw;
+  private NumberBuilder<?> type;
 
   @BeforeEach
   void setUp() {
-    type = new StdNumberBuilder(JSON);
+    raw  = JSON.createObjectNode();
+    type = new StdNumberBuilder(JSON, raw);
   }
 
   @Test
@@ -271,5 +275,24 @@ class StdNumberBuilderTest {
       .clearMultipleOf()
       .render()
       .has(Keys.MULTIPLE));
+  }
+
+  @Test
+  @DisplayName("enumValue(Number...)")
+  void enumValue()
+  {
+    type.enumValues((byte) 1, (short) 2, 3, 4L, 5F, 6D, new BigInteger("7"),
+      new BigDecimal("8"), new AtomicInteger(9));
+
+    assertEquals(9, raw.get(ENUM).size());
+    assertEquals(1, raw.get(ENUM).get(0).intValue());
+    assertEquals(2, raw.get(ENUM).get(1).intValue());
+    assertEquals(3, raw.get(ENUM).get(2).intValue());
+    assertEquals(4L, raw.get(ENUM).get(3).longValue());
+    assertEquals(5F, raw.get(ENUM).get(4).floatValue());
+    assertEquals(6D, raw.get(ENUM).get(5).doubleValue());
+    assertEquals(new BigInteger("7"), raw.get(ENUM).get(6).bigIntegerValue());
+    assertEquals(new BigDecimal("8"), raw.get(ENUM).get(7).decimalValue());
+    assertEquals(9D, raw.get(ENUM).get(8).doubleValue());
   }
 }

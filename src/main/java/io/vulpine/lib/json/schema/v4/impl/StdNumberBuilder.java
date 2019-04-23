@@ -10,8 +10,9 @@ import java.math.BigInteger;
 
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 
+@SuppressWarnings("unchecked")
 class StdNumberBuilder<T extends NumberBuilder<T>>
-extends StdSchemaNode<T>
+extends StdSchemaObject<T>
 implements NumberBuilder<T>
 {
   StdNumberBuilder(ObjectMapper mapper)
@@ -258,5 +259,34 @@ implements NumberBuilder<T>
   public T clearMultipleOf()
   {
     return clear(MULTIPLE);
+  }
+
+  @Override
+  public T enumValues(Number... vals)
+  {
+    var en = enumArr();
+
+    for (var n : vals) {
+      if (n instanceof Integer)
+        en.add(n.intValue());
+      else if (n instanceof Double)
+        en.add(n.doubleValue());
+      else if (n instanceof Long)
+        en.add(n.longValue());
+      else if (n instanceof Float)
+        en.add(n.floatValue());
+      else if (n instanceof BigInteger)
+        en.add((BigInteger) n);
+      else if (n instanceof BigDecimal)
+        en.add((BigDecimal) n);
+      else if (n instanceof Byte)
+        en.add(n.byteValue());
+      else if (n instanceof Short)
+        en.add(n.shortValue());
+      else
+        en.add(n.doubleValue()); // safest bet?
+    }
+
+    return (T) this;
   }
 }

@@ -2,6 +2,7 @@
 :source-highlighter: pygments
 Elizabeth Harper <foxcapade@gmail.com>
 
+image:https://img.shields.io/badge/JDK-11-orange.svg[]
 image:https://img.shields.io/travis/Foxcapades/java-json-schema-builder/master.svg[link="https://travis-ci.org/Foxcapades/java-json-schema-builder"]
 image:https://img.shields.io/maven-central/v/io.vulpine.lib/json-schema-builder.svg[link="https://search.maven.org/search?q=g:io.vulpine.lib%20AND%20a:json-schema-builder"]
 image:https://codecov.io/gh/Foxcapades/java-json-schema-builder/branch/master/graph/badge.svg[link="https://codecov.io/gh/Foxcapades/java-json-schema-builder"]
@@ -56,10 +57,21 @@ System.out.println(writer.writeValueAsString(
 
 === v4
 
-* [ ] Multi-type nodes
-* [ ] oneOf
-* [ ] anyOf
-* [ ] allOf
+[cols=3]
+|===
+h| Status          h| Feature           h| Notes
+ | [red]#*TODO*#    | `"dependencies"`   | Target 1.2
+ | [red]#*TODO*#    | `"minProperties"`  | Target 1.2
+ | [red]#*TODO*#    | `"maxProperties"`  | Target 1.2
+ | [red]#*TODO*#    | `"uniqueItems"`    | Target 1.2
+ | [red]#*TODO*#    | `"definitions"`    | Target 1.2
+ | [red]#*TODO*#    | Multi-type nodes   | Target 1.3
+ | [yellow]#*WIP*#  | `"format"`         | Supported on strings as of 1.1
+ | [yellow]#*WIP*#  | `"enum"`           | Basic support as of 1.1
+ | [green]#*Done*#  | `"oneOf"`          | In 1.1
+ | [green]#*Done*#  | `"anyOf"`          | In 1.1
+ | [green]#*Done*#  | `"allOf"`          | In 1.1
+|===
 
 === v7
 

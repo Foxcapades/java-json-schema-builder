@@ -419,4 +419,6 @@ extends SchemaObject<T>
    * @return a modified instance of {@link NumberBuilder}
    */
   T clearMultipleOf();
+
+  T enumValues(Number... vals);
 }

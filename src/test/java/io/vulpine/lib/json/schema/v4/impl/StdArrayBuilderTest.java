@@ -1,9 +1,11 @@
 package io.vulpine.lib.json.schema.v4.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.ArrayBuilder;
 import io.vulpine.lib.json.schema.v4.JsonType;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -16,12 +18,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class StdArrayBuilderTest {
 
   private static final ObjectMapper JSON = new ObjectMapper();
+  private ObjectNode raw;
   private ArrayBuilder<? extends ArrayBuilder<?>> type;
 
   @BeforeEach
   void setUp()
   {
-    type = new StdArrayBuilder<>(JSON);
+    raw = JSON.createObjectNode();
+    type = new StdArrayBuilder<>(JSON, raw);
   }
 
   @Test
@@ -348,5 +352,19 @@ class StdArrayBuilderTest {
       .clearItems()
       .render()
       .has(ITEMS));
+  }
+
+  @Test
+  @DisplayName("enumValues(ArrayNode... vals)")
+  void enumValues1()
+  {
+    type.enumValues(
+      JSON.createArrayNode().add("a"),
+      JSON.createArrayNode().add("b"));
+    assertTrue(raw.has(ENUM));
+    assertTrue(raw.get(ENUM).isArray());
+    assertEquals(2, raw.get(ENUM).size());
+    assertEquals("[\"a\"]", raw.get(ENUM).get(0).toString());
+    assertEquals("[\"b\"]", raw.get(ENUM).get(1).toString());
   }
 }

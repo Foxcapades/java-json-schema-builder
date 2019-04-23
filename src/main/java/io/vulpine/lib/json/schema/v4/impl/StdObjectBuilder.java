@@ -3,19 +3,16 @@ package io.vulpine.lib.json.schema.v4.impl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.vulpine.lib.json.schema.v4.ChildSchemaBuilder;
-import io.vulpine.lib.json.schema.v4.JsonType;
-import io.vulpine.lib.json.schema.v4.ObjectBuilder;
-import io.vulpine.lib.json.schema.v4.SchemaObject;
+import io.vulpine.lib.json.schema.v4.*;
 
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 
 @SuppressWarnings("unchecked")
 class StdObjectBuilder<T extends ObjectBuilder<T>>
-extends StdSchemaNode<T>
+extends StdSchemaObject<T>
 implements ObjectBuilder<T>
 {
-  protected StdObjectBuilder(ObjectMapper mapper, ObjectNode schema) {
+  StdObjectBuilder(ObjectMapper mapper, ObjectNode schema) {
     super(mapper, schema);
     this.schema.put(TYPE, JsonType.OBJECT.jsonName());
   }
@@ -116,6 +113,15 @@ implements ObjectBuilder<T>
   @Override public T clearAdditionalProperties()
   { return clear(ADDTL_PROPS); }
 
+  @Override
+  public T enumValues(ObjectNode... types)
+  {
+    var en = enumArr();
+    for (final var a : types)
+      en.add(a);
+    return (T) this;
+  }
+
   private ObjectNode patternProps() {
     return schema.has(PATT_PROPS)
       ? (ObjectNode) schema.get(PATT_PROPS)
@@ -136,4 +142,5 @@ implements ObjectBuilder<T>
 
   private boolean hasProps()
   { return schema.has(PROPS); }
+
 }

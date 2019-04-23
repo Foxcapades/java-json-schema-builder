@@ -12,7 +12,7 @@ config.archive.name = 'json-schema-builder'
 config.project = new HashMap<>()
 config.project.group       = 'lib'
 config.project.name        = 'Json Schema Builder'
-config.project.version     = '1.0.0'
+config.project.version     = '1.1.0'
 config.project.slug        = 'java-json-schema-builder'
 config.project.jvm         = '11'
 config.project.description = 'Checked variations for Java 8+ functional interfaces.'
@@ -29,5 +29,8 @@ config.developer.site  = 'https://github.com/Foxcapades'
 config.license = new HashMap<>()
 config.license.name = 'MIT'
 config.license.url  = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+
+config.module = new HashMap<>()
+config.module.name = "io.vulpine.lib.json.schema.builder"
 
 ext.config = config

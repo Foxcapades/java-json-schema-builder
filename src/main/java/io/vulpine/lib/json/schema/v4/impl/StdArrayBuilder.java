@@ -11,209 +11,249 @@ import java.math.BigInteger;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 
 @SuppressWarnings("unchecked")
-class StdArrayBuilder<T extends ArrayBuilder<T>>
-extends StdSchemaNode<T>
-implements ArrayBuilder<T>
+class StdArrayBuilder<T extends ArrayBuilder<T>> extends StdSchemaObject<T>
+  implements ArrayBuilder<T>
 {
-  StdArrayBuilder(ObjectMapper mapper) {
+  StdArrayBuilder(ObjectMapper mapper)
+  {
     super(mapper);
     this.schema.put(TYPE, JsonType.ARRAY.jsonName());
   }
 
-  StdArrayBuilder(ObjectMapper mapper, ObjectNode schema) {
+  StdArrayBuilder(ObjectMapper mapper, ObjectNode schema)
+  {
     super(mapper, schema);
     this.schema.put(TYPE, JsonType.ARRAY.jsonName());
   }
 
   @Override
   public T defaultValue(ArrayNode node)
-  { return put(DEFAULT, node); }
+  {
+    return put(DEFAULT, node);
+  }
 
   @Override
-  public T defaultValue(String... node) {
+  public T defaultValue(String... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(Object... node) {
+  public T defaultValue(Object... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(mapper.valueToTree(b));
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(boolean[] node) {
+  public T defaultValue(boolean[] node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(Boolean... node) {
+  public T defaultValue(Boolean... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(byte[] node) {
+  public T defaultValue(byte[] node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(Byte... node) {
+  public T defaultValue(Byte... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(double[] node) {
+  public T defaultValue(double[] node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(Double... node) {
+  public T defaultValue(Double... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(float[] node) {
+  public T defaultValue(float[] node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(Float... node) {
+  public T defaultValue(Float... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(int[] node) {
+  public T defaultValue(int[] node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(Integer... node) {
+  public T defaultValue(Integer... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(long[] node) {
+  public T defaultValue(long[] node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(Long... node) {
+  public T defaultValue(Long... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(short[] node) {
+  public T defaultValue(short[] node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(Short... node) {
+  public T defaultValue(Short... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(BigInteger... node) {
+  public T defaultValue(BigInteger... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
   @Override
-  public T defaultValue(BigDecimal... node) {
+  public T defaultValue(BigDecimal... node)
+  {
     final var o = mapper.createArrayNode();
-    for(final var b : node)
+    for (final var b : node)
       o.add(b);
     return defaultValue(o);
   }
 
-  @Override public T maxItems(BigInteger val)
-  { return put(MAX_ITEMS, val); }
+  @Override
+  public T maxItems(BigInteger val)
+  {
+    return put(MAX_ITEMS, val);
+  }
 
   @Override
   public T maxItems(int val)
-  { return put(MAX_ITEMS, val); }
+  {
+    return put(MAX_ITEMS, val);
+  }
 
   @Override
   public T clearMaxItems()
-  { return clear(MAX_ITEMS); }
+  {
+    return clear(MAX_ITEMS);
+  }
 
   @Override
   public T minItems(BigInteger val)
-  { return put(MIN_ITEMS, val); }
+  {
+    return put(MIN_ITEMS, val);
+  }
 
   @Override
   public T minItems(int val)
-  { return put(MIN_ITEMS, val); }
+  {
+    return put(MIN_ITEMS, val);
+  }
 
   public T clearMinItems()
-  { return clear(MIN_ITEMS); }
+  {
+    return clear(MIN_ITEMS);
+  }
 
   @Override
   public ChildSchemaBuilder<T> additionalItems()
   {
-    return new StdChildSchemaBuilder<>((T) this, mapper,
+    return new StdChildSchemaBuilder<>((T) this,
+      mapper,
       schema.putObject(ADDTL_ITEMS));
   }
 
   @Override
   public T additionalItems(SchemaObject val)
-  { return put(ADDTL_ITEMS, val); }
+  {
+    return put(ADDTL_ITEMS, val);
+  }
 
   @Override
   public T clearAdditionalItems()
-  { return clear(ADDTL_ITEMS); }
+  {
+    return clear(ADDTL_ITEMS);
+  }
 
   @Override
   public ChildSchemaBuilder<T> items()
   {
-    return new StdChildSchemaBuilder<>((T) this, mapper,
+    return new StdChildSchemaBuilder<>((T) this,
+      mapper,
       schema.putObject(ITEMS));
   }
 
@@ -225,9 +265,24 @@ implements ArrayBuilder<T>
 
   @Override
   public T items(SchemaObject val)
-  { return put(ITEMS, val); }
+  {
+    return put(ITEMS, val);
+  }
 
   @Override
   public T clearItems()
-  { return clear(ITEMS); }
+  {
+    return clear(ITEMS);
+  }
+
+  @Override
+  public T enumValues(ArrayNode... vals)
+  {
+    var en = enumArr();
+
+    for (var a : vals)
+      en.add(a);
+
+    return (T) this;
+  }
 }

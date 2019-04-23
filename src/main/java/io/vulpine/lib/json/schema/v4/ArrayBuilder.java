@@ -111,17 +111,51 @@ public interface ArrayBuilder<T extends ArrayBuilder<T>> extends SchemaObject<T>
    */
   T clearMinItems();
 
+  /**
+   * Creates a builder for the construction of the {@code "additionalItems"}
+   * property.
+   *
+   * @return new SchemaBuilder
+   */
   ChildSchemaBuilder<T> additionalItems();
 
+  /**
+   * Sets the {@code "additionalItems"} property to a copy of the given {@link
+   * SchemaObject}.
+   *
+   * @param val {@code "additionalItems"} schema type definition.
+   *
+   * @return a modified instance of {@link ArrayBuilder}
+   */
   T additionalItems(SchemaObject val);
 
+  /**
+   * Removes the {@code "additionalItems"} property from the {@link
+   * ArrayBuilder}.
+   *
+   * @return a modified instance of {@link ArrayBuilder}
+   */
   T clearAdditionalItems();
 
+  /**
+   * Creates a builder for the construction of a single type {@code "items"}
+   * schema property.
+   *
+   * @return a new SchemaBuilder for the {@code "items"} property
+   */
   ChildSchemaBuilder<T> items();
 
+  /**
+   * Creates a builder for the construction of a single type {@code "items"}
+   * schema property.
+   *
+   * @return a new SchemaBuilder for the {@code "items"} property
+   */
   TypeArrayBuilder<T> itemsArray();
 
   T items(SchemaObject val);
 
   T clearItems();
+
+  T enumValues(ArrayNode... vals);
 }
