@@ -15,7 +15,9 @@ extends SchemaObject<T>
    * @param val
    *   default value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T defaultValue(byte val);
 
@@ -25,7 +27,9 @@ extends SchemaObject<T>
    * @param val
    *   default value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T defaultValue(short val);
 
@@ -35,7 +39,9 @@ extends SchemaObject<T>
    * @param val
    *   default value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T defaultValue(int val);
 
@@ -45,7 +51,9 @@ extends SchemaObject<T>
    * @param val
    *   default value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T defaultValue(long val);
 
@@ -55,7 +63,9 @@ extends SchemaObject<T>
    * @param val
    *   default value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T defaultValue(double val);
 
@@ -65,7 +75,9 @@ extends SchemaObject<T>
    * @param val
    *   default value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T defaultValue(float val);
 
@@ -75,11 +87,13 @@ extends SchemaObject<T>
    * @param val
    *   default value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
    *
    * @throws NullPointerException
    *   if the input string is null.  The {@code "default"} property does not
    *   permit null values
+   *
+   * @since 1.0
    */
   T defaultValue(BigInteger val);
 
@@ -89,11 +103,13 @@ extends SchemaObject<T>
    * @param val
    *   default value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
    *
    * @throws NullPointerException
    *   if the input string is null.  The {@code "default"} property does not
    *   permit null values
+   *
+   * @since 1.0
    */
   T defaultValue(BigDecimal val);
 
@@ -103,7 +119,9 @@ extends SchemaObject<T>
    * @param val
    *   maximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T maximum(byte val);
 
@@ -113,7 +131,9 @@ extends SchemaObject<T>
    * @param val
    *   maximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T maximum(double val);
 
@@ -123,7 +143,9 @@ extends SchemaObject<T>
    * @param val
    *   maximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T maximum(float val);
 
@@ -133,7 +155,9 @@ extends SchemaObject<T>
    * @param val
    *   maximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T maximum(int val);
 
@@ -143,7 +167,9 @@ extends SchemaObject<T>
    * @param val
    *   maximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T maximum(long val);
 
@@ -153,7 +179,9 @@ extends SchemaObject<T>
    * @param val
    *   maximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T maximum(short val);
 
@@ -163,11 +191,13 @@ extends SchemaObject<T>
    * @param val
    *   maximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
    *
    * @throws NullPointerException
    *   if the input string is null.  The {@code "maximum"} property does not
    *   permit null values
+   *
+   * @since 1.0
    */
   T maximum(BigInteger val);
 
@@ -177,18 +207,22 @@ extends SchemaObject<T>
    * @param val
    *   maximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
    *
    * @throws NullPointerException
    *   if the input string is null.  The {@code "maximum"} property does not
    *   permit null values
+   *
+   * @since 1.0
    */
   T maximum(BigDecimal val);
 
   /**
    * Removes the {@code "maximum"} property from the schema (if present).
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T clearMaximum();
 
@@ -199,7 +233,9 @@ extends SchemaObject<T>
    * @param val
    *   exclusiveMaximum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T exclusiveMaximum(boolean val);
 
@@ -207,7 +243,9 @@ extends SchemaObject<T>
    * Removes the {@code "exclusiveMaximum"} property from the schema (if
    * present).
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T clearExclusiveMaximum();
 
@@ -217,7 +255,9 @@ extends SchemaObject<T>
    * @param val
    *   minimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T minimum(byte val);
 
@@ -227,7 +267,9 @@ extends SchemaObject<T>
    * @param val
    *   minimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T minimum(double val);
 
@@ -237,7 +279,9 @@ extends SchemaObject<T>
    * @param val
    *   minimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T minimum(float val);
 
@@ -247,7 +291,9 @@ extends SchemaObject<T>
    * @param val
    *   minimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T minimum(int val);
 
@@ -257,7 +303,9 @@ extends SchemaObject<T>
    * @param val
    *   minimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T minimum(long val);
 
@@ -267,7 +315,9 @@ extends SchemaObject<T>
    * @param val
    *   minimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T minimum(short val);
 
@@ -277,11 +327,13 @@ extends SchemaObject<T>
    * @param val
    *   minimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
    *
    * @throws NullPointerException
    *   if the input string is null.  The {@code "minimum"} property does not
    *   permit null values
+   *
+   * @since 1.0
    */
   T minimum(BigDecimal val);
 
@@ -291,18 +343,22 @@ extends SchemaObject<T>
    * @param val
    *   minimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
    *
    * @throws NullPointerException
    *   if the input string is null.  The {@code "minimum"} property does not
    *   permit null values
+   *
+   * @since 1.0
    */
   T minimum(BigInteger val);
 
   /**
    * Removes the {@code "minimum"} property from the schema (if present).
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T clearMinimum();
 
@@ -313,7 +369,9 @@ extends SchemaObject<T>
    * @param val
    *   exclusiveMinimum value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T exclusiveMinimum(boolean val);
 
@@ -321,7 +379,9 @@ extends SchemaObject<T>
    * Removes the {@code "exclusiveMinimum"} property from the schema (if
    * present).
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T clearExclusiveMinimum();
 
@@ -331,7 +391,9 @@ extends SchemaObject<T>
    * @param val
    *   multipleOf value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T multipleOf(byte val);
 
@@ -341,7 +403,9 @@ extends SchemaObject<T>
    * @param val
    *   multipleOf value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T multipleOf(short val);
 
@@ -351,7 +415,9 @@ extends SchemaObject<T>
    * @param val
    *   multipleOf value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T multipleOf(int val);
 
@@ -361,7 +427,9 @@ extends SchemaObject<T>
    * @param val
    *   multipleOf value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T multipleOf(long val);
 
@@ -371,7 +439,9 @@ extends SchemaObject<T>
    * @param val
    *   multipleOf value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T multipleOf(float val);
 
@@ -381,7 +451,9 @@ extends SchemaObject<T>
    * @param val
    *   multipleOf value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T multipleOf(double val);
 
@@ -391,11 +463,13 @@ extends SchemaObject<T>
    * @param val
    *   multipleOf value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
    *
    * @throws NullPointerException
    *   if the input string is null.  The {@code "multipleOf"} property does not
    *   permit null values
+   *
+   * @since 1.0
    */
   T multipleOf(BigInteger val);
 
@@ -405,20 +479,33 @@ extends SchemaObject<T>
    * @param val
    *   multipleOf value to set
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
    *
    * @throws NullPointerException
    *   if the input string is null.  The {@code "multipleOf"} property does not
    *   permit null values
+   *
+   * @since 1.0
    */
   T multipleOf(BigDecimal val);
 
   /**
    * Removes the {@code "multipleOf"} property from the schema (if present).
    *
-   * @return a modified instance of {@link NumberBuilder}
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
    */
   T clearMultipleOf();
 
+  /**
+   * Sets an array of values to the {@code "default"} property
+   *
+   * @param vals {@code "default"} array values
+   *
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.1
+   */
   T enumValues(Number... vals);
 }
