@@ -1,5 +1,6 @@
 package io.vulpine.lib.json.schema.v4;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.JsonNode;
 
 public interface SchemaNode {
@@ -11,5 +12,6 @@ public interface SchemaNode {
    *
    * @return constructed JsonNode instance.
    */
+  @JsonValue
   JsonNode render();
 }
