@@ -342,6 +342,7 @@ class StdArrayBuilderTest {
     @DisplayName("Adds an array to the schema under the \"items\" key")
     void test1()
     {
+      type.itemsArray();
       assertTrue(type.render().has(ITEMS));
       assertTrue(type.render().get(ITEMS).isArray());
     }

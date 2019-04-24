@@ -206,10 +206,11 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
       return (T) this;
 
     var d = def();
-    if (d.size() < 2)
-      return clearDefinitions();
 
     d.remove(name);
+    if (d.size() < 1)
+      return clearDefinitions();
+
     return (T) this;
   }
 

@@ -2,6 +2,7 @@ package io.vulpine.lib.json.schema.v4.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.vulpine.lib.json.schema.v4.Draft4;
 import io.vulpine.lib.json.schema.v4.JsonType;
 import io.vulpine.lib.json.schema.v4.ObjectBuilder;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,9 +42,9 @@ class StdObjectBuilderTest
   @Test
   void optionalProperty_setter()
   {
-    var a = JSON.createObjectNode()
-      .put("foo", "bar");
-    test.optionalProperty("test", new StdObjectBuilder<>(JSON, a));
+    var a = JSON.createObjectNode().put("foo", "bar");
+    assertNotNull(test.optionalProperty("test",
+      new StdObjectBuilder<>(JSON, a)));
     assertTrue(raw.get(PROPS).has("test"));
     assertEquals(a, raw.get(PROPS).get("test"));
   }
@@ -53,7 +54,7 @@ class StdObjectBuilderTest
   {
     test.optionalProperty("foo");
     test.requiredProperty("bar");
-    test.clearOptionalProperties();
+    assertNotNull(test.clearOptionalProperties());
 
     // Didn't remove "properties"
     assertTrue(raw.has(PROPS));
@@ -94,9 +95,9 @@ class StdObjectBuilderTest
   @Test
   void requiredProperty_setter()
   {
-    var a = JSON.createObjectNode()
-      .put("foo", "bar");
-    test.requiredProperty("test", new StdObjectBuilder<>(JSON, a));
+    var a = JSON.createObjectNode().put("foo", "bar");
+    assertNotNull(test.requiredProperty("test",
+      new StdObjectBuilder<>(JSON, a)));
 
     // Appended missing props
     assertTrue(raw.has(REQ));
@@ -114,35 +115,68 @@ class StdObjectBuilderTest
     assertNotNull(a);
   }
 
-  @Test
-  void clearRequiredProperties_when_optionals_present()
+  @Nested
+  @DisplayName("clearRequiredProperties()")
+  class clearRequiredProperties
   {
-    test.optionalProperty("foo");
-    test.requiredProperty("bar");
-    test.clearRequiredProperties();
+    @Nested
+    @DisplayName("When no properties are present")
+    class noProps
+    {
+      @Test
+      @DisplayName("does not return a null value")
+      void a()
+      {
+        assertNotNull(test.clearRequiredProperties());
+      }
 
-    // didn't remove req props
-    assertFalse(raw.has(REQ));
-    assertTrue(raw.has(PROPS));
+      @Test
+      @DisplayName("does not cause a dangling \"" + REQ + "\" array")
+      void b()
+      {
+        assertFalse(test.clearRequiredProperties().render().has(REQ));
+      }
 
-    // correctly trimmed the props object
-    assertEquals(1, raw.get(PROPS).size());
-    assertTrue(raw.get(PROPS).has("foo"));
-  }
+      @Test
+      @DisplayName("does not cause a dangling \"" + PROPS + "\" object")
+      void c()
+      {
+        assertFalse(test.clearRequiredProperties().render().has(PROPS));
+      }
+    }
 
-  @Test
-  void clearRequiredProperties_when_optionals_not_present()
-  {
-    test.requiredProperty("bar");
-    test.clearRequiredProperties();
+    @Test
+    @DisplayName("When both optional and required properties are present")
+    void when_optionals_present()
+    {
+      test.optionalProperty("foo");
+      test.requiredProperty("bar");
+      test.clearRequiredProperties();
 
-    // removed empty blocks
-    assertFalse(raw.has(REQ));
-    assertFalse(raw.has(PROPS));
+      // didn't remove req props
+      assertFalse(raw.has(REQ));
+      assertTrue(raw.has(PROPS));
 
-    // Extra call to hit a weird block of code meant to prevent the creation of
-    // the required array just before removing it.
-    test.clearRequiredProperties();
+      // correctly trimmed the props object
+      assertEquals(1, raw.get(PROPS).size());
+      assertTrue(raw.get(PROPS).has("foo"));
+    }
+
+    @Test
+    @DisplayName("When only required properties are present")
+    void clearRequiredProperties_when_optionals_not_present()
+    {
+      test.requiredProperty("bar");
+      assertNotNull(test.clearRequiredProperties());
+
+      // removed empty blocks
+      assertFalse(raw.has(REQ));
+      assertFalse(raw.has(PROPS));
+
+      // Extra call to hit a weird block of code meant to prevent the creation of
+      // the required array just before removing it.
+      test.clearRequiredProperties();
+    }
   }
 
   @Test
@@ -177,12 +211,13 @@ class StdObjectBuilderTest
 
   @Nested
   @DisplayName("clearPatternProperties()")
-  class clearPatternProperties {
+  class clearPatternProperties
+  {
     @BeforeEach
     void setUp()
     {
-      raw.set(PATT_PROPS, JSON.createObjectNode()
-        .set(PATT_PROPS, JSON.createObjectNode()));
+      raw.set(PATT_PROPS,
+        JSON.createObjectNode().set(PATT_PROPS, JSON.createObjectNode()));
     }
 
     @Test
@@ -197,7 +232,8 @@ class StdObjectBuilderTest
 
   @Nested
   @DisplayName("additionalProperties()")
-  class additionalProperties_builder {
+  class additionalProperties_builder
+  {
     @Test
     void additionalProperties()
     {
@@ -211,7 +247,8 @@ class StdObjectBuilderTest
 
   @Nested
   @DisplayName("additionalProperties(SchemaObject)")
-  class additionalProperties_setter {
+  class additionalProperties_setter
+  {
     @Test
     void additionalProperties()
     {
@@ -227,7 +264,8 @@ class StdObjectBuilderTest
 
   @Nested
   @DisplayName("additionalProperties(boolean)")
-  class additionalProperties_flag {
+  class additionalProperties_flag
+  {
     @Test
     void additionalProperties()
     {
@@ -247,7 +285,8 @@ class StdObjectBuilderTest
 
   @Test
   @DisplayName("enumValues(ObjectNode...)")
-  void enumValues() {
+  void enumValues()
+  {
     var a = JSON.createObjectNode().put("foo", "bar");
     var b = JSON.createObjectNode().put("fizz", "buzz");
 
@@ -290,7 +329,6 @@ class StdObjectBuilderTest
     assertFalse(raw.has(MAX_PROPS));
   }
 
-
   @Test
   void minProperties_int()
   {
@@ -330,46 +368,85 @@ class StdObjectBuilderTest
 
     var a = test.definition("test");
 
-    // Appended missing props
     assertTrue(raw.has(DEFINITIONS));
-
-    // "properties"
     assertTrue(raw.get(DEFINITIONS).has("test"));
     assertTrue(raw.get(DEFINITIONS).get("test").isObject());
-
-    // "required"
     assertEquals(1, raw.get(DEFINITIONS).size());
-    assertEquals("test", raw.get(DEFINITIONS).get(0).textValue());
-
-    // return val
     assertNotNull(a);
-
   }
 
   @Test
   void definition_setter()
   {
+    assertFalse(raw.has(DEFINITIONS));
 
+    var a = test.definition("test", Draft4.newBuilder());
+
+    assertTrue(raw.has(DEFINITIONS));
+    assertTrue(raw.get(DEFINITIONS).has("test"));
+    assertTrue(raw.get(DEFINITIONS).get("test").isObject());
+    assertEquals(1, raw.get(DEFINITIONS).size());
+    assertNotNull(a);
   }
 
-  @Test
-  void clearDefinition()
-  {
+  @Nested
+  @DisplayName("clearDefinition(String)")
+  class clearDefinition {
+    @Test
+    @DisplayName("Does not return null")
+    void a() {
+      assertNotNull(test.clearDefinition("foo"));
+    }
 
+    @Test
+    @DisplayName("When 1 unrelated definition is present")
+    void b()
+    {
+      test.definition("foo");
+      test.clearDefinition("bar");
+
+      var a = test.render();
+
+      assertTrue(a.has(DEFINITIONS));
+      assertTrue(a.get(DEFINITIONS).has("foo"));
+
+      // when 2 def present and 1 is being removed
+    }
+
+    @Test
+    @DisplayName("When 1 related definition is present")
+    void c()
+    {
+      test.definition("foo");
+      test.clearDefinition("foo");
+
+      var a = test.render();
+
+      assertFalse(a.has(DEFINITIONS));
+    }
+
+
+    @Test
+    @DisplayName("When 2 definitions are present")
+    void d()
+    {
+      test.definition("foo");
+      test.definition("bar");
+      test.clearDefinition("bar");
+
+      var a = test.render();
+
+      assertTrue(a.has(DEFINITIONS));
+      assertTrue(a.get(DEFINITIONS).has("foo"));
+      assertEquals(1, a.get(DEFINITIONS).size());
+    }
   }
 
   @Test
   void clearDefinitions()
   {
-    raw.put(DEFINITIONS, "foo");
-    test.clearDefinitions();
-
-    // didn't remove req props
-    assertFalse(raw.has(REQ));
-    assertTrue(raw.has(PROPS));
-
-    // correctly trimmed the props object
-    assertEquals(1, raw.get(PROPS).size());
-    assertTrue(raw.get(PROPS).has("foo"));
+    test.definition("test", Draft4.newBuilder());
+    assertNotNull(test.clearDefinitions());
+    assertFalse(test.render().has(DEFINITIONS));
   }
 }
