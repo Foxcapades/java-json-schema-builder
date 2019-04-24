@@ -11,15 +11,10 @@ import java.math.BigInteger;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 
 @SuppressWarnings("unchecked")
-class StdArrayBuilder<T extends ArrayBuilder<T>> extends StdSchemaObject<T>
-  implements ArrayBuilder<T>
+class StdArrayBuilder<T extends ArrayBuilder<T>>
+extends StdSchemaObject<T>
+implements ArrayBuilder<T>
 {
-  StdArrayBuilder(ObjectMapper mapper)
-  {
-    super(mapper);
-    this.schema.put(TYPE, JsonType.ARRAY.jsonName());
-  }
-
   StdArrayBuilder(ObjectMapper mapper, ObjectNode schema)
   {
     super(mapper, schema);
@@ -284,5 +279,17 @@ class StdArrayBuilder<T extends ArrayBuilder<T>> extends StdSchemaObject<T>
       en.add(a);
 
     return (T) this;
+  }
+
+  @Override
+  public T uniqueItems(boolean flag)
+  {
+    return put(UNIQUE, flag);
+  }
+
+  @Override
+  public T clearUniqueItems()
+  {
+    return clear(UNIQUE);
   }
 }

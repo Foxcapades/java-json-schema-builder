@@ -1,11 +1,11 @@
 package io.vulpine.lib.json.schema.v4.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.ArrayBuilder;
 import io.vulpine.lib.json.schema.v4.JsonType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -18,21 +18,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class StdArrayBuilderTest {
 
   private static final ObjectMapper JSON = new ObjectMapper();
-  private ObjectNode raw;
   private ArrayBuilder<? extends ArrayBuilder<?>> type;
 
   @BeforeEach
   void setUp()
   {
-    raw = JSON.createObjectNode();
-    type = new StdArrayBuilder<>(JSON, raw);
-  }
-
-  @Test
-  void constructor1()
-  {
-    assertEquals(JsonType.ARRAY.jsonName(),
-      new StdArrayBuilder(JSON).render().get(TYPE).asText());
+    type = new StdArrayBuilder<>(JSON, JSON.createObjectNode());
   }
 
   @Test
@@ -255,14 +246,14 @@ class StdArrayBuilderTest {
   void maxItems_clear()
   {
     type.maxItems(10);
-    type.clearMaxItems();
+    assertNotNull(type.clearMaxItems());
     assertFalse(type.render().has(MAX_ITEMS));
   }
 
   @Test
   void maxItems_BigInteger()
   {
-    type.maxItems(new BigInteger("10"));
+    assertNotNull(type.maxItems(new BigInteger("10")));
     assertEquals(new BigInteger("10"), type.render().get(MAX_ITEMS).bigIntegerValue());
     assertThrows(NullPointerException.class, () -> type.maxItems(null));
   }
@@ -270,14 +261,14 @@ class StdArrayBuilderTest {
   @Test
   void minItems_int()
   {
-    type.minItems(10);
+    assertNotNull(type.minItems(10));
     assertEquals(10, type.render().get(MIN_ITEMS).intValue());
   }
 
   @Test
   void minItems_BigInteger()
   {
-    type.minItems(new BigInteger("10"));
+    assertNotNull(type.minItems(new BigInteger("10")));
     assertEquals(new BigInteger("10"), type.render().get(MIN_ITEMS).bigIntegerValue());
     assertThrows(NullPointerException.class, () -> type.maxItems(null));
   }
@@ -286,7 +277,7 @@ class StdArrayBuilderTest {
   void minItems_clear()
   {
     type.minItems(10);
-    type.clearMinItems();
+    assertNotNull(type.clearMinItems());
     assertFalse(type.render().has(MIN_ITEMS));
   }
 
@@ -319,23 +310,44 @@ class StdArrayBuilderTest {
       .has(ADDTL_ITEMS));
   }
 
-  @Test
-  void items()
-  {
-    type.items().asBoolean();
-    assertTrue(type.render().has(ITEMS));
-    assertTrue(type.render().get(ITEMS).has(TYPE));
-    assertEquals(JsonType.BOOLEAN.jsonName(), type.render().get(ITEMS).get(
-      TYPE).textValue());
+  @Nested
+  @DisplayName("items()")
+  class items {
+    @Test
+    @DisplayName("Does not return null")
+    void nn() { assertNotNull(type.items()); }
+
+    @Test
+    void test1()
+    {
+      type.items().asBoolean();
+      assertTrue(type.render().has(ITEMS));
+      assertTrue(type.render().get(ITEMS).has(TYPE));
+      assertEquals(JsonType.BOOLEAN.jsonName(), type.render().get(ITEMS).get(
+        TYPE).textValue());
+    }
   }
 
-  @Test
-  void itemsArray()
-  {
-    type.itemsArray();
-    assertTrue(type.render().has(ITEMS));
-    assertTrue(type.render().get(ITEMS).isArray());
+  @Nested
+  @DisplayName("itemsArray()")
+  class itemsArray {
+    @Test
+    @DisplayName("Does not return null")
+    void nn()
+    {
+      assertNotNull(type.itemsArray());
+    }
+
+    @Test
+    @DisplayName("Adds an array to the schema under the \"items\" key")
+    void test1()
+    {
+      type.itemsArray();
+      assertTrue(type.render().has(ITEMS));
+      assertTrue(type.render().get(ITEMS).isArray());
+    }
   }
+
 
   @Test
   void items_setter()
@@ -348,23 +360,45 @@ class StdArrayBuilderTest {
   @Test
   void clearItems()
   {
-    assertFalse(type.items(new StdArrayBuilder(JSON))
+    assertFalse(type.items(new StdArrayBuilder(JSON, JSON.createObjectNode()))
       .clearItems()
       .render()
       .has(ITEMS));
   }
 
   @Test
-  @DisplayName("enumValues(ArrayNode... vals)")
+  @DisplayName("enumValues(ArrayNode...)")
   void enumValues1()
   {
-    type.enumValues(
+    assertNotNull(type.enumValues(
       JSON.createArrayNode().add("a"),
-      JSON.createArrayNode().add("b"));
-    assertTrue(raw.has(ENUM));
-    assertTrue(raw.get(ENUM).isArray());
-    assertEquals(2, raw.get(ENUM).size());
-    assertEquals("[\"a\"]", raw.get(ENUM).get(0).toString());
-    assertEquals("[\"b\"]", raw.get(ENUM).get(1).toString());
+      JSON.createArrayNode().add("b")));
+    var v = type.render();
+    assertTrue(v.has(ENUM));
+    assertTrue(v.get(ENUM).isArray());
+    assertEquals(2, v.get(ENUM).size());
+    assertEquals("[\"a\"]", v.get(ENUM).get(0).toString());
+    assertEquals("[\"b\"]", v.get(ENUM).get(1).toString());
+  }
+
+  @Test
+  void uniqueItems()
+  {
+    assertNotNull(type.uniqueItems(true));
+    var a = type.render();
+    assertTrue(a.has(UNIQUE));
+    assertTrue(a.get(UNIQUE).booleanValue());
+
+    assertNotNull(type.uniqueItems(false));
+    var b = type.render();
+    assertFalse(b.get(UNIQUE).booleanValue());
+  }
+
+  @Test
+  void clearUniqueItems()
+  {
+    type.uniqueItems(true);
+    assertNotNull(type.clearUniqueItems());
+    assertFalse(type.render().has(UNIQUE));
   }
 }
