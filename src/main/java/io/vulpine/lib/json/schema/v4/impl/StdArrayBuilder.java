@@ -202,7 +202,7 @@ implements ArrayBuilder<T>
   }
 
   @Override
-  public T clearMaxItems()
+  public T removeMaxItems()
   {
     return clear(MAX_ITEMS);
   }
@@ -219,7 +219,7 @@ implements ArrayBuilder<T>
     return put(MIN_ITEMS, val);
   }
 
-  public T clearMinItems()
+  public T removeMinItems()
   {
     return clear(MIN_ITEMS);
   }
@@ -239,7 +239,7 @@ implements ArrayBuilder<T>
   }
 
   @Override
-  public T clearAdditionalItems()
+  public T removeAdditionalItems()
   {
     return clear(ADDTL_ITEMS);
   }
@@ -265,7 +265,7 @@ implements ArrayBuilder<T>
   }
 
   @Override
-  public T clearItems()
+  public T removeItems()
   {
     return clear(ITEMS);
   }
@@ -288,7 +288,7 @@ implements ArrayBuilder<T>
   }
 
   @Override
-  public T clearUniqueItems()
+  public T removeUniqueItems()
   {
     return clear(UNIQUE);
   }

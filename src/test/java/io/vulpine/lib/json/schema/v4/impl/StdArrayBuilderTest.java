@@ -228,17 +228,17 @@ class StdArrayBuilderTest {
   }
 
   @Test
-  void defaultValue()
+  void clearDefaultValue() //TODO: This doesn't go here.
   {
-    type.defaultValue(JSON.createArrayNode().add("foo"));
-    type.clearDefaultValue();
+    assertNotNull(type.defaultValue(JSON.createArrayNode().add("foo")));
+    assertNotNull(type.clearDefaultValue());
     assertFalse(type.render().has(DEFAULT));
   }
 
   @Test
   void maxItems_Integer()
   {
-    type.maxItems(10);
+    assertNotNull(type.maxItems(10));
     assertEquals(10, type.render().get(MAX_ITEMS).intValue());
   }
 
@@ -257,6 +257,15 @@ class StdArrayBuilderTest {
     assertEquals(new BigInteger("10"), type.render().get(MAX_ITEMS).bigIntegerValue());
     assertThrows(NullPointerException.class, () -> type.maxItems(null));
   }
+
+  @Test
+  void removeMaxItems()
+  {
+    type.maxItems(10);
+    assertNotNull(type.removeMaxItems());
+    assertFalse(type.render().has(MAX_ITEMS));
+  }
+
 
   @Test
   void minItems_int()
@@ -282,6 +291,14 @@ class StdArrayBuilderTest {
   }
 
   @Test
+  void removeMinItems()
+  {
+    type.minItems(10);
+    assertNotNull(type.removeMinItems());
+    assertFalse(type.render().has(MIN_ITEMS));
+  }
+
+  @Test
   void additionalItems()
   {
     type.additionalItems().asBoolean();
@@ -298,6 +315,16 @@ class StdArrayBuilderTest {
       type.additionalItems(new StdNullBuilder(JSON)).render().get(ADDTL_ITEMS));
   }
 
+  @Test
+  void removeAdditionalItems()
+  {
+    assertFalse(type.additionalItems()
+      .asBoolean()
+      .close()
+      .removeAdditionalItems()
+      .render()
+      .has(ADDTL_ITEMS));
+  }
 
   @Test
   void clearAdditionalItems()
@@ -348,7 +375,6 @@ class StdArrayBuilderTest {
     }
   }
 
-
   @Test
   void items_setter()
   {
@@ -367,8 +393,17 @@ class StdArrayBuilderTest {
   }
 
   @Test
+  void removeItems()
+  {
+    assertFalse(type.items(new StdArrayBuilder(JSON, JSON.createObjectNode()))
+      .removeItems()
+      .render()
+      .has(ITEMS));
+  }
+
+  @Test
   @DisplayName("enumValues(ArrayNode...)")
-  void enumValues1()
+  void enumValues()
   {
     assertNotNull(type.enumValues(
       JSON.createArrayNode().add("a"),
@@ -392,6 +427,14 @@ class StdArrayBuilderTest {
     assertNotNull(type.uniqueItems(false));
     var b = type.render();
     assertFalse(b.get(UNIQUE).booleanValue());
+  }
+
+  @Test
+  void removeUniqueItems()
+  {
+    type.uniqueItems(true);
+    assertNotNull(type.removeUniqueItems());
+    assertFalse(type.render().has(UNIQUE));
   }
 
   @Test

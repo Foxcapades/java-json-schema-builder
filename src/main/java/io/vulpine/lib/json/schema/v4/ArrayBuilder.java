@@ -295,9 +295,24 @@ public interface ArrayBuilder<T extends ArrayBuilder<T>> extends SchemaObject<T>
    *
    * @return a modified instance of {@link ArrayBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearMaxItems();
+  T removeMaxItems();
+
+  /**
+   * Removes the {@code "maxItems"} property from the schema (if present).
+   *
+   * @return a modified instance of {@link ArrayBuilder}
+   *
+   * @since 1.0
+   *
+   * @deprecated removing clear methods in favor of remove methods
+   */
+  @Deprecated
+  default T clearMaxItems()
+  {
+    return removeMaxItems();
+  }
 
   /**
    * Sets the {@code "minItems"} value for the current {@link ArrayBuilder}.
@@ -332,9 +347,24 @@ public interface ArrayBuilder<T extends ArrayBuilder<T>> extends SchemaObject<T>
    *
    * @return a modified instance of {@link ArrayBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearMinItems();
+  T removeMinItems();
+
+  /**
+   * Removes the {@code "minItems"} property from the schema (if present).
+   *
+   * @return a modified instance of {@link ArrayBuilder}
+   *
+   * @since 1.0
+   *
+   * @deprecated removing clear methods in favor of remove methods
+   */
+  @Deprecated
+  default T clearMinItems()
+  {
+    return removeMinItems();
+  }
 
   /**
    * Creates a builder for the construction of the {@code "additionalItems"}
@@ -364,9 +394,25 @@ public interface ArrayBuilder<T extends ArrayBuilder<T>> extends SchemaObject<T>
    *
    * @return a modified instance of {@link ArrayBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearAdditionalItems();
+  T removeAdditionalItems();
+
+  /**
+   * Removes the {@code "additionalItems"} property from the {@link
+   * ArrayBuilder}.
+   *
+   * @return a modified instance of {@link ArrayBuilder}
+   *
+   * @since 1.0
+   *
+   * @deprecated removing clear methods in favor of remove methods
+   */
+  @Deprecated
+  default T clearAdditionalItems()
+  {
+    return removeAdditionalItems();
+  }
 
   /**
    * Creates a builder for the construction of a single type {@code "items"}
@@ -388,9 +434,40 @@ public interface ArrayBuilder<T extends ArrayBuilder<T>> extends SchemaObject<T>
    */
   TypeArrayBuilder<T> itemsArray();
 
+  /**
+   * Sets the {@code "items"} property to the given schema definition
+   *
+   * TODO: accept schema node, this could be an array.
+   *
+   * @param val schema to set at the {@code "items"} property
+   *
+   * @return a modified {@link ArrayBuilder}
+   */
   T items(SchemaObject val);
 
-  T clearItems();
+  /**
+   * Removes the {@code "items"} property
+   *
+   * @return a modified {@link ArrayBuilder}
+   *
+   * @since 1.3
+   */
+  T removeItems();
+
+  /**
+   * Removes the {@code "items"} property
+   *
+   * @return a modified {@link ArrayBuilder}
+   *
+   * @since 1.0
+   *
+   * @deprecated removing clear methods in favor of remove methods
+   */
+  @Deprecated
+  default T clearItems()
+  {
+    return removeItems();
+  }
 
   /**
    * Sets the {@code "enum"} property of the schema to the given set of arrays.
@@ -420,7 +497,22 @@ public interface ArrayBuilder<T extends ArrayBuilder<T>> extends SchemaObject<T>
    *
    * @return a modified {@link ArrayBuilder}
    *
-   * @since 1.2
+   * @since 1.3
    */
-  T clearUniqueItems();
+  T removeUniqueItems();
+
+  /**
+   * Removes the {@code "uniqueItems"} property.
+   *
+   * @return a modified {@link ArrayBuilder}
+   *
+   * @since 1.2
+   *
+   * @deprecated removing clear methods in favor of remove methods
+   */
+  @Deprecated
+  default T clearUniqueItems()
+  {
+    return removeUniqueItems();
+  }
 }
