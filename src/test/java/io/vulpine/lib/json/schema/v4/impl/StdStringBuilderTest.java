@@ -65,6 +65,15 @@ class StdStringBuilderTest
   }
 
   @Test
+  void maxLength_long()
+  {
+    var a = 1L;
+    var b = type.maxLength(a).render();
+    assertTrue(b.has(MAX_LENGTH));
+    assertEquals(a, b.get(MAX_LENGTH).longValue());
+  }
+
+  @Test
   void maxLength_bigInt()
   {
     var a = new BigInteger("1");
@@ -80,12 +89,27 @@ class StdStringBuilderTest
   }
 
   @Test
+  void removeMaxLength()
+  {
+    assertFalse(type.maxLength(1).removeMaxLength().render().has(MAX_LENGTH));
+  }
+
+  @Test
   void minLength_int()
   {
     var a = 1;
     var b = type.minLength(a).render();
     assertTrue(b.has(MIN_LENGTH));
     assertEquals(a, b.get(MIN_LENGTH).intValue());
+  }
+
+  @Test
+  void minLength_long()
+  {
+    var a = 1L;
+    var b = type.minLength(a).render();
+    assertTrue(b.has(MIN_LENGTH));
+    assertEquals(a, b.get(MIN_LENGTH).longValue());
   }
 
   @Test
@@ -104,6 +128,12 @@ class StdStringBuilderTest
   }
 
   @Test
+  void removeMinLength()
+  {
+    assertFalse(type.minLength(1).removeMinLength().render().has(MIN_LENGTH));
+  }
+
+  @Test
   void pattern()
   {
     var a = "a";
@@ -119,9 +149,15 @@ class StdStringBuilderTest
   }
 
   @Test
+  void removePattern()
+  {
+    assertFalse(type.pattern("a").removePattern().render().has(PATTERN));
+  }
+
+  @Test
   void enumValues()
   {
-    type.enumValues("a", "b");
+    assertNotNull(type.enumValues("a", "b"));
     assertTrue(raw.has(ENUM));
     assertTrue(raw.get(ENUM).isArray());
     assertEquals(2, raw.get(ENUM).size());
@@ -138,7 +174,7 @@ class StdStringBuilderTest
     @EnumSource(Format.class)
     void format(Format format)
     {
-      type.format(format);
+      assertNotNull(type.format(format));
       assertEquals(format.jsonValue(), raw.get(FORMAT).textValue());
     }
   }
@@ -151,13 +187,13 @@ class StdStringBuilderTest
     @DisplayName("Appends the string value for the named format to the schema object")
     void format()
     {
-      type.format("foo");
+      assertNotNull(type.format("foo"));
       assertEquals("foo", raw.get(FORMAT).textValue());
     }
   }
 
   @Nested
-  @DisplayName("clearFormat()")
+  @DisplayName("removeFormat()")
   class clearFormat
   {
     @BeforeEach
@@ -170,7 +206,15 @@ class StdStringBuilderTest
     @DisplayName("Removes the \"format\" property from the schema object")
     void test()
     {
-      type.clearFormat();
+      assertNotNull(type.removeFormat());
+      assertFalse(raw.has(FORMAT));
+    }
+
+    @Test
+    @DisplayName("Removes the \"format\" property from the schema object")
+    void test1()
+    {
+      assertNotNull(type.clearFormat());
       assertFalse(raw.has(FORMAT));
     }
   }

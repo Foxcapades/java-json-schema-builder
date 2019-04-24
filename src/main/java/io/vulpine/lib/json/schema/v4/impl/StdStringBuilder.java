@@ -33,27 +33,27 @@ implements StringBuilder<T>
   }
 
   @Override
-  public T maxLength(BigInteger val)
-  {
-    return put(MAX_LENGTH, val);
-  }
-
-  @Override
   public T maxLength(int val)
   {
     return put(MAX_LENGTH, val);
   }
 
   @Override
-  public T clearMaxLength()
+  public T maxLength(long val)
   {
-    return clear(MAX_LENGTH);
+    return put(MAX_LENGTH, val);
   }
 
   @Override
-  public T minLength(BigInteger val)
+  public T maxLength(BigInteger val)
   {
-    return put(MIN_LENGTH, val);
+    return put(MAX_LENGTH, val);
+  }
+
+  @Override
+  public T removeMaxLength()
+  {
+    return clear(MAX_LENGTH);
   }
 
   @Override
@@ -63,7 +63,19 @@ implements StringBuilder<T>
   }
 
   @Override
-  public T clearMinLength()
+  public T minLength(long val)
+  {
+    return put(MIN_LENGTH, val);
+  }
+
+  @Override
+  public T minLength(BigInteger val)
+  {
+    return put(MIN_LENGTH, val);
+  }
+
+  @Override
+  public T removeMinLength()
   {
     return clear(MIN_LENGTH);
   }
@@ -75,7 +87,7 @@ implements StringBuilder<T>
   }
 
   @Override
-  public T clearPattern()
+  public T removePattern()
   {
     return clear(PATTERN);
   }
@@ -103,7 +115,7 @@ implements StringBuilder<T>
   }
 
   @Override
-  public T clearFormat()
+  public T removeFormat()
   {
     return clear(FORMAT);
   }
