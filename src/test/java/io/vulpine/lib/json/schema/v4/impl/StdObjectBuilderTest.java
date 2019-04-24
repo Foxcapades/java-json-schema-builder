@@ -9,6 +9,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
+
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -254,5 +256,120 @@ class StdObjectBuilderTest
     assertEquals(2, raw.get(ENUM).size());
     assertEquals(a, raw.get(ENUM).get(0));
     assertEquals(b, raw.get(ENUM).get(1));
+  }
+
+  @Test
+  void maxProperties_int()
+  {
+    assertNotNull(test.maxProperties(3));
+    assertTrue(raw.has(MAX_PROPS));
+    assertEquals(3, raw.get(MAX_PROPS).intValue());
+  }
+
+  @Test
+  void maxProperties_long()
+  {
+    assertNotNull(test.maxProperties(3L));
+    assertTrue(raw.has(MAX_PROPS));
+    assertEquals(3L, raw.get(MAX_PROPS).longValue());
+  }
+
+  @Test
+  void maxProperties_bigInt()
+  {
+    assertNotNull(test.maxProperties(new BigInteger("3")));
+    assertTrue(raw.has(MAX_PROPS));
+    assertEquals(new BigInteger("3"), raw.get(MAX_PROPS).bigIntegerValue());
+  }
+
+  @Test
+  void clearMaxProperties()
+  {
+    raw.put(MAX_PROPS, 1);
+    assertNotNull(test.clearMaxProperties());
+    assertFalse(raw.has(MAX_PROPS));
+  }
+
+
+  @Test
+  void minProperties_int()
+  {
+    assertNotNull(test.minProperties(3));
+    assertTrue(raw.has(MIN_PROPS));
+    assertEquals(3, raw.get(MIN_PROPS).intValue());
+  }
+
+  @Test
+  void minProperties_long()
+  {
+    assertNotNull(test.minProperties(3L));
+    assertTrue(raw.has(MIN_PROPS));
+    assertEquals(3L, raw.get(MIN_PROPS).longValue());
+  }
+
+  @Test
+  void minProperties_bigInt()
+  {
+    assertNotNull(test.minProperties(new BigInteger("3")));
+    assertTrue(raw.has(MIN_PROPS));
+    assertEquals(new BigInteger("3"), raw.get(MIN_PROPS).bigIntegerValue());
+  }
+
+  @Test
+  void clearMinProperties()
+  {
+    raw.put(MIN_PROPS, 1);
+    assertNotNull(test.clearMinProperties());
+    assertFalse(raw.has(MIN_PROPS));
+  }
+
+  @Test
+  void definition_builder()
+  {
+    assertFalse(raw.has(DEFINITIONS));
+
+    var a = test.definition("test");
+
+    // Appended missing props
+    assertTrue(raw.has(DEFINITIONS));
+
+    // "properties"
+    assertTrue(raw.get(DEFINITIONS).has("test"));
+    assertTrue(raw.get(DEFINITIONS).get("test").isObject());
+
+    // "required"
+    assertEquals(1, raw.get(DEFINITIONS).size());
+    assertEquals("test", raw.get(DEFINITIONS).get(0).textValue());
+
+    // return val
+    assertNotNull(a);
+
+  }
+
+  @Test
+  void definition_setter()
+  {
+
+  }
+
+  @Test
+  void clearDefinition()
+  {
+
+  }
+
+  @Test
+  void clearDefinitions()
+  {
+    raw.put(DEFINITIONS, "foo");
+    test.clearDefinitions();
+
+    // didn't remove req props
+    assertFalse(raw.has(REQ));
+    assertTrue(raw.has(PROPS));
+
+    // correctly trimmed the props object
+    assertEquals(1, raw.get(PROPS).size());
+    assertTrue(raw.get(PROPS).has("foo"));
   }
 }

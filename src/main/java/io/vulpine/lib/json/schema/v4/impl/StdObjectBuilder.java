@@ -5,21 +5,25 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.*;
 
+import java.math.BigInteger;
+
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 
 @SuppressWarnings("unchecked")
-class StdObjectBuilder<T extends ObjectBuilder<T>>
-extends StdSchemaObject<T>
-implements ObjectBuilder<T>
+class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
+  implements ObjectBuilder<T>
 {
-  StdObjectBuilder(ObjectMapper mapper, ObjectNode schema) {
+  StdObjectBuilder(ObjectMapper mapper, ObjectNode schema)
+  {
     super(mapper, schema);
     this.schema.put(TYPE, JsonType.OBJECT.jsonName());
   }
 
   @Override
-  public ChildSchemaBuilder<T> optionalProperty(String name) {
-    return new StdChildSchemaBuilder<>((T) this, mapper,
+  public ChildSchemaBuilder<T> optionalProperty(String name)
+  {
+    return new StdChildSchemaBuilder<>((T) this,
+      mapper,
       props().putObject(name));
   }
 
@@ -81,7 +85,8 @@ implements ObjectBuilder<T>
   @Override
   public ChildSchemaBuilder<T> patternProperty(String a)
   {
-    return new StdChildSchemaBuilder<>((T) this, mapper,
+    return new StdChildSchemaBuilder<>((T) this,
+      mapper,
       patternProps().putObject(a));
   }
 
@@ -94,24 +99,35 @@ implements ObjectBuilder<T>
 
   @Override
   public T clearPatternProperties()
-  { return clear(PATT_PROPS); }
+  {
+    return clear(PATT_PROPS);
+  }
 
   @Override
   public ChildSchemaBuilder<T> additionalProperties()
   {
-    return new StdChildSchemaBuilder<>((T) this, mapper,
+    return new StdChildSchemaBuilder<>((T) this,
+      mapper,
       schema.putObject(ADDTL_PROPS));
   }
 
   @Override
   public T additionalProperties(SchemaObject v)
-  { return put(ADDTL_PROPS, v); }
+  {
+    return put(ADDTL_PROPS, v);
+  }
 
-  @Override public T additionalProperties(boolean f)
-  { return put(ADDTL_PROPS, f); }
+  @Override
+  public T additionalProperties(boolean f)
+  {
+    return put(ADDTL_PROPS, f);
+  }
 
-  @Override public T clearAdditionalProperties()
-  { return clear(ADDTL_PROPS); }
+  @Override
+  public T clearAdditionalProperties()
+  {
+    return clear(ADDTL_PROPS);
+  }
 
   @Override
   public T enumValues(ObjectNode... types)
@@ -122,25 +138,125 @@ implements ObjectBuilder<T>
     return (T) this;
   }
 
-  private ObjectNode patternProps() {
+  @Override
+  public T maxProperties(int val)
+  {
+    return put(MAX_PROPS, val);
+  }
+
+  @Override
+  public T maxProperties(long val)
+  {
+    return put(MAX_PROPS, val);
+  }
+
+  @Override
+  public T maxProperties(BigInteger val)
+  {
+    return put(MAX_PROPS, val);
+  }
+
+  @Override
+  public T clearMaxProperties()
+  {
+    return clear(MAX_PROPS);
+  }
+
+  @Override
+  public T minProperties(int val)
+  {
+    return put(MIN_PROPS, val);
+  }
+
+  @Override
+  public T minProperties(long val)
+  {
+    return put(MIN_PROPS, val);
+  }
+
+  @Override
+  public T minProperties(BigInteger val)
+  {
+    return put(MIN_PROPS, val);
+  }
+
+  @Override
+  public T clearMinProperties()
+  {
+    return clear(MIN_PROPS);
+  }
+
+  @Override
+  public ChildObjectBuilder<T> definition(String name)
+  {
+    return new StdChildObjectBuilder<>((T) this, mapper, def().putObject(name));
+  }
+
+  @Override
+  public T definition(String name, SchemaObject schema)
+  {
+    def().set(name, schema.render());
+    return (T) this;
+  }
+
+  @Override
+  public T clearDefinition(String name)
+  {
+    if (!hasDef())
+      return (T) this;
+
+    var d = def();
+    if (d.size() < 2)
+      return clearDefinitions();
+
+    d.remove(name);
+    return (T) this;
+  }
+
+  @Override
+  public T clearDefinitions()
+  {
+    return clear(DEFINITIONS);
+  }
+
+  private ObjectNode patternProps()
+  {
     return schema.has(PATT_PROPS)
       ? (ObjectNode) schema.get(PATT_PROPS)
       : schema.putObject(PATT_PROPS);
   }
 
   private ArrayNode required()
-  { return hasReq() ? (ArrayNode) schema.get(REQ) : schema.putArray(REQ); }
+  {
+    return hasReq() ? (ArrayNode) schema.get(REQ) : schema.putArray(REQ);
+  }
 
-  private ObjectNode props() {
+  private ObjectNode props()
+  {
     return hasProps()
       ? (ObjectNode) schema.get(PROPS)
       : schema.putObject(PROPS);
   }
 
   private boolean hasReq()
-  { return schema.has(REQ); }
+  {
+    return schema.has(REQ);
+  }
 
   private boolean hasProps()
-  { return schema.has(PROPS); }
+  {
+    return schema.has(PROPS);
+  }
 
+  private boolean hasDef()
+  {
+    return schema.has(DEFINITIONS);
+  }
+
+  private ObjectNode def()
+  {
+    return hasDef()
+      ? (ObjectNode) schema.get(DEFINITIONS)
+      : schema.putObject(DEFINITIONS);
+  }
 }

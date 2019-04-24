@@ -2,8 +2,11 @@ package io.vulpine.lib.json.schema.v4;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import java.math.BigInteger;
+
 /**
- * @param <T> extension type
+ * @param <T>
+ *   extension type
  */
 public interface ObjectBuilder<T extends ObjectBuilder<T>>
 extends SchemaObject<T>
@@ -21,6 +24,8 @@ extends SchemaObject<T>
    *
    * @return an instance of a builder that can be used to construct the details
    * of the property.
+   *
+   * @since 1.0
    */
   ChildSchemaBuilder<T> optionalProperty(String name);
 
@@ -28,11 +33,13 @@ extends SchemaObject<T>
    * Sets an entry in the {@code "properties"} block of the current {@link
    * ObjectBuilder} by creating a copy of the input {@link SchemaNode}.
    * <p>
-   * <b>NOTE</b>: Properties added via this method <b>will not</b> appear in the
+   * <b>NOTE</b>: Properties added via this method <b>will not</b> appear in
+   * the
    * {@code "required"} properties array.  If a required property is desired,
    * see {@link #requiredProperty(String)}.
    * <p>
-   * <b>WARNING</b>: Modifications to the input {@link SchemaNode} after calling
+   * <b>WARNING</b>: Modifications to the input {@link SchemaNode} after
+   * calling
    * this method will not be reflected in the internal state of this {@link
    * ObjectBuilder}
    *
@@ -42,6 +49,8 @@ extends SchemaObject<T>
    *   schema definition for the property
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
    */
   T optionalProperty(String name, SchemaObject node);
 
@@ -54,6 +63,8 @@ extends SchemaObject<T>
    * after this action, the {@code "properties"} object itself will be removed.
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
    */
   T clearOptionalProperties();
 
@@ -70,6 +81,8 @@ extends SchemaObject<T>
    *
    * @return an instance of a builder that can be used to construct the details
    * of the property.
+   *
+   * @since 1.0
    */
   ChildSchemaBuilder<T> requiredProperty(String name);
 
@@ -84,6 +97,8 @@ extends SchemaObject<T>
    *
    * @return an instance of a builder that can be used to construct the details
    * of the property.
+   *
+   * @since 1.0
    */
   T requiredProperty(String name, SchemaObject node);
 
@@ -96,6 +111,8 @@ extends SchemaObject<T>
    * after this action, the {@code "properties"} object itself will be removed.
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
    */
   T clearRequiredProperties();
 
@@ -108,6 +125,8 @@ extends SchemaObject<T>
    *
    * @return an instance of a builder that can be used to construct the details
    * of the property.
+   *
+   * @since 1.0
    */
   ChildSchemaBuilder<T> patternProperty(String pattern);
 
@@ -115,7 +134,8 @@ extends SchemaObject<T>
    * Sets an entry in the {@code "patternProperties"} block of the current
    * {@link ObjectBuilder} by creating a copy of the input {@link SchemaNode}.
    * <p>
-   * <b>WARNING</b>: Modifications to the input {@link SchemaNode} after calling
+   * <b>WARNING</b>: Modifications to the input {@link SchemaNode} after
+   * calling
    * this method will not be reflected in the internal state of this {@link
    * ObjectBuilder}
    *
@@ -125,6 +145,8 @@ extends SchemaObject<T>
    *   schema definition for the property
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
    */
   T patternProperty(String pattern, SchemaObject node);
 
@@ -133,6 +155,8 @@ extends SchemaObject<T>
    * ObjectBuilder}.
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
    */
   T clearPatternProperties();
 
@@ -143,15 +167,19 @@ extends SchemaObject<T>
    *   {@code "additionalProperties"} flag setting
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
    */
   T additionalProperties(boolean val);
 
   /**
-   * Creates a new builder to create the schema definition for the the
-   * {@code "additionalProperties"} field.
+   * Creates a new builder to create the schema definition for the the {@code
+   * "additionalProperties"} field.
    *
    * @return an instance of a builder that can be used to construct the details
    * of the {@code "additionalProperties"} type.
+   *
+   * @since 1.0
    */
   ChildSchemaBuilder<T> additionalProperties();
 
@@ -163,6 +191,8 @@ extends SchemaObject<T>
    *   {@code "additionalProperties"} type definition
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
    */
   T additionalProperties(SchemaObject node);
 
@@ -170,10 +200,159 @@ extends SchemaObject<T>
    * Removes the {@code "additionalProperties"} field from the current {@link
    * ObjectBuilder}
    *
-
    * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
    */
   T clearAdditionalProperties();
 
   T enumValues(ObjectNode... types);
+
+  /**
+   * Sets the {@code "maxProperties"} object schema property
+   *
+   * @param val
+   *   value for the {@code "maxProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T maxProperties(int val);
+
+  /**
+   * Sets the {@code "maxProperties"} object schema property
+   *
+   * @param val
+   *   value for the {@code "maxProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T maxProperties(long val);
+
+  /**
+   * Sets the {@code "maxProperties"} object schema property
+   *
+   * @param val
+   *   value for the {@code "maxProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T maxProperties(BigInteger val);
+
+  /**
+   * Removes the {@code "maxProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T clearMaxProperties();
+
+  /**
+   * Sets the {@code "minProperties"} object schema property
+   *
+   * @param val
+   *   value for the {@code "minProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T minProperties(int val);
+
+  /**
+   * Sets the {@code "minProperties"} object schema property
+   *
+   * @param val
+   *   value for the {@code "minProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T minProperties(long val);
+
+  /**
+   * Sets the {@code "minProperties"} object schema property
+   *
+   * @param val
+   *   value for the {@code "minProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T minProperties(BigInteger val);
+
+  /**
+   * Removes the {@code "minProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T clearMinProperties();
+
+  /**
+   * Creates a builder which can be used to create a definition type at the
+   * given name property.
+   * <p>
+   * If the {@code "definitions"} object was not already present in the current
+   * schema builder then it will be added.
+   *
+   * @param name
+   *   name of the definition to build
+   *
+   * @return a new {@link ChildObjectBuilder}
+   *
+   * @since 1.2
+   */
+  ChildObjectBuilder<T> definition(String name);
+
+  /**
+   * Sets the named definition type to the given {@link SchemaObject} value.
+   * <p>
+   * If the {@code "definitions"} object was not already present in the current
+   * schema builder then it will be added.
+   *
+   * @param name
+   *   name of the property to add to the {@code "definitions"} object
+   * @param schema
+   *   schema type to add to the {@code "definitions"} object
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T definition(String name, SchemaObject schema);
+
+  /**
+   * Removes the definition type keyed at the given name from the {@code
+   * "definitions"} object.
+   * <p>
+   * If the there are no definitions remaining in the schema after this removal
+   * the {@code "definitions"} property itself will be removed.
+   *
+   * @param name
+   *   name of the definition type to remove
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T clearDefinition(String name);
+
+  /**
+   * Removes the {@code "definitions"} property from the current schema.
+   *
+   * @return a modifed {@link ObjectBuilder}
+   *
+   * @since 1.2
+   */
+  T clearDefinitions();
 }
