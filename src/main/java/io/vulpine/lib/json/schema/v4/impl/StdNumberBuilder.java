@@ -124,7 +124,7 @@ implements NumberBuilder<T>
   }
 
   @Override
-  public T clearMaximum()
+  public T removeMaximum()
   {
     return clear(MAXIMUM);
   }
@@ -136,7 +136,7 @@ implements NumberBuilder<T>
   }
 
   @Override
-  public T clearExclusiveMaximum()
+  public T removeExclusiveMaximum()
   {
     return clear(EXCL_MAX);
   }
@@ -190,7 +190,7 @@ implements NumberBuilder<T>
   }
 
   @Override
-  public T clearMinimum()
+  public T removeMinimum()
   {
     return clear(MINIMUM);
   }
@@ -202,7 +202,7 @@ implements NumberBuilder<T>
   }
 
   @Override
-  public T clearExclusiveMinimum()
+  public T removeExclusiveMinimum()
   {
     return clear(EXCL_MIN);
   }
@@ -256,7 +256,7 @@ implements NumberBuilder<T>
   }
 
   @Override
-  public T clearMultipleOf()
+  public T removeMultipleOf()
   {
     return clear(MULTIPLE);
   }

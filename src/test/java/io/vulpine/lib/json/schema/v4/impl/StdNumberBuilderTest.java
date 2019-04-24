@@ -145,9 +145,20 @@ class StdNumberBuilderTest {
   }
 
   @Test
+  void removeMaximum() {
+    assertFalse(type.maximum(3).removeMaximum().render().has(Keys.MAXIMUM));
+  }
+
+  @Test
   void exclusiveMaximum() {
     assertTrue(type.exclusiveMaximum(true).render().get(EXCL_MAX).asBoolean());
     assertFalse(type.exclusiveMaximum(false).render().get(EXCL_MAX).asBoolean());
+  }
+
+  @Test
+  void removeExclusiveMaximum() {
+    assertFalse(type.exclusiveMaximum(true).removeExclusiveMaximum()
+      .render().has(EXCL_MAX));
   }
 
   @Test
@@ -205,6 +216,11 @@ class StdNumberBuilderTest {
   }
 
   @Test
+  void removeMinimum() {
+    assertFalse(type.minimum(3).removeMinimum().render().has(Keys.MINIMUM));
+  }
+
+  @Test
   void clearMinimum() {
     assertFalse(type.minimum(3).clearMinimum().render().has(Keys.MINIMUM));
   }
@@ -213,6 +229,12 @@ class StdNumberBuilderTest {
   void exclusiveMinimum() {
     assertTrue(type.exclusiveMinimum(true).render().get(EXCL_MIN).asBoolean());
     assertFalse(type.exclusiveMinimum(false).render().get(EXCL_MIN).asBoolean());
+  }
+
+  @Test
+  void removeExclusiveMinimum() {
+    assertFalse(type.exclusiveMinimum(true).removeExclusiveMinimum()
+      .render().has(EXCL_MIN));
   }
 
   @Test
@@ -267,6 +289,14 @@ class StdNumberBuilderTest {
   void multipleOf_bigDec() {
     assertEquals(new BigDecimal("4"), type.multipleOf(new BigDecimal("4"))
       .render().get(Keys.MULTIPLE).decimalValue());
+  }
+
+  @Test
+  void removeMultipleOf() {
+    assertFalse(type.multipleOf(3)
+      .removeMultipleOf()
+      .render()
+      .has(Keys.MULTIPLE));
   }
 
   @Test

@@ -222,9 +222,23 @@ extends SchemaObject<T>
    *
    * @return an updated {@link NumberBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearMaximum();
+  T removeMaximum();
+
+  /**
+   * Removes the {@code "maximum"} property from the schema (if present).
+   *
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearMaximum()
+  {
+    return removeMaximum();
+  }
 
   /**
    * Sets the {@code "exclusiveMaximum"} value for the current {@link
@@ -245,9 +259,24 @@ extends SchemaObject<T>
    *
    * @return an updated {@link NumberBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearExclusiveMaximum();
+  T removeExclusiveMaximum();
+
+  /**
+   * Removes the {@code "exclusiveMaximum"} property from the schema (if
+   * present).
+   *
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearExclusiveMaximum()
+  {
+    return removeExclusiveMaximum();
+  }
 
   /**
    * Sets the {@code "minimum"} value for the current {@link NumberBuilder}.
@@ -358,9 +387,23 @@ extends SchemaObject<T>
    *
    * @return an updated {@link NumberBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearMinimum();
+  T removeMinimum();
+
+  /**
+   * Removes the {@code "minimum"} property from the schema (if present).
+   *
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearMinimum()
+  {
+    return removeMinimum();
+  }
 
   /**
    * Sets the {@code "exclusiveMinimum"} value for the current {@link
@@ -381,9 +424,24 @@ extends SchemaObject<T>
    *
    * @return an updated {@link NumberBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearExclusiveMinimum();
+  T removeExclusiveMinimum();
+
+  /**
+   * Removes the {@code "exclusiveMinimum"} property from the schema (if
+   * present).
+   *
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearExclusiveMinimum()
+  {
+    return removeExclusiveMinimum();
+  }
 
   /**
    * Sets the {@code "multipleOf"} value for the current {@link NumberBuilder}.
@@ -494,9 +552,23 @@ extends SchemaObject<T>
    *
    * @return an updated {@link NumberBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearMultipleOf();
+  T removeMultipleOf();
+
+  /**
+   * Removes the {@code "multipleOf"} property from the schema (if present).
+   *
+   * @return an updated {@link NumberBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearMultipleOf()
+  {
+    return removeMultipleOf();
+  }
 
   /**
    * Sets an array of values to the {@code "default"} property
