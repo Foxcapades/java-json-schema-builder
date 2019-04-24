@@ -409,8 +409,6 @@ class StdObjectBuilderTest
 
       assertTrue(a.has(DEFINITIONS));
       assertTrue(a.get(DEFINITIONS).has("foo"));
-
-      // when 2 def present and 1 is being removed
     }
 
     @Test
@@ -445,7 +443,7 @@ class StdObjectBuilderTest
   @Test
   void clearDefinitions()
   {
-    test.definition("test", Draft4.newBuilder());
+    test.definition("test");
     assertNotNull(test.clearDefinitions());
     assertFalse(test.render().has(DEFINITIONS));
   }
