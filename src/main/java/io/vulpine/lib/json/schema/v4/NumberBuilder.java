@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
- * @param <T> Extending class type
+ * @param <T>
+ *   Extending class type
+ *
+ * @since 1.0
  */
 public interface NumberBuilder<T extends NumberBuilder<T>>
 extends SchemaObject<T>

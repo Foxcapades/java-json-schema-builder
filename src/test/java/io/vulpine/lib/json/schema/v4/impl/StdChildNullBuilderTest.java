@@ -15,7 +15,7 @@ class StdChildNullBuilderTest
   void constructor()
   {
     var a = new StdChildNullBuilder<>(new StdSchemaObject<>(JSON), JSON,
-      JSON.createObjectNode()).render();
+      JSON.createObjectNode()).build();
     assertTrue(a.has(TYPE));
     assertEquals(JsonType.NULL.jsonName(), a.get(TYPE).textValue());
   }

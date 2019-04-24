@@ -33,7 +33,7 @@ class StdStringBuilderTest
   @Test
   void constructor1()
   {
-    var a = new StdStringBuilder<>(JSON).render();
+    var a = new StdStringBuilder<>(JSON).build();
     assertTrue(a.has(TYPE));
     assertEquals(JsonType.STRING.jsonName(), a.get(TYPE).asText());
   }
@@ -41,7 +41,7 @@ class StdStringBuilderTest
   @Test
   void constructor2()
   {
-    var a = new StdStringBuilder<>(JSON, JSON.createObjectNode()).render();
+    var a = new StdStringBuilder<>(JSON, JSON.createObjectNode()).build();
     assertTrue(a.has(TYPE));
     assertEquals(JsonType.STRING.jsonName(), a.get(TYPE).asText());
   }
@@ -50,7 +50,7 @@ class StdStringBuilderTest
   void defaultValue()
   {
     var a = "test";
-    var b = type.defaultValue(a).render();
+    var b = type.defaultValue(a).build();
     assertTrue(b.has(DEFAULT));
     assertEquals(a, b.get(DEFAULT).asText());
   }
@@ -59,7 +59,7 @@ class StdStringBuilderTest
   void maxLength_int()
   {
     var a = 1;
-    var b = type.maxLength(a).render();
+    var b = type.maxLength(a).build();
     assertTrue(b.has(MAX_LENGTH));
     assertEquals(a, b.get(MAX_LENGTH).intValue());
   }
@@ -68,7 +68,7 @@ class StdStringBuilderTest
   void maxLength_long()
   {
     var a = 1L;
-    var b = type.maxLength(a).render();
+    var b = type.maxLength(a).build();
     assertTrue(b.has(MAX_LENGTH));
     assertEquals(a, b.get(MAX_LENGTH).longValue());
   }
@@ -77,7 +77,7 @@ class StdStringBuilderTest
   void maxLength_bigInt()
   {
     var a = new BigInteger("1");
-    var b = type.maxLength(a).render();
+    var b = type.maxLength(a).build();
     assertTrue(b.has(MAX_LENGTH));
     assertEquals(a, b.get(MAX_LENGTH).bigIntegerValue());
   }
@@ -85,20 +85,20 @@ class StdStringBuilderTest
   @Test
   void clearMaxLength()
   {
-    assertFalse(type.maxLength(1).clearMaxLength().render().has(MAX_LENGTH));
+    assertFalse(type.maxLength(1).clearMaxLength().build().has(MAX_LENGTH));
   }
 
   @Test
   void removeMaxLength()
   {
-    assertFalse(type.maxLength(1).removeMaxLength().render().has(MAX_LENGTH));
+    assertFalse(type.maxLength(1).removeMaxLength().build().has(MAX_LENGTH));
   }
 
   @Test
   void minLength_int()
   {
     var a = 1;
-    var b = type.minLength(a).render();
+    var b = type.minLength(a).build();
     assertTrue(b.has(MIN_LENGTH));
     assertEquals(a, b.get(MIN_LENGTH).intValue());
   }
@@ -107,7 +107,7 @@ class StdStringBuilderTest
   void minLength_long()
   {
     var a = 1L;
-    var b = type.minLength(a).render();
+    var b = type.minLength(a).build();
     assertTrue(b.has(MIN_LENGTH));
     assertEquals(a, b.get(MIN_LENGTH).longValue());
   }
@@ -116,7 +116,7 @@ class StdStringBuilderTest
   void minLength_bigInt()
   {
     var a = new BigInteger("1");
-    var b = type.minLength(a).render();
+    var b = type.minLength(a).build();
     assertTrue(b.has(MIN_LENGTH));
     assertEquals(a, b.get(MIN_LENGTH).bigIntegerValue());
   }
@@ -124,20 +124,20 @@ class StdStringBuilderTest
   @Test
   void clearMinLength()
   {
-    assertFalse(type.minLength(1).clearMinLength().render().has(MIN_LENGTH));
+    assertFalse(type.minLength(1).clearMinLength().build().has(MIN_LENGTH));
   }
 
   @Test
   void removeMinLength()
   {
-    assertFalse(type.minLength(1).removeMinLength().render().has(MIN_LENGTH));
+    assertFalse(type.minLength(1).removeMinLength().build().has(MIN_LENGTH));
   }
 
   @Test
   void pattern()
   {
     var a = "a";
-    var b = type.pattern(a).render();
+    var b = type.pattern(a).build();
     assertTrue(b.has(PATTERN));
     assertEquals(a, b.get(PATTERN).textValue());
   }
@@ -145,13 +145,13 @@ class StdStringBuilderTest
   @Test
   void clearPattern()
   {
-    assertFalse(type.pattern("a").clearPattern().render().has(PATTERN));
+    assertFalse(type.pattern("a").clearPattern().build().has(PATTERN));
   }
 
   @Test
   void removePattern()
   {
-    assertFalse(type.pattern("a").removePattern().render().has(PATTERN));
+    assertFalse(type.pattern("a").removePattern().build().has(PATTERN));
   }
 
   @Test

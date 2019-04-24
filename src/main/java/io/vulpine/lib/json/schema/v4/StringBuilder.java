@@ -5,6 +5,8 @@ import java.math.BigInteger;
 /**
  * @param <T>
  *   extension type
+ *
+ * @since 1.0
  */
 public interface StringBuilder<T extends StringBuilder<T>>
 extends SchemaObject<T>

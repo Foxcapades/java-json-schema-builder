@@ -164,28 +164,28 @@ class StdObjectBuilderTest
       @DisplayName("does not cause a dangling \"" + REQ + "\" array")
       void b()
       {
-        assertFalse(test.removeRequiredProperties().render().has(REQ));
+        assertFalse(test.removeRequiredProperties().build().has(REQ));
       }
 
       @Test
       @DisplayName("does not cause a dangling \"" + REQ + "\" array")
       void b1()
       {
-        assertFalse(test.clearRequiredProperties().render().has(REQ));
+        assertFalse(test.clearRequiredProperties().build().has(REQ));
       }
 
       @Test
       @DisplayName("does not cause a dangling \"" + PROPS + "\" object")
       void c()
       {
-        assertFalse(test.removeRequiredProperties().render().has(PROPS));
+        assertFalse(test.removeRequiredProperties().build().has(PROPS));
       }
 
       @Test
       @DisplayName("does not cause a dangling \"" + PROPS + "\" object")
       void c1()
       {
-        assertFalse(test.clearRequiredProperties().render().has(PROPS));
+        assertFalse(test.clearRequiredProperties().build().has(PROPS));
       }
     }
 
@@ -504,7 +504,7 @@ class StdObjectBuilderTest
       test.definition("foo");
       test.removeDefinition("bar");
 
-      var a = test.render();
+      var a = test.build();
 
       assertTrue(a.has(DEFINITIONS));
       assertTrue(a.get(DEFINITIONS).has("foo"));
@@ -517,7 +517,7 @@ class StdObjectBuilderTest
       test.definition("foo");
       test.clearDefinition("bar");
 
-      var a = test.render();
+      var a = test.build();
 
       assertTrue(a.has(DEFINITIONS));
       assertTrue(a.get(DEFINITIONS).has("foo"));
@@ -530,7 +530,7 @@ class StdObjectBuilderTest
       test.definition("foo");
       test.removeDefinition("foo");
 
-      var a = test.render();
+      var a = test.build();
 
       assertFalse(a.has(DEFINITIONS));
     }
@@ -542,7 +542,7 @@ class StdObjectBuilderTest
       test.definition("foo");
       test.clearDefinition("foo");
 
-      var a = test.render();
+      var a = test.build();
 
       assertFalse(a.has(DEFINITIONS));
     }
@@ -555,7 +555,7 @@ class StdObjectBuilderTest
       test.definition("bar");
       test.removeDefinition("bar");
 
-      var a = test.render();
+      var a = test.build();
 
       assertTrue(a.has(DEFINITIONS));
       assertTrue(a.get(DEFINITIONS).has("foo"));
@@ -570,7 +570,7 @@ class StdObjectBuilderTest
       test.definition("bar");
       test.clearDefinition("bar");
 
-      var a = test.render();
+      var a = test.build();
 
       assertTrue(a.has(DEFINITIONS));
       assertTrue(a.get(DEFINITIONS).has("foo"));
@@ -583,7 +583,7 @@ class StdObjectBuilderTest
   {
     test.definition("test");
     assertNotNull(test.clearDefinitions());
-    assertFalse(test.render().has(DEFINITIONS));
+    assertFalse(test.build().has(DEFINITIONS));
   }
 
   @Test
@@ -591,6 +591,6 @@ class StdObjectBuilderTest
   {
     test.definition("test");
     assertNotNull(test.removeDefinitions());
-    assertFalse(test.render().has(DEFINITIONS));
+    assertFalse(test.build().has(DEFINITIONS));
   }
 }

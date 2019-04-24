@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.*;
+import io.vulpine.lib.json.schema.v4.lib.Keys;
 
 @SuppressWarnings("unchecked")
 class StdVariableBuilder<T extends VariableBuilder<T>>
@@ -72,13 +73,18 @@ implements VariableBuilder<T>
   @Override
   public T add(SchemaObject val)
   {
-    schema.add(val.render());
+    schema.add(strip(val.build()));
     return (T) this;
   }
 
   @Override
-  public JsonNode render()
+  public JsonNode build()
   {
     return outer.deepCopy();
+  }
+
+  private JsonNode strip(JsonNode node) {
+    ((ObjectNode) node).remove(Keys.$SCHEMA);
+    return node;
   }
 }

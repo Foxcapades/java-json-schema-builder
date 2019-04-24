@@ -97,7 +97,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
   }
 
   @Override
-  public JsonNode render()
+  public JsonNode build()
   {
     return schema.deepCopy();
   }
@@ -164,7 +164,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
 
   T put(String key, SchemaNode node)
   {
-    schema.set(key, strip$Schema(requireNonNull(node).render()));
+    schema.set(key, strip$Schema(requireNonNull(node).build()));
     return (T) this;
   }
 

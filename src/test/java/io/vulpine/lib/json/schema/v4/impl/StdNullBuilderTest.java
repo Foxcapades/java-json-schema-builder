@@ -14,7 +14,7 @@ class StdNullBuilderTest {
   void constructor1() {
     assertEquals(JsonType.NULL.jsonName(),
       new StdNullBuilder<>(JSON)
-        .render()
+        .build()
         .get(Keys.TYPE)
         .asText());
   }
@@ -23,7 +23,7 @@ class StdNullBuilderTest {
   void constructor2() {
     assertEquals(JsonType.NULL.jsonName(),
       new StdNullBuilder<>(null, JSON.createObjectNode())
-        .render()
+        .build()
         .get(Keys.TYPE)
         .asText());
   }

@@ -31,14 +31,14 @@ class StdArrayBuilderTest {
   {
     assertEquals(JsonType.ARRAY.jsonName(),
       new StdArrayBuilder(JSON, JSON.createObjectNode())
-        .render().get(TYPE).asText());
+        .build().get(TYPE).asText());
   }
 
   @Test
   void defaultValue_arrayNode()
   {
     type.defaultValue(JSON.createArrayNode().add(1));
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(1, raw.get(0).intValue());
@@ -48,7 +48,7 @@ class StdArrayBuilderTest {
   void defaultValue_Integer()
   {
     type.defaultValue(2);
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2, raw.get(0).intValue());
@@ -58,7 +58,7 @@ class StdArrayBuilderTest {
   void defaultValue_int()
   {
     type.defaultValue(new int[]{3, 4});
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(2, raw.size());
     assertEquals(3, raw.get(0).intValue());
@@ -69,7 +69,7 @@ class StdArrayBuilderTest {
   void defaultValue_Double()
   {
     type.defaultValue(2.4D);
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2.4D, raw.get(0).doubleValue());
@@ -79,7 +79,7 @@ class StdArrayBuilderTest {
   void defaultValue_double()
   {
     type.defaultValue(new double[]{2.4});
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2.4, raw.get(0).doubleValue());
@@ -89,7 +89,7 @@ class StdArrayBuilderTest {
   void defaultValue_Float()
   {
     type.defaultValue(2.4F);
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2.4F, raw.get(0).floatValue());
@@ -99,7 +99,7 @@ class StdArrayBuilderTest {
   void defaultValue_float()
   {
     type.defaultValue(new float[]{2.4F});
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2.4F, raw.get(0).floatValue());
@@ -109,7 +109,7 @@ class StdArrayBuilderTest {
   void defaultValue_Byte()
   {
     type.defaultValue((byte) 2);
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2, raw.get(0).intValue());
@@ -119,7 +119,7 @@ class StdArrayBuilderTest {
   void defaultValue_byte()
   {
     type.defaultValue(new byte[]{2});
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2, raw.get(0).intValue());
@@ -129,7 +129,7 @@ class StdArrayBuilderTest {
   void defaultValue_Short()
   {
     type.defaultValue((short) 2);
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals((short) 2, raw.get(0).shortValue());
@@ -139,7 +139,7 @@ class StdArrayBuilderTest {
   void defaultValue_short()
   {
     type.defaultValue(new short[]{2});
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals((short) 2, raw.get(0).shortValue());
@@ -149,7 +149,7 @@ class StdArrayBuilderTest {
   void defaultValue_Long()
   {
     type.defaultValue(2L);
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2L, raw.get(0).longValue());
@@ -159,7 +159,7 @@ class StdArrayBuilderTest {
   void defaultValue_long()
   {
     type.defaultValue(new long[]{2});
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(2L, raw.get(0).longValue());
@@ -169,7 +169,7 @@ class StdArrayBuilderTest {
   void defaultValue_Object()
   {
     type.defaultValue(new HashMap<String, Object>(){{put("foo", "bar");}});
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals("bar", raw.get(0).get("foo").textValue());
@@ -179,7 +179,7 @@ class StdArrayBuilderTest {
   void defaultValue_String()
   {
     type.defaultValue("foo");
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals("foo", raw.get(0).textValue());
@@ -189,7 +189,7 @@ class StdArrayBuilderTest {
   void defaultValue_BigInteger()
   {
     type.defaultValue(new BigInteger("1"));
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(new BigInteger("1"), raw.get(0).bigIntegerValue());
@@ -199,7 +199,7 @@ class StdArrayBuilderTest {
   void defaultValue_BigDecimal()
   {
     type.defaultValue(new BigDecimal("1"));
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(1, raw.size());
     assertEquals(new BigDecimal("1"), raw.get(0).decimalValue());
@@ -209,7 +209,7 @@ class StdArrayBuilderTest {
   void defaultValue_Boolean()
   {
     type.defaultValue(true, false);
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(2, raw.size());
     assertTrue(raw.get(0).booleanValue());
@@ -220,7 +220,7 @@ class StdArrayBuilderTest {
   void defaultValue_boolean()
   {
     type.defaultValue(new boolean[] {true, false});
-    final var raw = type.render().get(DEFAULT);
+    final var raw = type.build().get(DEFAULT);
     assertTrue(raw.isArray());
     assertEquals(2, raw.size());
     assertTrue(raw.get(0).booleanValue());
@@ -232,14 +232,14 @@ class StdArrayBuilderTest {
   {
     assertNotNull(type.defaultValue(JSON.createArrayNode().add("foo")));
     assertNotNull(type.removeDefaultValue());
-    assertFalse(type.render().has(DEFAULT));
+    assertFalse(type.build().has(DEFAULT));
   }
 
   @Test
   void maxItems_Integer()
   {
     assertNotNull(type.maxItems(10));
-    assertEquals(10, type.render().get(MAX_ITEMS).intValue());
+    assertEquals(10, type.build().get(MAX_ITEMS).intValue());
   }
 
   @Test
@@ -247,14 +247,14 @@ class StdArrayBuilderTest {
   {
     type.maxItems(10);
     assertNotNull(type.clearMaxItems());
-    assertFalse(type.render().has(MAX_ITEMS));
+    assertFalse(type.build().has(MAX_ITEMS));
   }
 
   @Test
   void maxItems_BigInteger()
   {
     assertNotNull(type.maxItems(new BigInteger("10")));
-    assertEquals(new BigInteger("10"), type.render().get(MAX_ITEMS).bigIntegerValue());
+    assertEquals(new BigInteger("10"), type.build().get(MAX_ITEMS).bigIntegerValue());
     assertThrows(NullPointerException.class, () -> type.maxItems(null));
   }
 
@@ -263,7 +263,7 @@ class StdArrayBuilderTest {
   {
     type.maxItems(10);
     assertNotNull(type.removeMaxItems());
-    assertFalse(type.render().has(MAX_ITEMS));
+    assertFalse(type.build().has(MAX_ITEMS));
   }
 
 
@@ -271,14 +271,14 @@ class StdArrayBuilderTest {
   void minItems_int()
   {
     assertNotNull(type.minItems(10));
-    assertEquals(10, type.render().get(MIN_ITEMS).intValue());
+    assertEquals(10, type.build().get(MIN_ITEMS).intValue());
   }
 
   @Test
   void minItems_BigInteger()
   {
     assertNotNull(type.minItems(new BigInteger("10")));
-    assertEquals(new BigInteger("10"), type.render().get(MIN_ITEMS).bigIntegerValue());
+    assertEquals(new BigInteger("10"), type.build().get(MIN_ITEMS).bigIntegerValue());
     assertThrows(NullPointerException.class, () -> type.maxItems(null));
   }
 
@@ -287,7 +287,7 @@ class StdArrayBuilderTest {
   {
     type.minItems(10);
     assertNotNull(type.clearMinItems());
-    assertFalse(type.render().has(MIN_ITEMS));
+    assertFalse(type.build().has(MIN_ITEMS));
   }
 
   @Test
@@ -295,24 +295,24 @@ class StdArrayBuilderTest {
   {
     type.minItems(10);
     assertNotNull(type.removeMinItems());
-    assertFalse(type.render().has(MIN_ITEMS));
+    assertFalse(type.build().has(MIN_ITEMS));
   }
 
   @Test
   void additionalItems()
   {
     type.additionalItems().asBoolean();
-    assertTrue(type.render().has(ADDTL_ITEMS));
-    assertTrue(type.render().get(ADDTL_ITEMS).has(TYPE));
-    assertEquals(JsonType.BOOLEAN.jsonName(), type.render().get(ADDTL_ITEMS).get(
+    assertTrue(type.build().has(ADDTL_ITEMS));
+    assertTrue(type.build().get(ADDTL_ITEMS).has(TYPE));
+    assertEquals(JsonType.BOOLEAN.jsonName(), type.build().get(ADDTL_ITEMS).get(
       TYPE).textValue());
   }
 
   @Test
   void additionalItems_setter()
   {
-    assertEquals(new StdNullBuilder(JSON).render(),
-      type.additionalItems(new StdNullBuilder(JSON)).render().get(ADDTL_ITEMS));
+    assertEquals(new StdNullBuilder(JSON).build(),
+      type.additionalItems(new StdNullBuilder(JSON)).build().get(ADDTL_ITEMS));
   }
 
   @Test
@@ -322,7 +322,7 @@ class StdArrayBuilderTest {
       .asBoolean()
       .close()
       .removeAdditionalItems()
-      .render()
+      .build()
       .has(ADDTL_ITEMS));
   }
 
@@ -333,7 +333,7 @@ class StdArrayBuilderTest {
       .asBoolean()
       .close()
       .clearAdditionalItems()
-      .render()
+      .build()
       .has(ADDTL_ITEMS));
   }
 
@@ -348,9 +348,9 @@ class StdArrayBuilderTest {
     void test1()
     {
       type.items().asBoolean();
-      assertTrue(type.render().has(ITEMS));
-      assertTrue(type.render().get(ITEMS).has(TYPE));
-      assertEquals(JsonType.BOOLEAN.jsonName(), type.render().get(ITEMS).get(
+      assertTrue(type.build().has(ITEMS));
+      assertTrue(type.build().get(ITEMS).has(TYPE));
+      assertEquals(JsonType.BOOLEAN.jsonName(), type.build().get(ITEMS).get(
         TYPE).textValue());
     }
   }
@@ -370,17 +370,17 @@ class StdArrayBuilderTest {
     void test1()
     {
       type.itemsArray();
-      assertTrue(type.render().has(ITEMS));
-      assertTrue(type.render().get(ITEMS).isArray());
+      assertTrue(type.build().has(ITEMS));
+      assertTrue(type.build().get(ITEMS).isArray());
     }
   }
 
   @Test
   void items_setter()
   {
-    final var tmp = type.render();
+    final var tmp = type.build();
     type.items(type);
-    assertEquals(tmp, type.render().get(ITEMS));
+    assertEquals(tmp, type.build().get(ITEMS));
   }
 
   @Test
@@ -388,7 +388,7 @@ class StdArrayBuilderTest {
   {
     assertFalse(type.items(new StdArrayBuilder(JSON, JSON.createObjectNode()))
       .clearItems()
-      .render()
+      .build()
       .has(ITEMS));
   }
 
@@ -397,7 +397,7 @@ class StdArrayBuilderTest {
   {
     assertFalse(type.items(new StdArrayBuilder(JSON, JSON.createObjectNode()))
       .removeItems()
-      .render()
+      .build()
       .has(ITEMS));
   }
 
@@ -408,7 +408,7 @@ class StdArrayBuilderTest {
     assertNotNull(type.enumValues(
       JSON.createArrayNode().add("a"),
       JSON.createArrayNode().add("b")));
-    var v = type.render();
+    var v = type.build();
     assertTrue(v.has(ENUM));
     assertTrue(v.get(ENUM).isArray());
     assertEquals(2, v.get(ENUM).size());
@@ -420,12 +420,12 @@ class StdArrayBuilderTest {
   void uniqueItems()
   {
     assertNotNull(type.uniqueItems(true));
-    var a = type.render();
+    var a = type.build();
     assertTrue(a.has(UNIQUE));
     assertTrue(a.get(UNIQUE).booleanValue());
 
     assertNotNull(type.uniqueItems(false));
-    var b = type.render();
+    var b = type.build();
     assertFalse(b.get(UNIQUE).booleanValue());
   }
 
@@ -434,7 +434,7 @@ class StdArrayBuilderTest {
   {
     type.uniqueItems(true);
     assertNotNull(type.removeUniqueItems());
-    assertFalse(type.render().has(UNIQUE));
+    assertFalse(type.build().has(UNIQUE));
   }
 
   @Test
@@ -442,6 +442,6 @@ class StdArrayBuilderTest {
   {
     type.uniqueItems(true);
     assertNotNull(type.clearUniqueItems());
-    assertFalse(type.render().has(UNIQUE));
+    assertFalse(type.build().has(UNIQUE));
   }
 }

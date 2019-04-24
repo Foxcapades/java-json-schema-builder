@@ -7,7 +7,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.*;
 import io.vulpine.lib.json.schema.v4.lib.Keys;
 
-class StdTypeArrayBuilder<P extends SchemaNode> implements TypeArrayBuilder<P>
+class StdTypeArrayBuilder<P extends SchemaNode>
+implements TypeArrayBuilder<P>
 {
   private final ArrayNode schema;
   private final ObjectMapper mapper;
@@ -60,9 +61,18 @@ class StdTypeArrayBuilder<P extends SchemaNode> implements TypeArrayBuilder<P>
     return new StdChildStringBuilder<>(this, mapper, schema.addObject());
   }
 
+  /**
+   * @inheritDoc
+   * @since 1.3
+   */
+  @Override
+  public ChildSchemaBuilder<TypeArrayBuilder<P>> add() {
+    return new StdChildSchemaBuilder<>(this, mapper, schema.addObject());
+  }
+
   @Override
   public TypeArrayBuilder<P> add(SchemaObject val) {
-    schema.add(strip(val.render()));
+    schema.add(strip(val.build()));
     return this;
   }
 
@@ -72,16 +82,12 @@ class StdTypeArrayBuilder<P extends SchemaNode> implements TypeArrayBuilder<P>
   }
 
   @Override
-  public P close() {
-    return parent;
-  }
-
-  JsonNode internal() {
-    return schema;
+  public JsonNode build() {
+    return schema.deepCopy();
   }
 
   @Override
-  public JsonNode render() {
-    return schema.deepCopy();
+  public P close() {
+    return parent;
   }
 }

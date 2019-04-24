@@ -31,7 +31,7 @@ class StdVariableBuilderTest
   {
     var a = type.addArray();
     assertNotNull(a);
-    assertEquals(raw.get(0), a.render());
+    assertEquals(raw.get(0), a.build());
     assertEquals(JsonType.ARRAY.jsonName(), raw.get(0).get(TYPE).textValue());
   }
 
@@ -40,7 +40,7 @@ class StdVariableBuilderTest
   {
     var a = type.addBoolean();
     assertNotNull(a);
-    assertEquals(raw.get(0), a.render());
+    assertEquals(raw.get(0), a.build());
     assertEquals(JsonType.BOOLEAN.jsonName(), raw.get(0).get(TYPE).textValue());
   }
 
@@ -49,7 +49,7 @@ class StdVariableBuilderTest
   {
     var a = type.addInteger();
     assertNotNull(a);
-    assertEquals(raw.get(0), a.render());
+    assertEquals(raw.get(0), a.build());
     assertEquals(JsonType.INTEGER.jsonName(), raw.get(0).get(TYPE).textValue());
   }
 
@@ -58,7 +58,7 @@ class StdVariableBuilderTest
   {
     var a = type.addNull();
     assertNotNull(a);
-    assertEquals(raw.get(0), a.render());
+    assertEquals(raw.get(0), a.build());
     assertEquals(JsonType.NULL.jsonName(), raw.get(0).get(TYPE).textValue());
   }
 
@@ -67,7 +67,7 @@ class StdVariableBuilderTest
   {
     var a = type.addNumber();
     assertNotNull(a);
-    assertEquals(raw.get(0), a.render());
+    assertEquals(raw.get(0), a.build());
     assertEquals(JsonType.NUMBER.jsonName(), raw.get(0).get(TYPE).textValue());
   }
 
@@ -76,7 +76,7 @@ class StdVariableBuilderTest
   {
     var a = type.addObject();
     assertNotNull(a);
-    assertEquals(raw.get(0), a.render());
+    assertEquals(raw.get(0), a.build());
     assertEquals(JsonType.OBJECT.jsonName(), raw.get(0).get(TYPE).textValue());
   }
 
@@ -85,7 +85,7 @@ class StdVariableBuilderTest
   {
     var a = type.addString();
     assertNotNull(a);
-    assertEquals(raw.get(0), a.render());
+    assertEquals(raw.get(0), a.build());
     assertEquals(JsonType.STRING.jsonName(), raw.get(0).get(TYPE).textValue());
   }
 
@@ -96,7 +96,7 @@ class StdVariableBuilderTest
     var a = Draft4.newBuilder().asObject().additionalProperties(true);
     type.add(a);
     assertEquals(1, raw.size());
-    assertEquals(a.render(), raw.get(0));
+    assertEquals(a.build(), raw.get(0));
   }
 
   @Test
@@ -105,14 +105,14 @@ class StdVariableBuilderTest
   {
     type.add().asObject();
     assertEquals(1, raw.size());
-    assertEquals(new StdObjectBuilder<>(JSON, JSON.createObjectNode()).render(),
+    assertEquals(new StdObjectBuilder<>(JSON, JSON.createObjectNode()).build(),
       raw.get(0));
   }
 
   @Test
   void render()
   {
-    var a = type.render();
+    var a = type.build();
     type.addString();
     assertEquals(0, a.get(ALL_OF).size());
   }

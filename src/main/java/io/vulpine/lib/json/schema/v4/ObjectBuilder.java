@@ -7,6 +7,8 @@ import java.math.BigInteger;
 /**
  * @param <T>
  *   extension type
+ *
+ * @since 1.0
  */
 public interface ObjectBuilder<T extends ObjectBuilder<T>>
 extends SchemaObject<T>

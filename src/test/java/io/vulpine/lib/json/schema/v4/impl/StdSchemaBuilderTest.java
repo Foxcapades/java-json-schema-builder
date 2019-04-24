@@ -26,7 +26,7 @@ class StdSchemaBuilderTest
   void asArray()
   {
     type.schema.put("A", "B");
-    var a = type.asArray().render();
+    var a = type.asArray().build();
     assertEquals(JsonType.ARRAY.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
   }
@@ -35,7 +35,7 @@ class StdSchemaBuilderTest
   void asBoolean()
   {
     type.schema.put("A", "B");
-    var a = type.asBoolean().render();
+    var a = type.asBoolean().build();
     assertEquals(JsonType.BOOLEAN.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
   }
@@ -44,7 +44,7 @@ class StdSchemaBuilderTest
   void asInteger()
   {
     type.schema.put("A", "B");
-    var a = type.asInteger().render();
+    var a = type.asInteger().build();
     assertEquals(JsonType.INTEGER.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
   }
@@ -53,7 +53,7 @@ class StdSchemaBuilderTest
   void asNull()
   {
     type.schema.put("A", "B");
-    var a = type.asNull().render();
+    var a = type.asNull().build();
     assertEquals(JsonType.NULL.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
   }
@@ -62,7 +62,7 @@ class StdSchemaBuilderTest
   void asNumber()
   {
     type.schema.put("A", "B");
-    var a = type.asNumber().render();
+    var a = type.asNumber().build();
     assertEquals(JsonType.NUMBER.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
   }
@@ -71,7 +71,7 @@ class StdSchemaBuilderTest
   void asObject()
   {
     type.schema.put("A", "B");
-    var a = type.asObject().render();
+    var a = type.asObject().build();
     assertEquals(JsonType.OBJECT.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
   }
@@ -80,7 +80,7 @@ class StdSchemaBuilderTest
   void asString()
   {
     type.schema.put("A", "B");
-    var a = type.asString().render();
+    var a = type.asString().build();
     assertEquals(JsonType.STRING.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
   }
@@ -96,7 +96,7 @@ class StdSchemaBuilderTest
       var a = new StdSchemaBuilder<>(JSON)
         .id("test")
         .oneOf()
-        .render();
+        .build();
       assertTrue(a.has(ID));
       assertEquals("test", a.get(ID).textValue());
     }
@@ -106,7 +106,7 @@ class StdSchemaBuilderTest
     void test2()
     {
       type.oneOf().addArray();
-      var b = type.render();
+      var b = type.build();
       assertFalse(b.has(ONE_OF));
     }
   }
@@ -122,7 +122,7 @@ class StdSchemaBuilderTest
       var a = new StdSchemaBuilder<>(JSON)
         .id("test")
         .allOf()
-        .render();
+        .build();
       assertTrue(a.has(ID));
       assertEquals("test", a.get(ID).textValue());
     }
@@ -132,7 +132,7 @@ class StdSchemaBuilderTest
     void test2()
     {
       type.allOf().addArray();
-      var b = type.render();
+      var b = type.build();
       assertFalse(b.has(ONE_OF));
     }
   }
@@ -148,7 +148,7 @@ class StdSchemaBuilderTest
       var a = new StdSchemaBuilder<>(JSON)
         .id("test")
         .anyOf()
-        .render();
+        .build();
       assertTrue(a.has(ID));
       assertEquals("test", a.get(ID).textValue());
     }
@@ -158,7 +158,7 @@ class StdSchemaBuilderTest
     void test2()
     {
       type.anyOf().addArray();
-      var b = type.render();
+      var b = type.build();
       assertFalse(b.has(ONE_OF));
     }
   }

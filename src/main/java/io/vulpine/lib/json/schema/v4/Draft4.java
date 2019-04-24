@@ -3,6 +3,11 @@ package io.vulpine.lib.json.schema.v4;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vulpine.lib.json.schema.v4.impl.StdSchemaBuilder;
 
+/**
+ * JSON Schema Draft 4 Schema Builder Factory
+ *
+ * @since 1.0
+ */
 public class Draft4
 {
   public static final

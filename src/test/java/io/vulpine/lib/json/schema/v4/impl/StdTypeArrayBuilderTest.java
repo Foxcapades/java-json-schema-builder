@@ -29,7 +29,7 @@ class StdTypeArrayBuilderTest
     assertNotNull(a);
     assertSame(type, a.close());
     assertEquals(JsonType.ARRAY.jsonName(),
-      type.render().get(0).get(TYPE).textValue());
+      type.build().get(0).get(TYPE).textValue());
   }
 
   @Test
@@ -39,7 +39,7 @@ class StdTypeArrayBuilderTest
     assertNotNull(a);
     assertSame(type, a.close());
     assertEquals(JsonType.BOOLEAN.jsonName(),
-      type.render().get(0).get(TYPE).textValue());
+      type.build().get(0).get(TYPE).textValue());
   }
 
   @Test
@@ -49,7 +49,7 @@ class StdTypeArrayBuilderTest
     assertNotNull(a);
     assertSame(type, a.close());
     assertEquals(JsonType.INTEGER.jsonName(),
-      type.render().get(0).get(TYPE).textValue());
+      type.build().get(0).get(TYPE).textValue());
   }
 
   @Test
@@ -59,7 +59,7 @@ class StdTypeArrayBuilderTest
     assertNotNull(a);
     assertSame(type, a.close());
     assertEquals(JsonType.NULL.jsonName(),
-      type.render().get(0).get(TYPE).textValue());
+      type.build().get(0).get(TYPE).textValue());
   }
 
   @Test
@@ -69,7 +69,7 @@ class StdTypeArrayBuilderTest
     assertNotNull(a);
     assertSame(type, a.close());
     assertEquals(JsonType.NUMBER.jsonName(),
-      type.render().get(0).get(TYPE).textValue());
+      type.build().get(0).get(TYPE).textValue());
   }
 
   @Test
@@ -79,7 +79,7 @@ class StdTypeArrayBuilderTest
     assertNotNull(a);
     assertSame(type, a.close());
     assertEquals(JsonType.OBJECT.jsonName(),
-      type.render().get(0).get(TYPE).textValue());
+      type.build().get(0).get(TYPE).textValue());
   }
 
   @Test
@@ -89,14 +89,14 @@ class StdTypeArrayBuilderTest
     assertNotNull(a);
     assertSame(type, a.close());
     assertEquals(JsonType.STRING.jsonName(),
-      type.render().get(0).get(TYPE).textValue());
+      type.build().get(0).get(TYPE).textValue());
   }
 
   @Test
   void add()
   {
-    var a = type.internal();
     type.add(Draft4.newBuilder().asObject());
+    var a = type.build();
     assertTrue(a.has(0));
     assertEquals(JsonType.OBJECT.jsonName(), a.get(0).get(TYPE).textValue());
     assertFalse(a.get(0).has($SCHEMA));
@@ -110,17 +110,9 @@ class StdTypeArrayBuilderTest
   }
 
   @Test
-  void internal()
-  {
-    var a = type.internal();
-    type.addString();
-    assertEquals(JsonType.STRING.jsonName(), a.get(0).get(TYPE).textValue());
-  }
-
-  @Test
   void render()
   {
-    var a = type.render();
+    var a = type.build();
     type.addString();
     assertEquals(0, a.size());
   }

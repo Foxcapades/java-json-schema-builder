@@ -2,6 +2,11 @@ package io.vulpine.lib.json.schema.v4;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
+/**
+ * JSON Schema Draft 4 string formats
+ *
+ * @since 1.1
+ */
 public enum Format
 {
   DATE_TIME("date-time"),

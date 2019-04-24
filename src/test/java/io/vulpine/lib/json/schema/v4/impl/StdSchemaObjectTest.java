@@ -168,7 +168,7 @@ class StdSchemaObjectTest
   void render()
   {
     raw.put("A", "B");
-    assertEquals("B", type.render().get("A").textValue());
+    assertEquals("B", type.build().get("A").textValue());
   }
 
   @Test

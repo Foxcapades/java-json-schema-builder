@@ -30,7 +30,7 @@ class StdChildSchemaBuilderTest
   void asArray()
   {
     type.schema.put("A", "B");
-    var a = type.asArray().render();
+    var a = type.asArray().build();
     assertEquals(JsonType.ARRAY.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
     assertSame(parent, type.close());
@@ -40,7 +40,7 @@ class StdChildSchemaBuilderTest
   void asBoolean()
   {
     type.schema.put("A", "B");
-    var a = type.asBoolean().render();
+    var a = type.asBoolean().build();
     assertEquals(JsonType.BOOLEAN.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
     assertSame(parent, type.close());
@@ -50,7 +50,7 @@ class StdChildSchemaBuilderTest
   void asInteger()
   {
     type.schema.put("A", "B");
-    var a = type.asInteger().render();
+    var a = type.asInteger().build();
     assertEquals(JsonType.INTEGER.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
     assertSame(parent, type.close());
@@ -60,7 +60,7 @@ class StdChildSchemaBuilderTest
   void asNull()
   {
     type.schema.put("A", "B");
-    var a = type.asNull().render();
+    var a = type.asNull().build();
     assertEquals(JsonType.NULL.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
     assertSame(parent, type.close());
@@ -70,7 +70,7 @@ class StdChildSchemaBuilderTest
   void asNumber()
   {
     type.schema.put("A", "B");
-    var a = type.asNumber().render();
+    var a = type.asNumber().build();
     assertEquals(JsonType.NUMBER.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
     assertSame(parent, type.close());
@@ -80,7 +80,7 @@ class StdChildSchemaBuilderTest
   void asObject()
   {
     type.schema.put("A", "B");
-    var a = type.asObject().render();
+    var a = type.asObject().build();
     assertEquals(JsonType.OBJECT.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
     assertSame(parent, type.close());
@@ -90,7 +90,7 @@ class StdChildSchemaBuilderTest
   void asString()
   {
     type.schema.put("A", "B");
-    var a = type.asString().render();
+    var a = type.asString().build();
     assertEquals(JsonType.STRING.jsonName(), a.get(TYPE).textValue());
     assertEquals("B", a.get("A").textValue());
     assertSame(parent, type.close());

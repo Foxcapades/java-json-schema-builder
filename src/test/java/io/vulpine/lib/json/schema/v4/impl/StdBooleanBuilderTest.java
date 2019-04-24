@@ -25,7 +25,7 @@ class StdBooleanBuilderTest
   void constructor1()
   {
     assertEquals(JsonType.BOOLEAN.jsonName(),
-      new StdBooleanBuilder(JSON).render().get(TYPE).asText());
+      new StdBooleanBuilder(JSON).build().get(TYPE).asText());
   }
 
   @Test
@@ -33,13 +33,13 @@ class StdBooleanBuilderTest
   {
     assertEquals(JsonType.BOOLEAN.jsonName(),
       new StdBooleanBuilder(JSON, JSON.createObjectNode())
-        .render().get(TYPE).asText());
+        .build().get(TYPE).asText());
   }
 
   @Test
   void defaultValue()
   {
-    assertTrue(type.defaultValue(true).render().get(DEFAULT).asBoolean());
-    assertFalse(type.defaultValue(false).render().get(DEFAULT).asBoolean());
+    assertTrue(type.defaultValue(true).build().get(DEFAULT).asBoolean());
+    assertFalse(type.defaultValue(false).build().get(DEFAULT).asBoolean());
   }
 }

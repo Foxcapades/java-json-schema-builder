@@ -8,6 +8,8 @@ import java.math.BigInteger;
 /**
  * @param <T>
  *   extension type
+ *
+ * @since 1.0
  */
 public interface ArrayBuilder<T extends ArrayBuilder<T>> extends SchemaObject<T>
 {

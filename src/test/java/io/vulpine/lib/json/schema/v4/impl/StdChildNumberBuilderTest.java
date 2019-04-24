@@ -15,7 +15,7 @@ class StdChildNumberBuilderTest
   void constructor()
   {
     var a = new StdChildNumberBuilder<>(new StdSchemaObject<>(JSON), JSON,
-      JSON.createObjectNode()).render();
+      JSON.createObjectNode()).build();
     assertTrue(a.has(TYPE));
     assertEquals(JsonType.NUMBER.jsonName(), a.get(TYPE).textValue());
   }

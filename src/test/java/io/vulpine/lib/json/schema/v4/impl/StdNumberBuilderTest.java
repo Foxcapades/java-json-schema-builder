@@ -31,14 +31,14 @@ class StdNumberBuilderTest {
   @Test
   void constructor1() {
     assertEquals(JsonType.NUMBER.jsonName(),
-      new StdNumberBuilder(JSON).render().get(Keys.TYPE).asText());
+      new StdNumberBuilder(JSON).build().get(Keys.TYPE).asText());
   }
 
   @Test
   void constructor2() {
     assertEquals(JsonType.NUMBER.jsonName(),
       new StdNumberBuilder(JSON, JSON.createObjectNode())
-        .render()
+        .build()
         .get(Keys.TYPE)
         .asText());
   }
@@ -46,256 +46,256 @@ class StdNumberBuilderTest {
   @Test
   void defaultValue_byte() {
     assertEquals(3, type.defaultValue((byte) 3)
-      .render().get(Keys.DEFAULT).asInt());
+      .build().get(Keys.DEFAULT).asInt());
   }
 
   @Test
   void defaultValue_short() {
     assertEquals(3, type.defaultValue((short) 3)
-      .render().get(Keys.DEFAULT).asInt());
+      .build().get(Keys.DEFAULT).asInt());
   }
 
   @Test
   void defaultValue_int() {
     assertEquals(3, type.defaultValue(3)
-      .render().get(Keys.DEFAULT).asInt());
+      .build().get(Keys.DEFAULT).asInt());
   }
 
   @Test
   void defaultValue_long() {
     assertEquals(3L, type.defaultValue(3L)
-      .render().get(Keys.DEFAULT).asLong());
+      .build().get(Keys.DEFAULT).asLong());
   }
 
   @Test
   void defaultValue_float() {
     assertEquals(3F, type.defaultValue(3F)
-      .render().get(Keys.DEFAULT).floatValue());
+      .build().get(Keys.DEFAULT).floatValue());
   }
 
   @Test
   void defaultValue_double() {
     assertEquals(3D, type.defaultValue(3D)
-      .render().get(Keys.DEFAULT).doubleValue());
+      .build().get(Keys.DEFAULT).doubleValue());
   }
 
   @Test
   void defaultValue_bigInt() {
     assertEquals(new BigInteger("1"), type.defaultValue(new BigInteger("1"))
-      .render().get(Keys.DEFAULT).bigIntegerValue());
+      .build().get(Keys.DEFAULT).bigIntegerValue());
   }
 
   @Test
   void defaultValue_bigDec() {
     assertEquals(new BigDecimal("1"), type.defaultValue(new BigDecimal("1"))
-      .render().get(Keys.DEFAULT).decimalValue());
+      .build().get(Keys.DEFAULT).decimalValue());
   }
 
   @Test
   void maximum_byte() {
     assertEquals(3, type.maximum((byte) 3)
-      .render().get(Keys.MAXIMUM).intValue());
+      .build().get(Keys.MAXIMUM).intValue());
   }
 
   @Test
   void maximum_short() {
     assertEquals(3, type.maximum((short) 3)
-      .render().get(Keys.MAXIMUM).intValue());
+      .build().get(Keys.MAXIMUM).intValue());
   }
 
   @Test
   void maximum_int() {
     assertEquals(3, type.maximum(3)
-      .render().get(Keys.MAXIMUM).intValue());
+      .build().get(Keys.MAXIMUM).intValue());
   }
 
   @Test
   void maximum_long() {
     assertEquals(3L, type.maximum(3L)
-      .render().get(Keys.MAXIMUM).longValue());
+      .build().get(Keys.MAXIMUM).longValue());
   }
 
   @Test
   void maximum_float() {
     assertEquals(3F, type.maximum(3F)
-      .render().get(Keys.MAXIMUM).floatValue());
+      .build().get(Keys.MAXIMUM).floatValue());
   }
 
   @Test
   void maximum_double() {
     assertEquals(3D, type.maximum(3D)
-      .render().get(Keys.MAXIMUM).doubleValue());
+      .build().get(Keys.MAXIMUM).doubleValue());
   }
 
   @Test
   void maximum_bigInt() {
     assertEquals(new BigInteger("3"), type.maximum(new BigInteger("3"))
-      .render().get(Keys.MAXIMUM).bigIntegerValue());
+      .build().get(Keys.MAXIMUM).bigIntegerValue());
   }
 
   @Test
   void maximum_bigDec() {
     assertEquals(new BigDecimal("3"), type.maximum(new BigDecimal("3"))
-      .render().get(Keys.MAXIMUM).decimalValue());
+      .build().get(Keys.MAXIMUM).decimalValue());
   }
 
   @Test
   void clearMaximum() {
-    assertFalse(type.maximum(3).clearMaximum().render().has(Keys.MAXIMUM));
+    assertFalse(type.maximum(3).clearMaximum().build().has(Keys.MAXIMUM));
   }
 
   @Test
   void removeMaximum() {
-    assertFalse(type.maximum(3).removeMaximum().render().has(Keys.MAXIMUM));
+    assertFalse(type.maximum(3).removeMaximum().build().has(Keys.MAXIMUM));
   }
 
   @Test
   void exclusiveMaximum() {
-    assertTrue(type.exclusiveMaximum(true).render().get(EXCL_MAX).asBoolean());
-    assertFalse(type.exclusiveMaximum(false).render().get(EXCL_MAX).asBoolean());
+    assertTrue(type.exclusiveMaximum(true).build().get(EXCL_MAX).asBoolean());
+    assertFalse(type.exclusiveMaximum(false).build().get(EXCL_MAX).asBoolean());
   }
 
   @Test
   void removeExclusiveMaximum() {
     assertFalse(type.exclusiveMaximum(true).removeExclusiveMaximum()
-      .render().has(EXCL_MAX));
+      .build().has(EXCL_MAX));
   }
 
   @Test
   void clearExclusiveMaximum() {
     assertFalse(type.exclusiveMaximum(true).clearExclusiveMaximum()
-      .render().has(EXCL_MAX));
+      .build().has(EXCL_MAX));
   }
 
   @Test
   void minimum_byte() {
     assertEquals(3, type.minimum((byte) 3)
-      .render().get(Keys.MINIMUM).intValue());
+      .build().get(Keys.MINIMUM).intValue());
   }
 
   @Test
   void minimum_short() {
     assertEquals(3, type.minimum((short) 3)
-      .render().get(Keys.MINIMUM).intValue());
+      .build().get(Keys.MINIMUM).intValue());
   }
 
   @Test
   void minimum_int() {
     assertEquals(3, type.minimum(3)
-      .render().get(Keys.MINIMUM).intValue());
+      .build().get(Keys.MINIMUM).intValue());
   }
 
   @Test
   void minimum_long() {
     assertEquals(3L, type.minimum(3L)
-      .render().get(Keys.MINIMUM).longValue());
+      .build().get(Keys.MINIMUM).longValue());
   }
 
   @Test
   void minimum_float() {
     assertEquals(3F, type.minimum(3F)
-      .render().get(Keys.MINIMUM).floatValue());
+      .build().get(Keys.MINIMUM).floatValue());
   }
 
   @Test
   void minimum_double() {
     assertEquals(3D, type.minimum(3D)
-      .render().get(Keys.MINIMUM).doubleValue());
+      .build().get(Keys.MINIMUM).doubleValue());
   }
 
   @Test
   void minimum_bigInt() {
     assertEquals(new BigInteger("4"), type.minimum(new BigInteger("4"))
-      .render().get(Keys.MINIMUM).bigIntegerValue());
+      .build().get(Keys.MINIMUM).bigIntegerValue());
   }
 
   @Test
   void minimum_bigDec() {
     assertEquals(new BigDecimal("4"), type.minimum(new BigDecimal("4"))
-      .render().get(Keys.MINIMUM).decimalValue());
+      .build().get(Keys.MINIMUM).decimalValue());
   }
 
   @Test
   void removeMinimum() {
-    assertFalse(type.minimum(3).removeMinimum().render().has(Keys.MINIMUM));
+    assertFalse(type.minimum(3).removeMinimum().build().has(Keys.MINIMUM));
   }
 
   @Test
   void clearMinimum() {
-    assertFalse(type.minimum(3).clearMinimum().render().has(Keys.MINIMUM));
+    assertFalse(type.minimum(3).clearMinimum().build().has(Keys.MINIMUM));
   }
 
   @Test
   void exclusiveMinimum() {
-    assertTrue(type.exclusiveMinimum(true).render().get(EXCL_MIN).asBoolean());
-    assertFalse(type.exclusiveMinimum(false).render().get(EXCL_MIN).asBoolean());
+    assertTrue(type.exclusiveMinimum(true).build().get(EXCL_MIN).asBoolean());
+    assertFalse(type.exclusiveMinimum(false).build().get(EXCL_MIN).asBoolean());
   }
 
   @Test
   void removeExclusiveMinimum() {
     assertFalse(type.exclusiveMinimum(true).removeExclusiveMinimum()
-      .render().has(EXCL_MIN));
+      .build().has(EXCL_MIN));
   }
 
   @Test
   void clearExclusiveMinimum() {
     assertFalse(type.exclusiveMinimum(true).clearExclusiveMinimum()
-      .render().has(EXCL_MIN));
+      .build().has(EXCL_MIN));
   }
 
   @Test
   void multipleOf_byte() {
     assertEquals(3, type.multipleOf((byte) 3)
-      .render().get(Keys.MULTIPLE).intValue());
+      .build().get(Keys.MULTIPLE).intValue());
   }
 
   @Test
   void multipleOf_short() {
     assertEquals(3, type.multipleOf((short) 3)
-      .render().get(Keys.MULTIPLE).intValue());
+      .build().get(Keys.MULTIPLE).intValue());
   }
 
   @Test
   void multipleOf_int() {
     assertEquals(3, type.multipleOf(3)
-      .render().get(Keys.MULTIPLE).intValue());
+      .build().get(Keys.MULTIPLE).intValue());
   }
 
   @Test
   void multipleOf_long() {
     assertEquals(3L, type.multipleOf(3L)
-      .render().get(Keys.MULTIPLE).longValue());
+      .build().get(Keys.MULTIPLE).longValue());
   }
 
   @Test
   void multipleOf_float() {
     assertEquals(3F, type.multipleOf(3F)
-      .render().get(Keys.MULTIPLE).floatValue());
+      .build().get(Keys.MULTIPLE).floatValue());
   }
 
   @Test
   void multipleOf_double() {
     assertEquals(3D, type.multipleOf(3D)
-      .render().get(Keys.MULTIPLE).doubleValue());
+      .build().get(Keys.MULTIPLE).doubleValue());
   }
 
   @Test
   void multipleOf_bigInt() {
     assertEquals(new BigInteger("4"), type.multipleOf(new BigInteger("4"))
-      .render().get(Keys.MULTIPLE).bigIntegerValue());
+      .build().get(Keys.MULTIPLE).bigIntegerValue());
   }
 
   @Test
   void multipleOf_bigDec() {
     assertEquals(new BigDecimal("4"), type.multipleOf(new BigDecimal("4"))
-      .render().get(Keys.MULTIPLE).decimalValue());
+      .build().get(Keys.MULTIPLE).decimalValue());
   }
 
   @Test
   void removeMultipleOf() {
     assertFalse(type.multipleOf(3)
       .removeMultipleOf()
-      .render()
+      .build()
       .has(Keys.MULTIPLE));
   }
 
@@ -303,7 +303,7 @@ class StdNumberBuilderTest {
   void clearMultipleOf() {
     assertFalse(type.multipleOf(3)
       .clearMultipleOf()
-      .render()
+      .build()
       .has(Keys.MULTIPLE));
   }
 

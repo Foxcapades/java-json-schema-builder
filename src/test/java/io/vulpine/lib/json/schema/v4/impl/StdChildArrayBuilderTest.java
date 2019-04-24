@@ -16,7 +16,7 @@ class StdChildArrayBuilderTest
   void constructor2()
   {
     assertEquals(JsonType.ARRAY.jsonName(), new StdChildArrayBuilder<>(null,
-      JSON, JSON.createObjectNode()).render().get(TYPE).asText());
+      JSON, JSON.createObjectNode()).build().get(TYPE).asText());
   }
 
   @Test

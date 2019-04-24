@@ -3,17 +3,26 @@ package io.vulpine.lib.json.schema.v4;
 import io.vulpine.lib.json.schema.v4.lib.ChildBuilder;
 
 /**
- * @param <P> parent type
+ * @param <P>
+ *   parent type
+ *
+ * @since 1.0
  */
 public interface ChildSchemaBuilder<P extends SchemaNode>
 extends SchemaObject<ChildSchemaBuilder<P>>, ChildBuilder<P>
 {
   ChildArrayBuilder<P> asArray();
+
   ChildBooleanBuilder<P> asBoolean();
+
   ChildIntegerBuilder<P> asInteger();
+
   ChildNullBuilder<P> asNull();
+
   ChildNumberBuilder<P> asNumber();
+
   ChildObjectBuilder<P> asObject();
+
   ChildStringBuilder<P> asString();
 
   @Override

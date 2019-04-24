@@ -4,6 +4,11 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Arrays;
 
+/**
+ * JSON Data Types
+ *
+ * @since 1.0
+ */
 public enum JsonType {
   ARRAY,
   BOOLEAN,

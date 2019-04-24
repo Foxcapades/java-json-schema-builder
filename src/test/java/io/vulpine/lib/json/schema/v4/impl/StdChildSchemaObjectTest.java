@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.ChildSchemaBuilder;
 import io.vulpine.lib.json.schema.v4.Draft4;
-import io.vulpine.lib.json.schema.v4.SchemaObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -170,7 +169,7 @@ class StdChildSchemaObjectTest
   void render()
   {
     raw.put("A", "B");
-    assertEquals("B", type.render().get("A").textValue());
+    assertEquals("B", type.build().get("A").textValue());
   }
 
   @Test

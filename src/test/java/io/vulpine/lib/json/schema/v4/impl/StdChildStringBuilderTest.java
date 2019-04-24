@@ -15,7 +15,7 @@ class StdChildStringBuilderTest
   void constructor()
   {
     var a = new StdChildStringBuilder<>(new StdSchemaObject<>(JSON), JSON,
-      JSON.createObjectNode()).render();
+      JSON.createObjectNode()).build();
     assertTrue(a.has(TYPE));
     assertEquals(JsonType.STRING.jsonName(), a.get(TYPE).textValue());
   }

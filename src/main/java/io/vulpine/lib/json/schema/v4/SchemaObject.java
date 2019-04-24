@@ -1,5 +1,11 @@
 package io.vulpine.lib.json.schema.v4;
 
+/**
+ * @param <T>
+ *   Extension type
+ *
+ * @since 1.0
+ */
 public interface SchemaObject<T extends SchemaObject<T>>
 extends SchemaNode
 {

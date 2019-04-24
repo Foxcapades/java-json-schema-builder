@@ -30,7 +30,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   @Override
   public T optionalProperty(String name, SchemaObject node)
   {
-    props().set(name, strip$Schema(node.render()));
+    props().set(name, strip$Schema(node.build()));
     return (T) this;
   }
 
@@ -58,7 +58,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   public T requiredProperty(String name, SchemaObject node)
   {
     required().add(name);
-    props().set(name, strip$Schema(node.render()));
+    props().set(name, strip$Schema(node.build()));
     return (T) this;
   }
 
@@ -93,7 +93,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   @Override
   public T patternProperty(String a, SchemaObject b)
   {
-    patternProps().set(a, strip$Schema(b.render()));
+    patternProps().set(a, strip$Schema(b.build()));
     return (T) this;
   }
 
@@ -195,7 +195,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   @Override
   public T definition(String name, SchemaObject schema)
   {
-    def().set(name, schema.render());
+    def().set(name, schema.build());
     return (T) this;
   }
 
