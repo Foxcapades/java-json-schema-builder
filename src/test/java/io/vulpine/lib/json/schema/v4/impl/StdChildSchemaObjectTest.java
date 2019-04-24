@@ -2,6 +2,8 @@ package io.vulpine.lib.json.schema.v4.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.vulpine.lib.json.schema.v4.ChildSchemaBuilder;
+import io.vulpine.lib.json.schema.v4.Draft4;
 import io.vulpine.lib.json.schema.v4.SchemaObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,18 +11,18 @@ import org.junit.jupiter.api.Test;
 import static io.vulpine.lib.json.schema.v4.lib.Keys.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class StdSchemaObjectTest
+class StdChildSchemaObjectTest
 {
   private static final ObjectMapper JSON = new ObjectMapper();
 
   private ObjectNode raw;
-  private SchemaObject<?> type;
+  private ChildSchemaBuilder<?> type;
 
   @BeforeEach
   void setUp()
   {
     raw = JSON.createObjectNode();
-    type = new StdSchemaObject<>(JSON, raw);
+    type = new StdChildSchemaBuilder<>(Draft4.newBuilder(), JSON, raw);
   }
 
   @Test

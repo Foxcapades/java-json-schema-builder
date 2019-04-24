@@ -7,8 +7,24 @@ extends SchemaNode
    * Removes the {@code "default"} property from the schema (if present).
    *
    * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.3
    */
-  T clearDefaultValue();
+  T removeDefaultValue();
+
+  /**
+   * Removes the {@code "default"} property from the schema (if present).
+   *
+   * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods
+   */
+  @Deprecated
+  default T clearDefaultValue()
+  {
+    return removeDefaultValue();
+  }
 
   /**
    * Sets the {@code "id"} value for the current {@link SchemaObject}.
@@ -28,8 +44,24 @@ extends SchemaNode
    * Removes the {@code "id"} property from the schema (if present).
    *
    * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.3
    */
-  T clearId();
+  T removeId();
+
+  /**
+   * Removes the {@code "id"} property from the schema (if present).
+   *
+   * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods
+   */
+  @Deprecated
+  default T clearId()
+  {
+    return removeId();
+  }
 
   /**
    * Sets the {@code "$schema"} value for the current {@link SchemaObject}.
@@ -48,8 +80,24 @@ extends SchemaNode
    * Removes the {@code "$schema"} property from the schema (if present).
    *
    * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.3
    */
-  T clear$Schema();
+  T remove$Schema();
+
+  /**
+   * Removes the {@code "$schema"} property from the schema (if present).
+   *
+   * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods
+   */
+  @Deprecated
+  default T clear$Schema()
+  {
+    return remove$Schema();
+  }
 
   /**
    * Sets the {@code "$ref"} value for the current {@link SchemaObject}.
@@ -68,8 +116,24 @@ extends SchemaNode
    * Removes the {@code "$ref"} property from the schema (if present).
    *
    * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.3
    */
-  T clear$Ref();
+  T remove$Ref();
+
+  /**
+   * Removes the {@code "$ref"} property from the schema (if present).
+   *
+   * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods
+   */
+  @Deprecated
+  default T clear$Ref()
+  {
+    return remove$Ref();
+  }
 
   /**
    * Sets the {@code "description"} value for the current {@link SchemaObject}.
@@ -88,8 +152,24 @@ extends SchemaNode
    * Removes the {@code "description"} property from the schema (if present).
    *
    * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.3
    */
-  T clearDescription();
+  T removeDescription();
+
+  /**
+   * Removes the {@code "description"} property from the schema (if present).
+   *
+   * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods
+   */
+  @Deprecated
+  default T clearDescription()
+  {
+    return removeDescription();
+  }
 
   /**
    * Sets the {@code "title"} value for the current {@link SchemaObject}.
@@ -108,8 +188,45 @@ extends SchemaNode
    * Removes the {@code "title"} property from the schema (if present).
    *
    * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.3
    */
-  T clearTitle();
+  T removeTitle();
 
-  T clearEnumValues();
+  /**
+   * Removes the {@code "title"} property from the schema (if present).
+   *
+   * @return a modified instance of {@link SchemaObject}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods
+   */
+  @Deprecated
+  default T clearTitle()
+  {
+    return removeTitle();
+  }
+
+  /**
+   * Removes the {@code "enum"} property
+   *
+   * @return an updated {@link SchemaObject}
+   *
+   * @since 1.3
+   */
+  T removeEnumValues();
+
+  /**
+   * Removes the {@code "enum"} property
+   *
+   * @return an updated {@link SchemaObject}
+   *
+   * @since 1.1
+   * @deprecated removing "clear" methods in favor of "remove" methods
+   */
+  @Deprecated
+  default T clearEnumValues()
+  {
+    return removeEnumValues();
+  }
 }

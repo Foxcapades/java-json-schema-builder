@@ -31,7 +31,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
   }
 
   @Override
-  public T clearDefaultValue()
+  public T removeDefaultValue()
   {
     return clear(DEFAULT);
   }
@@ -43,7 +43,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
   }
 
   @Override
-  public T clearId()
+  public T removeId()
   {
     return clear(ID);
   }
@@ -55,7 +55,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
   }
 
   @Override
-  public T clear$Schema()
+  public T remove$Schema()
   {
     return clear($SCHEMA);
   }
@@ -67,7 +67,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
   }
 
   @Override
-  public T clear$Ref()
+  public T remove$Ref()
   {
     return clear($REF);
   }
@@ -79,7 +79,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
   }
 
   @Override
-  public T clearDescription()
+  public T removeDescription()
   {
     return clear(DESC);
   }
@@ -91,7 +91,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
   }
 
   @Override
-  public T clearTitle()
+  public T removeTitle()
   {
     return clear(TITLE);
   }
@@ -103,7 +103,7 @@ class StdSchemaObject<T extends SchemaObject<T>> implements SchemaObject<T>
   }
 
   @Override
-  public T clearEnumValues()
+  public T removeEnumValues()
   {
     return clear(ENUM);
   }

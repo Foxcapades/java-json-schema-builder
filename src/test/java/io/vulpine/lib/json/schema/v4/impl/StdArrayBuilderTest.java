@@ -231,7 +231,7 @@ class StdArrayBuilderTest {
   void clearDefaultValue() //TODO: This doesn't go here.
   {
     assertNotNull(type.defaultValue(JSON.createArrayNode().add("foo")));
-    assertNotNull(type.clearDefaultValue());
+    assertNotNull(type.removeDefaultValue());
     assertFalse(type.render().has(DEFAULT));
   }
 
