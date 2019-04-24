@@ -30,7 +30,15 @@ class StdIntegerBuilderTest
   @Test
   void defaultValue_int()
   {
-    test.defaultValue(1);
+    assertNotNull(test.defaultValue(1));
+    assertTrue(raw.has(DEFAULT));
+    assertEquals(1, raw.get(DEFAULT).intValue());
+  }
+
+  @Test
+  void defaultValue_long()
+  {
+    assertNotNull(test.defaultValue(1L));
     assertTrue(raw.has(DEFAULT));
     assertEquals(1, raw.get(DEFAULT).intValue());
   }
@@ -38,7 +46,7 @@ class StdIntegerBuilderTest
   @Test
   void defaultValue_bigInt()
   {
-    test.defaultValue(new BigInteger("1"));
+    assertNotNull(test.defaultValue(new BigInteger("1")));
     assertTrue(raw.has(DEFAULT));
     assertEquals(new BigInteger("1"), raw.get(DEFAULT).bigIntegerValue());
   }
@@ -47,7 +55,7 @@ class StdIntegerBuilderTest
   @DisplayName("maximum(int)")
   void maximum_int()
   {
-    test.maximum(1);
+    assertNotNull(test.maximum(1));
     assertTrue(raw.has(MAXIMUM));
     assertEquals(1, raw.get(MAXIMUM).intValue());
   }
@@ -56,7 +64,7 @@ class StdIntegerBuilderTest
   @DisplayName("maximum(long)")
   void maximum_long()
   {
-    test.maximum(1L);
+    assertNotNull(test.maximum(1L));
     assertTrue(raw.has(MAXIMUM));
     assertEquals(1L, raw.get(MAXIMUM).longValue());
   }
@@ -65,7 +73,7 @@ class StdIntegerBuilderTest
   @DisplayName("maximum(BigInteger)")
   void maximum_bigInt()
   {
-    test.maximum(new BigInteger("1"));
+    assertNotNull(test.maximum(new BigInteger("1")));
     assertTrue(raw.has(MAXIMUM));
     assertEquals(new BigInteger("1"), raw.get(MAXIMUM).bigIntegerValue());
   }
@@ -74,18 +82,26 @@ class StdIntegerBuilderTest
   void clearMaximum()
   {
     raw.put(MAXIMUM, 1);
-    test.clearMaximum();
+    assertNotNull(test.clearMaximum());
+    assertFalse(raw.has(MAXIMUM));
+  }
+
+  @Test
+  void removeMaximum()
+  {
+    raw.put(MAXIMUM, 1);
+    assertNotNull(test.removeMaximum());
     assertFalse(raw.has(MAXIMUM));
   }
 
   @Test
   void exclusiveMaximum()
   {
-    test.exclusiveMaximum(true);
+    assertNotNull(test.exclusiveMaximum(true));
     assertTrue(raw.has(EXCL_MAX));
     assertTrue(raw.get(EXCL_MAX).booleanValue());
 
-    test.exclusiveMaximum(false);
+    assertNotNull(test.exclusiveMaximum(false));
     assertTrue(raw.has(EXCL_MAX));
     assertFalse(raw.get(EXCL_MAX).booleanValue());
   }
@@ -94,7 +110,15 @@ class StdIntegerBuilderTest
   void clearExclusiveMaximum()
   {
     raw.put(EXCL_MAX, true);
-    test.clearExclusiveMaximum();
+    assertNotNull(test.clearExclusiveMaximum());
+    assertFalse(raw.has(EXCL_MAX));
+  }
+
+  @Test
+  void removeExclusiveMaximum()
+  {
+    raw.put(EXCL_MAX, true);
+    assertNotNull(test.removeExclusiveMaximum());
     assertFalse(raw.has(EXCL_MAX));
   }
 
@@ -102,7 +126,7 @@ class StdIntegerBuilderTest
   @DisplayName("minimum(int)")
   void minimum_int()
   {
-    test.minimum(1);
+    assertNotNull(test.minimum(1));
     assertTrue(raw.has(MINIMUM));
     assertEquals(1, raw.get(MINIMUM).intValue());
   }
@@ -111,7 +135,7 @@ class StdIntegerBuilderTest
   @DisplayName("minimum(long)")
   void minimum_long()
   {
-    test.minimum(1L);
+    assertNotNull(test.minimum(1L));
     assertTrue(raw.has(MINIMUM));
     assertEquals(1L, raw.get(MINIMUM).longValue());
   }
@@ -120,7 +144,7 @@ class StdIntegerBuilderTest
   @DisplayName("minimum(BigInteger)")
   void minimum_bigInt()
   {
-    test.minimum(new BigInteger("1"));
+    assertNotNull(test.minimum(new BigInteger("1")));
     assertTrue(raw.has(MINIMUM));
     assertEquals(new BigInteger("1"), raw.get(MINIMUM).bigIntegerValue());
   }
@@ -129,18 +153,26 @@ class StdIntegerBuilderTest
   void clearMinimum()
   {
     raw.put(MINIMUM, 1);
-    test.clearMinimum();
+    assertNotNull(test.clearMinimum());
+    assertFalse(raw.has(MINIMUM));
+  }
+
+  @Test
+  void removeMinimum()
+  {
+    raw.put(MINIMUM, 1);
+    assertNotNull(test.removeMinimum());
     assertFalse(raw.has(MINIMUM));
   }
 
   @Test
   void exclusiveMinimum()
   {
-    test.exclusiveMinimum(true);
+    assertNotNull(test.exclusiveMinimum(true));
     assertTrue(raw.has(EXCL_MIN));
     assertTrue(raw.get(EXCL_MIN).booleanValue());
 
-    test.exclusiveMinimum(false);
+    assertNotNull(test.exclusiveMinimum(false));
     assertTrue(raw.has(EXCL_MIN));
     assertFalse(raw.get(EXCL_MIN).booleanValue());
   }
@@ -149,14 +181,22 @@ class StdIntegerBuilderTest
   void clearExclusiveMinimum()
   {
     raw.put(EXCL_MIN, true);
-    test.clearExclusiveMinimum();
+    assertNotNull(test.clearExclusiveMinimum());
+    assertFalse(raw.has(EXCL_MIN));
+  }
+
+  @Test
+  void removeExclusiveMinimum()
+  {
+    raw.put(EXCL_MIN, true);
+    assertNotNull(test.removeExclusiveMinimum());
     assertFalse(raw.has(EXCL_MIN));
   }
 
   @Test
   void multipleOf_byte()
   {
-    test.multipleOf((byte) 1);
+    assertNotNull(test.multipleOf((byte) 1));
     assertTrue(raw.has(MULTIPLE));
     assertEquals(1, raw.get(MULTIPLE).intValue());
   }
@@ -164,7 +204,7 @@ class StdIntegerBuilderTest
   @Test
   void multipleOf_short()
   {
-    test.multipleOf((short) 1);
+    assertNotNull(test.multipleOf((short) 1));
     assertTrue(raw.has(MULTIPLE));
     assertEquals(1, raw.get(MULTIPLE).intValue());
   }
@@ -172,7 +212,7 @@ class StdIntegerBuilderTest
   @Test
   void multipleOf_int()
   {
-    test.multipleOf(1);
+    assertNotNull(test.multipleOf(1));
     assertTrue(raw.has(MULTIPLE));
     assertEquals(1, raw.get(MULTIPLE).intValue());
   }
@@ -180,7 +220,7 @@ class StdIntegerBuilderTest
   @Test
   void multipleOf_long()
   {
-    test.multipleOf(1L);
+    assertNotNull(test.multipleOf(1L));
     assertTrue(raw.has(MULTIPLE));
     assertEquals(1L, raw.get(MULTIPLE).longValue());
   }
@@ -188,7 +228,7 @@ class StdIntegerBuilderTest
   @Test
   void multipleOf_float()
   {
-    test.multipleOf(1F);
+    assertNotNull(test.multipleOf(1F));
     assertTrue(raw.has(MULTIPLE));
     assertEquals(1F, raw.get(MULTIPLE).floatValue());
   }
@@ -196,7 +236,7 @@ class StdIntegerBuilderTest
   @Test
   void multipleOf_double()
   {
-    test.multipleOf(1D);
+    assertNotNull(test.multipleOf(1D));
     assertTrue(raw.has(MULTIPLE));
     assertEquals(1L, raw.get(MULTIPLE).doubleValue());
   }
@@ -204,7 +244,7 @@ class StdIntegerBuilderTest
   @Test
   void multipleOf_bigInt()
   {
-    test.multipleOf(new BigInteger("1"));
+    assertNotNull(test.multipleOf(new BigInteger("1")));
     assertTrue(raw.has(MULTIPLE));
     assertEquals(new BigInteger("1"), raw.get(MULTIPLE).bigIntegerValue());
   }
@@ -212,7 +252,7 @@ class StdIntegerBuilderTest
   @Test
   void multipleOf_bigDec()
   {
-    test.multipleOf(new BigDecimal("1"));
+    assertNotNull(test.multipleOf(new BigDecimal("1")));
     assertTrue(raw.has(MULTIPLE));
     assertEquals(new BigDecimal("1"), raw.get(MULTIPLE).decimalValue());
   }
@@ -221,7 +261,15 @@ class StdIntegerBuilderTest
   void clearMultipleOf()
   {
     raw.put(MULTIPLE, 1);
-    test.clearMultipleOf();
+    assertNotNull(test.clearMultipleOf());
+    assertFalse(raw.has(MULTIPLE));
+  }
+
+  @Test
+  void removeMultipleOf()
+  {
+    raw.put(MULTIPLE, 1);
+    assertNotNull(test.removeMultipleOf());
     assertFalse(raw.has(MULTIPLE));
   }
 
@@ -229,7 +277,7 @@ class StdIntegerBuilderTest
   @DisplayName("enumValues(int... vals)")
   void enumValues1()
   {
-    test.enumValues(3, 2, 1);
+    assertNotNull(test.enumValues(3, 2, 1));
     assertTrue(raw.has(ENUM));
     assertTrue(raw.get(ENUM).isArray());
     assertEquals(3, raw.get(ENUM).size());
@@ -242,7 +290,7 @@ class StdIntegerBuilderTest
   @DisplayName("enumValues(long... vals)")
   void enumValues2()
   {
-    test.enumValues(3L, 2L, 1L);
+    assertNotNull(test.enumValues(3L, 2L, 1L));
     assertTrue(raw.has(ENUM));
     assertTrue(raw.get(ENUM).isArray());
     assertEquals(3, raw.get(ENUM).size());
@@ -255,8 +303,10 @@ class StdIntegerBuilderTest
   @DisplayName("enumValues(BigInteger... vals)")
   void enumValues3()
   {
-    test.enumValues(new BigInteger("3"), new BigInteger("2"),
-      new BigInteger("1"));
+    assertNotNull(test.enumValues(
+      new BigInteger("3"),
+      new BigInteger("2"),
+      new BigInteger("1")));
     assertTrue(raw.has(ENUM));
     assertTrue(raw.get(ENUM).isArray());
     assertEquals(3, raw.get(ENUM).size());

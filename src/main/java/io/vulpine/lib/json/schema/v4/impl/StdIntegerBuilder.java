@@ -28,6 +28,12 @@ implements IntegerBuilder<T>
   }
 
   @Override
+  public T defaultValue(long v)
+  {
+    return put(DEFAULT, v);
+  }
+
+  @Override
   public T defaultValue(BigInteger v)
   {
     return put(DEFAULT, v);
@@ -52,7 +58,7 @@ implements IntegerBuilder<T>
   }
 
   @Override
-  public T clearMaximum()
+  public T removeMaximum()
   {
     return clear(MAXIMUM);
   }
@@ -64,7 +70,7 @@ implements IntegerBuilder<T>
   }
 
   @Override
-  public T clearExclusiveMaximum()
+  public T removeExclusiveMaximum()
   {
     return clear(EXCL_MAX);
   }
@@ -88,7 +94,7 @@ implements IntegerBuilder<T>
   }
 
   @Override
-  public T clearMinimum()
+  public T removeMinimum()
   {
     return clear(MINIMUM);
   }
@@ -100,7 +106,7 @@ implements IntegerBuilder<T>
   }
 
   @Override
-  public T clearExclusiveMinimum()
+  public T removeExclusiveMinimum()
   {
     return clear(EXCL_MIN);
   }
@@ -154,7 +160,7 @@ implements IntegerBuilder<T>
   }
 
   @Override
-  public T clearMultipleOf()
+  public T removeMultipleOf()
   {
     return clear(MULTIPLE);
   }

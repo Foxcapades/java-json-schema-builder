@@ -4,12 +4,13 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public interface IntegerBuilder<T extends IntegerBuilder<T>>
-  extends SchemaObject<T>
+extends SchemaObject<T>
 {
   /**
    * Sets the {@code "default"} property to the given value
    *
-   * @param val schema {@code "default"} value
+   * @param val
+   *   schema {@code "default"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -20,7 +21,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "default"} property to the given value
    *
-   * @param val schema {@code "default"} value
+   * @param val
+   *   schema {@code "default"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -31,7 +33,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "default"} property to the given value
    *
-   * @param val schema {@code "default"} value
+   * @param val
+   *   schema {@code "default"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -42,7 +45,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "maximum"} property to the given value
    *
-   * @param val schema maximum value
+   * @param val
+   *   schema maximum value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -53,7 +57,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "maximum"} property to the given value
    *
-   * @param val schema maximum value
+   * @param val
+   *   schema maximum value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -64,7 +69,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "maximum"} property to the given value
    *
-   * @param val schema maximum value
+   * @param val
+   *   schema maximum value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -77,14 +83,29 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
    *
    * @return a modified {@link IntegerBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearMaximum();
+  T removeMaximum();
+
+  /**
+   * Removes the {@code "maximum"} property
+   *
+   * @return a modified {@link IntegerBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearMaximum()
+  {
+    return removeMaximum();
+  }
 
   /**
    * Sets the {@code "exclusiveMaximum"} property to the given value
    *
-   * @param val schema {@code "exclusiveMaximum"} value
+   * @param val
+   *   schema {@code "exclusiveMaximum"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -97,14 +118,29 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
    *
    * @return a modified {@link IntegerBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearExclusiveMaximum();
+  T removeExclusiveMaximum();
+
+  /**
+   * Removes the {@code "exclusiveMaximum"} property
+   *
+   * @return a modified {@link IntegerBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearExclusiveMaximum()
+  {
+    return removeExclusiveMaximum();
+  }
 
   /**
    * Sets the {@code "minimum"} property to the given value
    *
-   * @param val schema minimum value
+   * @param val
+   *   schema minimum value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -115,7 +151,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "minimum"} property to the given value
    *
-   * @param val schema minimum value
+   * @param val
+   *   schema minimum value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -126,7 +163,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "minimum"} property to the given value
    *
-   * @param val schema minimum value
+   * @param val
+   *   schema minimum value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -139,14 +177,29 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
    *
    * @return a modified {@link IntegerBuilder}
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearMinimum();
+  T removeMinimum();
+
+  /**
+   * Removes the {@code "minimum"} property
+   *
+   * @return a modified {@link IntegerBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearMinimum()
+  {
+    return removeMinimum();
+  }
 
   /**
    * Sets the {@code "exclusiveMinimum"} property to the given value
    *
-   * @param val schema {@code "exclusiveMinimum"} value
+   * @param val
+   *   schema {@code "exclusiveMinimum"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -161,12 +214,27 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
    *
    * @since 1.0
    */
-  T clearExclusiveMinimum();
+  T removeExclusiveMinimum();
+
+  /**
+   * Removes the {@code "exclusiveMinimum"} property
+   *
+   * @return a modified {@link IntegerBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearExclusiveMinimum()
+  {
+    return removeExclusiveMinimum();
+  }
 
   /**
    * Sets the {@code "multipleOf"} property to the given value
    *
-   * @param val schema {@code "multipleOf"} value
+   * @param val
+   *   schema {@code "multipleOf"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -177,7 +245,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "multipleOf"} property to the given value
    *
-   * @param val schema {@code "multipleOf"} value
+   * @param val
+   *   schema {@code "multipleOf"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -188,7 +257,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "multipleOf"} property to the given value
    *
-   * @param val schema {@code "multipleOf"} value
+   * @param val
+   *   schema {@code "multipleOf"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -199,7 +269,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "multipleOf"} property to the given value
    *
-   * @param val schema {@code "multipleOf"} value
+   * @param val
+   *   schema {@code "multipleOf"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -210,7 +281,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "multipleOf"} property to the given value
    *
-   * @param val schema {@code "multipleOf"} value
+   * @param val
+   *   schema {@code "multipleOf"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -221,7 +293,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "multipleOf"} property to the given value
    *
-   * @param val schema {@code "multipleOf"} value
+   * @param val
+   *   schema {@code "multipleOf"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -232,7 +305,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "multipleOf"} property to the given value
    *
-   * @param val schema {@code "multipleOf"} value
+   * @param val
+   *   schema {@code "multipleOf"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -243,7 +317,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "multipleOf"} property to the given value
    *
-   * @param val schema {@code "multipleOf"} value
+   * @param val
+   *   schema {@code "multipleOf"} value
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -258,12 +333,27 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
    *
    * @since 1.0
    */
-  T clearMultipleOf();
+  T removeMultipleOf();
+
+  /**
+   * Removes the {@code "multipleOf"} property
+   *
+   * @return a modified {@link IntegerBuilder}
+   *
+   * @since 1.0
+   * @deprecated removing "clear" methods in favor of "remove" methods.
+   */
+  @Deprecated
+  default T clearMultipleOf()
+  {
+    return removeMultipleOf();
+  }
 
   /**
    * Sets the {@code "enum"} property to the given array
    *
-   * @param val schema {@code "enum"} array
+   * @param val
+   *   schema {@code "enum"} array
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -274,7 +364,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "enum"} property to the given array
    *
-   * @param val schema {@code "enum"} array
+   * @param val
+   *   schema {@code "enum"} array
    *
    * @return a modified {@link IntegerBuilder}
    *
@@ -285,7 +376,8 @@ public interface IntegerBuilder<T extends IntegerBuilder<T>>
   /**
    * Sets the {@code "enum"} property to the given array
    *
-   * @param val schema {@code "enum"} array
+   * @param val
+   *   schema {@code "enum"} array
    *
    * @return a modified {@link IntegerBuilder}
    *
