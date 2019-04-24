@@ -64,6 +64,29 @@ class StdObjectBuilderTest
   }
 
   @Test
+  void removeOptionalProperties_when_required_are_present()
+  {
+    test.optionalProperty("foo");
+    test.requiredProperty("bar");
+    assertNotNull(test.removeOptionalProperties());
+
+    // Didn't remove "properties"
+    assertTrue(raw.has(PROPS));
+
+    // Still has required prop
+    assertTrue(raw.get(PROPS).has("bar"));
+  }
+
+  @Test
+  void removeOptionalProperties_when_required_are_not_present()
+  {
+    test.optionalProperty("foo");
+    test.removeOptionalProperties();
+
+    assertFalse(raw.has(PROPS));
+  }
+
+  @Test
   void clearOptionalProperties_when_required_are_not_present()
   {
     test.optionalProperty("foo");
@@ -116,7 +139,7 @@ class StdObjectBuilderTest
   }
 
   @Nested
-  @DisplayName("clearRequiredProperties()")
+  @DisplayName("removeRequiredProperties()")
   class clearRequiredProperties
   {
     @Nested
@@ -127,6 +150,13 @@ class StdObjectBuilderTest
       @DisplayName("does not return a null value")
       void a()
       {
+        assertNotNull(test.removeRequiredProperties());
+      }
+
+      @Test
+      @DisplayName("does not return a null value")
+      void a1()
+      {
         assertNotNull(test.clearRequiredProperties());
       }
 
@@ -134,12 +164,26 @@ class StdObjectBuilderTest
       @DisplayName("does not cause a dangling \"" + REQ + "\" array")
       void b()
       {
+        assertFalse(test.removeRequiredProperties().render().has(REQ));
+      }
+
+      @Test
+      @DisplayName("does not cause a dangling \"" + REQ + "\" array")
+      void b1()
+      {
         assertFalse(test.clearRequiredProperties().render().has(REQ));
       }
 
       @Test
       @DisplayName("does not cause a dangling \"" + PROPS + "\" object")
       void c()
+      {
+        assertFalse(test.removeRequiredProperties().render().has(PROPS));
+      }
+
+      @Test
+      @DisplayName("does not cause a dangling \"" + PROPS + "\" object")
+      void c1()
       {
         assertFalse(test.clearRequiredProperties().render().has(PROPS));
       }
@@ -151,7 +195,7 @@ class StdObjectBuilderTest
     {
       test.optionalProperty("foo");
       test.requiredProperty("bar");
-      test.clearRequiredProperties();
+      test.removeRequiredProperties();
 
       // didn't remove req props
       assertFalse(raw.has(REQ));
@@ -160,6 +204,22 @@ class StdObjectBuilderTest
       // correctly trimmed the props object
       assertEquals(1, raw.get(PROPS).size());
       assertTrue(raw.get(PROPS).has("foo"));
+    }
+
+    @Test
+    @DisplayName("When only required properties are present")
+    void removeRequiredProperties_when_optionals_not_present()
+    {
+      test.requiredProperty("bar");
+      assertNotNull(test.removeRequiredProperties());
+
+      // removed empty blocks
+      assertFalse(raw.has(REQ));
+      assertFalse(raw.has(PROPS));
+
+      // Extra call to hit a weird block of code meant to prevent the creation of
+      // the required array just before removing it.
+      test.removeRequiredProperties();
     }
 
     @Test
@@ -210,7 +270,7 @@ class StdObjectBuilderTest
   }
 
   @Nested
-  @DisplayName("clearPatternProperties()")
+  @DisplayName("removePatternProperties()")
   class clearPatternProperties
   {
     @BeforeEach
@@ -223,6 +283,15 @@ class StdObjectBuilderTest
     @Test
     @DisplayName("Removes the \"patternProperties\" property from the schema builder")
     void removeProp()
+    {
+      assertTrue(raw.has(PATT_PROPS));
+      assertNotNull(test.removePatternProperties());
+      assertFalse(raw.has(PATT_PROPS));
+    }
+
+    @Test
+    @DisplayName("Removes the \"patternProperties\" property from the schema builder")
+    void clearProp()
     {
       assertTrue(raw.has(PATT_PROPS));
       assertNotNull(test.clearPatternProperties());
@@ -284,6 +353,14 @@ class StdObjectBuilderTest
   }
 
   @Test
+  void removeAdditionalProperties()
+  {
+    raw.put(ADDTL_PROPS, false);
+    assertNotNull(test.removeAdditionalProperties());
+    assertFalse(raw.has(ADDTL_PROPS));
+  }
+
+  @Test
   @DisplayName("enumValues(ObjectNode...)")
   void enumValues()
   {
@@ -330,6 +407,14 @@ class StdObjectBuilderTest
   }
 
   @Test
+  void removeMaxProperties()
+  {
+    raw.put(MAX_PROPS, 1);
+    assertNotNull(test.removeMaxProperties());
+    assertFalse(raw.has(MAX_PROPS));
+  }
+
+  @Test
   void minProperties_int()
   {
     assertNotNull(test.minProperties(3));
@@ -362,6 +447,14 @@ class StdObjectBuilderTest
   }
 
   @Test
+  void removeMinProperties()
+  {
+    raw.put(MIN_PROPS, 1);
+    assertNotNull(test.removeMinProperties());
+    assertFalse(raw.has(MIN_PROPS));
+  }
+
+  @Test
   void definition_builder()
   {
     assertFalse(raw.has(DEFINITIONS));
@@ -390,17 +483,36 @@ class StdObjectBuilderTest
   }
 
   @Nested
-  @DisplayName("clearDefinition(String)")
+  @DisplayName("removeDefinition(String)")
   class clearDefinition {
     @Test
     @DisplayName("Does not return null")
     void a() {
+      assertNotNull(test.removeDefinition("foo"));
+    }
+
+    @Test
+    @DisplayName("Does not return null")
+    void a1() {
       assertNotNull(test.clearDefinition("foo"));
     }
 
     @Test
     @DisplayName("When 1 unrelated definition is present")
     void b()
+    {
+      test.definition("foo");
+      test.removeDefinition("bar");
+
+      var a = test.render();
+
+      assertTrue(a.has(DEFINITIONS));
+      assertTrue(a.get(DEFINITIONS).has("foo"));
+    }
+
+    @Test
+    @DisplayName("When 1 unrelated definition is present")
+    void b1()
     {
       test.definition("foo");
       test.clearDefinition("bar");
@@ -416,6 +528,18 @@ class StdObjectBuilderTest
     void c()
     {
       test.definition("foo");
+      test.removeDefinition("foo");
+
+      var a = test.render();
+
+      assertFalse(a.has(DEFINITIONS));
+    }
+
+    @Test
+    @DisplayName("When 1 related definition is present")
+    void c1()
+    {
+      test.definition("foo");
       test.clearDefinition("foo");
 
       var a = test.render();
@@ -423,10 +547,24 @@ class StdObjectBuilderTest
       assertFalse(a.has(DEFINITIONS));
     }
 
-
     @Test
     @DisplayName("When 2 definitions are present")
     void d()
+    {
+      test.definition("foo");
+      test.definition("bar");
+      test.removeDefinition("bar");
+
+      var a = test.render();
+
+      assertTrue(a.has(DEFINITIONS));
+      assertTrue(a.get(DEFINITIONS).has("foo"));
+      assertEquals(1, a.get(DEFINITIONS).size());
+    }
+
+    @Test
+    @DisplayName("When 2 definitions are present")
+    void d1()
     {
       test.definition("foo");
       test.definition("bar");
@@ -445,6 +583,14 @@ class StdObjectBuilderTest
   {
     test.definition("test");
     assertNotNull(test.clearDefinitions());
+    assertFalse(test.render().has(DEFINITIONS));
+  }
+
+  @Test
+  void removeDefinitions()
+  {
+    test.definition("test");
+    assertNotNull(test.removeDefinitions());
     assertFalse(test.render().has(DEFINITIONS));
   }
 }

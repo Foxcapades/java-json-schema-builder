@@ -64,9 +64,29 @@ extends SchemaObject<T>
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearOptionalProperties();
+  T removeOptionalProperties();
+
+  /**
+   * Removes all entries in the {@code "properties"} object from this {@link
+   * ObjectBuilder} that do not appear in the {@code "required"} properties
+   * array.
+   * <p>
+   * If there are no properties remaining in the {@code "properties"} object
+   * after this action, the {@code "properties"} object itself will be removed.
+   *
+   * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
+   *
+   * @deprecated "clear" methods to be replaced by "remove"
+   */
+  @Deprecated
+  default T clearOptionalProperties()
+  {
+    return removeOptionalProperties();
+  }
 
   /**
    * Creates a builder for an entry in the {@code "properties"} block of the
@@ -112,9 +132,29 @@ extends SchemaObject<T>
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearRequiredProperties();
+  T removeRequiredProperties();
+
+  /**
+   * Removes all entries in the {@code "properties"} object from this {@link
+   * ObjectBuilder} that also appear in the {@code "required"} properties array
+   * then removes the {@code "required"} array itself.
+   * <p>
+   * If there are no properties remaining in the {@code "properties"} object
+   * after this action, the {@code "properties"} object itself will be removed.
+   *
+   * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
+   *
+   * @deprecated "clear" methods to be replaced by "remove"
+   */
+  @Deprecated
+  default T clearRequiredProperties()
+  {
+    return removeRequiredProperties();
+  }
 
   /**
    * Creates a builder for an entry in the {@code "patternProperties"} block of
@@ -156,9 +196,25 @@ extends SchemaObject<T>
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearPatternProperties();
+  T removePatternProperties();
+
+  /**
+   * Removes the {@code "patternProperties"} object from the current {@link
+   * ObjectBuilder}.
+   *
+   * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
+   *
+   * @deprecated "clear" methods to be replaced by "remove"
+   */
+  @Deprecated
+  default T clearPatternProperties()
+  {
+    return removePatternProperties();
+  }
 
   /**
    * Sets the {@code "additionalProperties"} field to the given boolean value.
@@ -202,9 +258,25 @@ extends SchemaObject<T>
    *
    * @return a modified instance of the current {@link ObjectBuilder}.
    *
-   * @since 1.0
+   * @since 1.3
    */
-  T clearAdditionalProperties();
+  T removeAdditionalProperties();
+
+  /**
+   * Removes the {@code "additionalProperties"} field from the current {@link
+   * ObjectBuilder}
+   *
+   * @return a modified instance of the current {@link ObjectBuilder}.
+   *
+   * @since 1.0
+   *
+   * @deprecated "clear" methods to be replaced by "remove"
+   */
+  @Deprecated
+  default T clearAdditionalProperties()
+  {
+    return removeAdditionalProperties();
+  }
 
   T enumValues(ObjectNode... types);
 
@@ -249,9 +321,24 @@ extends SchemaObject<T>
    *
    * @return a modified {@link ObjectBuilder}
    *
-   * @since 1.2
+   * @since 1.3
    */
-  T clearMaxProperties();
+  T removeMaxProperties();
+
+  /**
+   * Removes the {@code "maxProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   *
+   * @deprecated "clear" methods to be replaced by "remove"
+   */
+  @Deprecated
+  default T clearMaxProperties()
+  {
+    return removeMaxProperties();
+  }
 
   /**
    * Sets the {@code "minProperties"} object schema property
@@ -294,9 +381,25 @@ extends SchemaObject<T>
    *
    * @return a modified {@link ObjectBuilder}
    *
-   * @since 1.2
+   * @since 1.3
    */
-  T clearMinProperties();
+  T removeMinProperties();
+
+  /**
+   * Removes the {@code "minProperties"} property
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   *
+   * @deprecated "clear" methods to be replaced by "remove"
+   */
+  @Deprecated
+  default T clearMinProperties()
+  {
+    return removeMinProperties();
+  }
+
 
   /**
    * Creates a builder which can be used to create a definition type at the
@@ -343,9 +446,40 @@ extends SchemaObject<T>
    *
    * @return a modified {@link ObjectBuilder}
    *
-   * @since 1.2
+   * @since 1.3
    */
-  T clearDefinition(String name);
+  T removeDefinition(String name);
+
+  /**
+   * Removes the definition type keyed at the given name from the {@code
+   * "definitions"} object.
+   * <p>
+   * If the there are no definitions remaining in the schema after this removal
+   * the {@code "definitions"} property itself will be removed.
+   *
+   * @param name
+   *   name of the definition type to remove
+   *
+   * @return a modified {@link ObjectBuilder}
+   *
+   * @since 1.2
+   *
+   * @deprecated "clear" methods to be replaced by "remove"
+   */
+  @Deprecated
+  default T clearDefinition(String name)
+  {
+    return removeDefinition(name);
+  }
+
+  /**
+   * Removes the {@code "definitions"} property from the current schema.
+   *
+   * @return a modifed {@link ObjectBuilder}
+   *
+   * @since 1.3
+   */
+  T removeDefinitions();
 
   /**
    * Removes the {@code "definitions"} property from the current schema.
@@ -353,6 +487,12 @@ extends SchemaObject<T>
    * @return a modifed {@link ObjectBuilder}
    *
    * @since 1.2
+   *
+   * @deprecated "clear" methods to be replaced by "remove"
    */
-  T clearDefinitions();
+  @Deprecated
+  default T clearDefinitions()
+  {
+    return removeDefinitions();
+  }
 }

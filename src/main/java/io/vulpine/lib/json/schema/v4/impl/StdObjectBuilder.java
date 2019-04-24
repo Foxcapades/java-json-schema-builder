@@ -35,7 +35,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   }
 
   @Override
-  public T clearOptionalProperties()
+  public T removeOptionalProperties()
   {
     if (!hasReq())
       return clear(PROPS);
@@ -63,7 +63,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   }
 
   @Override
-  public T clearRequiredProperties()
+  public T removeRequiredProperties()
   {
     // If there are no required properties then there is nothing to do.
     if (!hasReq())
@@ -98,7 +98,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   }
 
   @Override
-  public T clearPatternProperties()
+  public T removePatternProperties()
   {
     return clear(PATT_PROPS);
   }
@@ -124,7 +124,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   }
 
   @Override
-  public T clearAdditionalProperties()
+  public T removeAdditionalProperties()
   {
     return clear(ADDTL_PROPS);
   }
@@ -157,7 +157,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   }
 
   @Override
-  public T clearMaxProperties()
+  public T removeMaxProperties()
   {
     return clear(MAX_PROPS);
   }
@@ -181,7 +181,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   }
 
   @Override
-  public T clearMinProperties()
+  public T removeMinProperties()
   {
     return clear(MIN_PROPS);
   }
@@ -200,7 +200,7 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
   }
 
   @Override
-  public T clearDefinition(String name)
+  public T removeDefinition(String name)
   {
     if (!hasDef())
       return (T) this;
@@ -209,13 +209,13 @@ class StdObjectBuilder<T extends ObjectBuilder<T>> extends StdSchemaObject<T>
 
     d.remove(name);
     if (d.size() < 1)
-      return clearDefinitions();
+      return removeDefinitions();
 
     return (T) this;
   }
 
   @Override
-  public T clearDefinitions()
+  public T removeDefinitions()
   {
     return clear(DEFINITIONS);
   }
