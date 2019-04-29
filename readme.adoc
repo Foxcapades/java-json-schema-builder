@@ -61,14 +61,14 @@ System.out.println(writer.writeValueAsString(
 |===
 h| Status          h| Feature           h| Notes
  | [red]#*TODO*#    | `"dependencies"`   | Target 2.1
- | [red]#*TODO*#    | `"not"`            | In 2.0
+ | [green]#*Done*#  | `"not"`            | In 2.0
  | [green]#*Done*#  | `"minProperties"`  | In 1.2
  | [green]#*Done*#  | `"maxProperties"`  | In 1.2
  | [green]#*Done*#  | `"uniqueItems"`    | In 1.2
  | [green]#*Done*#  | `"definitions"`    | In 1.2
- | [yellow]#*WIP*#  | Multi-type nodes   | In 1.3
- | [yellow]#*WIP*#  | `"format"`         | In 1.1
- | [yellow]#*WIP*#  | `"enum"`           | In 1.1
+ | [green]#*Done*#  | Multi-type nodes   | In 1.3
+ | [green]#*Done*#  | `"format"`         | In 1.1
+ | [green]#*Done*#  | `"enum"`           | In 1.1
  | [green]#*Done*#  | `"oneOf"`          | In 1.1, Complete in 1.3
  | [green]#*Done*#  | `"anyOf"`          | In 1.1, Complete in 1.3
  | [green]#*Done*#  | `"allOf"`          | In 1.1, Complete in 1.3
