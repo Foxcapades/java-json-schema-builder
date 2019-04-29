@@ -26,6 +26,7 @@ public interface Keys {
     MIN_PROPS   = "minProperties",
     MINIMUM     = "minimum",
     MULTIPLE    = "multipleOf",
+    NOT         = "not",
     ONE_OF      = "oneOf",
     PATTERN     = "pattern",
     PATT_PROPS  = "patternProperties",

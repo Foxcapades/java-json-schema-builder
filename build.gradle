@@ -98,6 +98,7 @@ test {
       '--add-reads', "${config.module.name}=org.junit.platform.commons",
       '--add-opens', "${config.module.name}/io.vulpine.lib.json.schema.v4.impl=org.junit.platform.commons",
       '--add-opens', "${config.module.name}/io.vulpine.lib.json.schema.v4=org.junit.platform.commons",
+      '--add-opens', "${config.module.name}/io.vulpine.lib.json.schema=org.junit.platform.commons",
       '--patch-module', "${config.module.name}=" + files(sourceSets.test.java.outputDir).asPath,
     ]
     classpath = files()
