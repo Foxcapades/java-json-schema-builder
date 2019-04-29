@@ -18,7 +18,7 @@ JSON Schema in Java.
 [source, java]
 ----
 var writer = new ObjectMapper().writerWithDefaultPrettyPrinter();
-var schema = Draft4.newBuilder();
+var schema = Schema.draft4();
 System.out.println(writer.writeValueAsString(
   schema.asObject()
     .requiredProperty("test")
@@ -60,8 +60,8 @@ System.out.println(writer.writeValueAsString(
 [cols=3]
 |===
 h| Status          h| Feature           h| Notes
- | [red]#*TODO*#    | `"dependencies"`   | Target 1.3
- | [red]#*TODO*#    | `"not"`            | Target 1.4
+ | [red]#*TODO*#    | `"dependencies"`   | Target 2.1
+ | [red]#*TODO*#    | `"not"`            | In 2.0
  | [green]#*Done*#  | `"minProperties"`  | In 1.2
  | [green]#*Done*#  | `"maxProperties"`  | In 1.2
  | [green]#*Done*#  | `"uniqueItems"`    | In 1.2
