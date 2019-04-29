@@ -76,4 +76,7 @@ extends BooleanSchema, ChildSchema<P>
 
   @Override
   BooleanChildSchema<P> defaultValue(JsonNode val);
+
+  @Override
+  UntypedChildSchema<? extends BooleanChildSchema<P>> not();
 }

@@ -14,6 +14,30 @@ extends MultiSchema, ChildSchema<P>
   // └─────────────────────────────────────────────────────┘
 
   @Override
+  ArrayChildSchema<? extends MultiChildSchema<P>> addArray();
+
+  @Override
+  BooleanChildSchema<? extends MultiChildSchema<P>> addBoolean();
+
+  @Override
+  IntegerChildSchema<? extends MultiChildSchema<P>> addInteger();
+
+  @Override
+  NullChildSchema<? extends MultiChildSchema<P>> addNull();
+
+  @Override
+  NumberChildSchema<? extends MultiChildSchema<P>> addNumber();
+
+  @Override
+  ObjectChildSchema<? extends MultiChildSchema<P>> addObject();
+
+  @Override
+  StringChildSchema<? extends MultiChildSchema<P>> addString();
+
+  @Override
+  UntypedChildSchema<? extends MultiChildSchema<P>> add();
+
+  @Override
   MultiChildSchema<P> add(SchemaBuilder... vals);
 
   @Override
@@ -63,4 +87,7 @@ extends MultiSchema, ChildSchema<P>
 
   @Override
   MultiChildSchema<P> removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends MultiChildSchema<P>> not();
 }

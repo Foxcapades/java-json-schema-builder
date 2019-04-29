@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.IntegerChildSchema;
 import io.vulpine.lib.json.schema.SchemaBuilder;
+import io.vulpine.lib.json.schema.v4.IntegerSchema;
 import io.vulpine.lib.json.schema.v4.UntypedChildSchema;
 import io.vulpine.lib.json.schema.v4.impl.lib.Setter;
 
@@ -375,5 +376,12 @@ implements IntegerChildSchema<P>
   public IntegerChildSchema<P> defaultValue(JsonNode val)
   {
     return (IntegerChildSchema<P>) super.defaultValue(val);
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends IntegerChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends IntegerChildSchema<P>>) super.not();
   }
 }

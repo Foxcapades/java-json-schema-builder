@@ -5,12 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.Schema;
 import io.vulpine.lib.json.schema.v4.SchemaNode;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static io.vulpine.lib.json.schema.v4.lib.Keys.TYPE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 class NodeBaseTest
 {
@@ -166,6 +166,15 @@ class NodeBaseTest
   {
     assertNotNull(test.definition("foo", Schema.draft4()).removeDefinitions());
     assertEquals("{}", stripNoise(test.build()));
+  }
+
+  @ParameterizedTest
+  @MethodSource("impls")
+  void not(SchemaNode test)
+  {
+    var a = test.not();
+    assertSame(test, a.close());
+    assertEquals("{\"not\":{}}", stripNoise(test.build()));
   }
 
   /**

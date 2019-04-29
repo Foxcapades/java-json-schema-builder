@@ -65,4 +65,7 @@ extends
 
   @Override
   MultiSchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends MultiSchema> not();
 }

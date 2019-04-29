@@ -103,12 +103,6 @@ implements UntypedChildSchema<P>
   }
 
   @Override
-  public MultiChildSchema<P> not()
-  {
-    return new MultiChildSchemaImpl<>(parent, jax(), copy(), NOT, setter);
-  }
-
-  @Override
   @SuppressWarnings("unchecked")
   public UntypedChildSchema<P> id(String id)
   {
@@ -218,5 +212,12 @@ implements UntypedChildSchema<P>
   public UntypedChildSchema<P> removeDefault()
   {
     return (UntypedChildSchema<P>) super.removeDefault();
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends UntypedChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends UntypedChildSchema<P>>) super.not();
   }
 }

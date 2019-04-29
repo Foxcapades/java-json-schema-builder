@@ -344,4 +344,12 @@ class ArraySchemaImpl extends SchemaNodeImpl implements ArraySchema
   {
     return (ArraySchema) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends ArraySchema> not()
+  {
+    return (UntypedChildSchema<? extends ArraySchema>) super.not();
+  }
+
 }

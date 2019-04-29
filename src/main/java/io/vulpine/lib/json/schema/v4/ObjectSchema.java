@@ -359,4 +359,7 @@ extends SchemaNode,
 
   @Override
   ObjectSchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends ObjectSchema> not();
 }

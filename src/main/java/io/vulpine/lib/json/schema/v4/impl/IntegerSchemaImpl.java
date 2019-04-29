@@ -297,4 +297,11 @@ class IntegerSchemaImpl extends SchemaNodeImpl implements IntegerSchema
   {
     return (IntegerSchema) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends IntegerSchema> not()
+  {
+    return (UntypedChildSchema<? extends IntegerSchema>) super.not();
+  }
 }

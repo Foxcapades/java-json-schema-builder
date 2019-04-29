@@ -402,4 +402,11 @@ implements ArrayChildSchema<P>
   {
     return (ArrayChildSchema<P>) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends ArrayChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends ArrayChildSchema<P>>) super.not();
+  }
 }

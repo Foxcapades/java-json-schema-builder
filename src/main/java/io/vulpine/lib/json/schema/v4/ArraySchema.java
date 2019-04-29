@@ -407,4 +407,7 @@ extends
 
   @Override
   ArraySchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends ArraySchema> not();
 }

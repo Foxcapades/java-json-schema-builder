@@ -229,4 +229,11 @@ implements StringSchema
   {
     return (StringSchema) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends StringSchema> not()
+  {
+    return (UntypedChildSchema<? extends StringSchema>) super.not();
+  }
 }

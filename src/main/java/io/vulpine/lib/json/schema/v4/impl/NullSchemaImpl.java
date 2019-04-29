@@ -115,4 +115,11 @@ class NullSchemaImpl extends SchemaNodeImpl implements NullSchema
   {
     return (NullSchema) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends NullSchema> not()
+  {
+    return (UntypedChildSchema<? extends NullSchema>) super.not();
+  }
 }

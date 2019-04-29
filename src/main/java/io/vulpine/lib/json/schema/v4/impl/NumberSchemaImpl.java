@@ -25,193 +25,193 @@ class NumberSchemaImpl extends SchemaNodeImpl implements NumberSchema
   // └─────────────────────────────────────────────────────┘
 
   @Override
-  public NumberSchemaImpl defaultValue(int val)
+  public NumberSchema defaultValue(int val)
   {
     return put(DEFAULT, val);
   }
 
   @Override
-  public NumberSchemaImpl defaultValue(long val)
+  public NumberSchema defaultValue(long val)
   {
     return put(DEFAULT, val);
   }
 
   @Override
-  public NumberSchemaImpl defaultValue(double val)
+  public NumberSchema defaultValue(double val)
   {
     return put(DEFAULT, val);
   }
 
   @Override
-  public NumberSchemaImpl defaultValue(float val)
+  public NumberSchema defaultValue(float val)
   {
     return put(DEFAULT, val);
   }
 
   @Override
-  public NumberSchemaImpl defaultValue(BigInteger val)
+  public NumberSchema defaultValue(BigInteger val)
   {
     return put(DEFAULT, val);
   }
 
   @Override
-  public NumberSchemaImpl defaultValue(BigDecimal val)
+  public NumberSchema defaultValue(BigDecimal val)
   {
     return put(DEFAULT, val);
   }
 
   @Override
-  public NumberSchemaImpl maximum(double val)
+  public NumberSchema maximum(double val)
   {
     return put(MAXIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl maximum(float val)
+  public NumberSchema maximum(float val)
   {
     return put(MAXIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl maximum(int val)
+  public NumberSchema maximum(int val)
   {
     return put(MAXIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl maximum(long val)
+  public NumberSchema maximum(long val)
   {
     return put(MAXIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl maximum(BigInteger val)
+  public NumberSchema maximum(BigInteger val)
   {
     return put(MAXIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl maximum(BigDecimal val)
+  public NumberSchema maximum(BigDecimal val)
   {
     return put(MAXIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl removeMaximum()
+  public NumberSchema removeMaximum()
   {
     return remove(MAXIMUM);
   }
 
   @Override
-  public NumberSchemaImpl exclusiveMaximum(boolean val)
+  public NumberSchema exclusiveMaximum(boolean val)
   {
     return put(EXCL_MAX, val);
   }
 
   @Override
-  public NumberSchemaImpl removeExclusiveMaximum()
+  public NumberSchema removeExclusiveMaximum()
   {
     return remove(EXCL_MAX);
   }
 
   @Override
-  public NumberSchemaImpl minimum(double val)
+  public NumberSchema minimum(double val)
   {
     return put(MINIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl minimum(float val)
+  public NumberSchema minimum(float val)
   {
     return put(MINIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl minimum(int val)
+  public NumberSchema minimum(int val)
   {
     return put(MINIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl minimum(long val)
+  public NumberSchema minimum(long val)
   {
     return put(MINIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl minimum(BigDecimal val)
+  public NumberSchema minimum(BigDecimal val)
   {
     return put(MINIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl minimum(BigInteger val)
+  public NumberSchema minimum(BigInteger val)
   {
     return put(MINIMUM, val);
   }
 
   @Override
-  public NumberSchemaImpl removeMinimum()
+  public NumberSchema removeMinimum()
   {
     return remove(MINIMUM);
   }
 
   @Override
-  public NumberSchemaImpl exclusiveMinimum(boolean val)
+  public NumberSchema exclusiveMinimum(boolean val)
   {
     return put(EXCL_MIN, val);
   }
 
   @Override
-  public NumberSchemaImpl removeExclusiveMinimum()
+  public NumberSchema removeExclusiveMinimum()
   {
     return remove(EXCL_MIN);
   }
 
   @Override
-  public NumberSchemaImpl multipleOf(int val)
+  public NumberSchema multipleOf(int val)
   {
     return put(MULTIPLE, val);
   }
 
   @Override
-  public NumberSchemaImpl multipleOf(long val)
+  public NumberSchema multipleOf(long val)
   {
     return put(MULTIPLE, val);
   }
 
   @Override
-  public NumberSchemaImpl multipleOf(float val)
+  public NumberSchema multipleOf(float val)
   {
     return put(MULTIPLE, val);
   }
 
   @Override
-  public NumberSchemaImpl multipleOf(double val)
+  public NumberSchema multipleOf(double val)
   {
     return put(MULTIPLE, val);
   }
 
   @Override
-  public NumberSchemaImpl multipleOf(BigInteger val)
+  public NumberSchema multipleOf(BigInteger val)
   {
     return put(MULTIPLE, val);
   }
 
   @Override
-  public NumberSchemaImpl multipleOf(BigDecimal val)
+  public NumberSchema multipleOf(BigDecimal val)
   {
     return put(MULTIPLE, val);
   }
 
   @Override
-  public NumberSchemaImpl removeMultipleOf()
+  public NumberSchema removeMultipleOf()
   {
     return remove(MULTIPLE);
   }
 
   @Override
-  public NumberSchemaImpl enumValues(Number... vals)
+  public NumberSchema enumValues(Number... vals)
   {
     // Prevent empty enum array.
     if (vals.length < 1)
@@ -247,75 +247,75 @@ class NumberSchemaImpl extends SchemaNodeImpl implements NumberSchema
   // └─────────────────────────────────────────────────────┘
 
   @Override
-  public NumberSchemaImpl id(String id)
+  public NumberSchema id(String id)
   {
-    return (NumberSchemaImpl) super.id(id);
+    return (NumberSchema) super.id(id);
   }
 
   @Override
-  public NumberSchemaImpl removeId()
+  public NumberSchema removeId()
   {
-    return (NumberSchemaImpl) super.removeId();
+    return (NumberSchema) super.removeId();
   }
 
   @Override
-  public NumberSchemaImpl $schema(String path)
+  public NumberSchema $schema(String path)
   {
-    return (NumberSchemaImpl) super.$schema(path);
+    return (NumberSchema) super.$schema(path);
   }
 
   @Override
-  public NumberSchemaImpl remove$Schema()
+  public NumberSchema remove$Schema()
   {
-    return (NumberSchemaImpl) super.remove$Schema();
+    return (NumberSchema) super.remove$Schema();
   }
 
   @Override
-  public NumberSchemaImpl $ref(String path)
+  public NumberSchema $ref(String path)
   {
-    return (NumberSchemaImpl) super.$ref(path);
+    return (NumberSchema) super.$ref(path);
   }
 
   @Override
-  public NumberSchemaImpl remove$Ref()
+  public NumberSchema remove$Ref()
   {
-    return (NumberSchemaImpl) super.remove$Ref();
+    return (NumberSchema) super.remove$Ref();
   }
 
   @Override
-  public NumberSchemaImpl description(String desc)
+  public NumberSchema description(String desc)
   {
-    return (NumberSchemaImpl) super.description(desc);
+    return (NumberSchema) super.description(desc);
   }
 
   @Override
-  public NumberSchemaImpl removeDescription()
+  public NumberSchema removeDescription()
   {
-    return (NumberSchemaImpl) super.removeDescription();
+    return (NumberSchema) super.removeDescription();
   }
 
   @Override
-  public NumberSchemaImpl title(String title)
+  public NumberSchema title(String title)
   {
-    return (NumberSchemaImpl) super.title(title);
+    return (NumberSchema) super.title(title);
   }
 
   @Override
-  public NumberSchemaImpl removeTitle()
+  public NumberSchema removeTitle()
   {
-    return (NumberSchemaImpl) super.removeTitle();
+    return (NumberSchema) super.removeTitle();
   }
 
   @Override
-  public NumberSchemaImpl removeDefault()
+  public NumberSchema removeDefault()
   {
-    return (NumberSchemaImpl) super.removeDefault();
+    return (NumberSchema) super.removeDefault();
   }
 
   @Override
-  public NumberSchemaImpl removeEnum()
+  public NumberSchema removeEnum()
   {
-    return (NumberSchemaImpl) super.removeEnum();
+    return (NumberSchema) super.removeEnum();
   }
 
   @Override
@@ -326,26 +326,33 @@ class NumberSchemaImpl extends SchemaNodeImpl implements NumberSchema
   }
 
   @Override
-  public NumberSchemaImpl definition(String name, SchemaBuilder schema)
+  public NumberSchema definition(String name, SchemaBuilder schema)
   {
-    return (NumberSchemaImpl) super.definition(name, schema);
+    return (NumberSchema) super.definition(name, schema);
   }
 
   @Override
-  public NumberSchemaImpl removeDefinition(String name)
+  public NumberSchema removeDefinition(String name)
   {
-    return (NumberSchemaImpl) super.removeDefinition(name);
+    return (NumberSchema) super.removeDefinition(name);
   }
 
   @Override
-  public NumberSchemaImpl removeDefinitions()
+  public NumberSchema removeDefinitions()
   {
-    return (NumberSchemaImpl) super.removeDefinitions();
+    return (NumberSchema) super.removeDefinitions();
   }
 
   @Override
   public NumberSchema defaultValue(JsonNode val)
   {
     return (NumberSchema) super.defaultValue(val);
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends NumberSchema> not()
+  {
+    return (UntypedChildSchema<? extends NumberSchema>) super.not();
   }
 }

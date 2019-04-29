@@ -70,4 +70,7 @@ extends
 
   @Override
   NullSchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends NullSchema> not();
 }

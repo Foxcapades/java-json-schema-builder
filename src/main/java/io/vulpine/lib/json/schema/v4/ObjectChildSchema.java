@@ -150,4 +150,7 @@ extends ObjectSchema, ChildSchema<P>
 
   @Override
   ObjectChildSchema<P> defaultValue(JsonNode val);
+
+  @Override
+  UntypedChildSchema<? extends ObjectChildSchema> not();
 }

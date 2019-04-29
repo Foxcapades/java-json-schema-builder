@@ -3,10 +3,8 @@ package io.vulpine.lib.json.schema.v4.impl;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.vulpine.lib.json.schema.v4.NumberChildSchema;
+import io.vulpine.lib.json.schema.v4.*;
 import io.vulpine.lib.json.schema.SchemaBuilder;
-import io.vulpine.lib.json.schema.v4.NumberSchema;
-import io.vulpine.lib.json.schema.v4.UntypedChildSchema;
 import io.vulpine.lib.json.schema.v4.impl.lib.Setter;
 
 import java.math.BigDecimal;
@@ -48,310 +46,310 @@ implements NumberChildSchema<P>
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> defaultValue(int val)
+  public NumberChildSchema<P> defaultValue(int val)
   {
-    return (NumberChildSchemaImpl<P>) super.defaultValue(val);
+    return (NumberChildSchema<P>) super.defaultValue(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> defaultValue(long val)
+  public NumberChildSchema<P> defaultValue(long val)
   {
-    return (NumberChildSchemaImpl<P>) super.defaultValue(val);
+    return (NumberChildSchema<P>) super.defaultValue(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> defaultValue(double val)
+  public NumberChildSchema<P> defaultValue(double val)
   {
-    return (NumberChildSchemaImpl<P>) super.defaultValue(val);
+    return (NumberChildSchema<P>) super.defaultValue(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> defaultValue(float val)
+  public NumberChildSchema<P> defaultValue(float val)
   {
-    return (NumberChildSchemaImpl<P>) super.defaultValue(val);
+    return (NumberChildSchema<P>) super.defaultValue(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> defaultValue(BigInteger val)
+  public NumberChildSchema<P> defaultValue(BigInteger val)
   {
-    return (NumberChildSchemaImpl<P>) super.defaultValue(val);
+    return (NumberChildSchema<P>) super.defaultValue(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> defaultValue(BigDecimal val)
+  public NumberChildSchema<P> defaultValue(BigDecimal val)
   {
-    return (NumberChildSchemaImpl<P>) super.defaultValue(val);
+    return (NumberChildSchema<P>) super.defaultValue(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> maximum(double val)
+  public NumberChildSchema<P> maximum(double val)
   {
-    return (NumberChildSchemaImpl<P>) super.maximum(val);
+    return (NumberChildSchema<P>) super.maximum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> maximum(float val)
+  public NumberChildSchema<P> maximum(float val)
   {
-    return (NumberChildSchemaImpl<P>) super.maximum(val);
+    return (NumberChildSchema<P>) super.maximum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> maximum(int val)
+  public NumberChildSchema<P> maximum(int val)
   {
-    return (NumberChildSchemaImpl<P>) super.maximum(val);
+    return (NumberChildSchema<P>) super.maximum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> maximum(long val)
+  public NumberChildSchema<P> maximum(long val)
   {
-    return (NumberChildSchemaImpl<P>) super.maximum(val);
+    return (NumberChildSchema<P>) super.maximum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> maximum(BigInteger val)
+  public NumberChildSchema<P> maximum(BigInteger val)
   {
-    return (NumberChildSchemaImpl<P>) super.maximum(val);
+    return (NumberChildSchema<P>) super.maximum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> maximum(BigDecimal val)
+  public NumberChildSchema<P> maximum(BigDecimal val)
   {
-    return (NumberChildSchemaImpl<P>) super.maximum(val);
+    return (NumberChildSchema<P>) super.maximum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeMaximum()
+  public NumberChildSchema<P> removeMaximum()
   {
-    return (NumberChildSchemaImpl<P>) super.removeMaximum();
+    return (NumberChildSchema<P>) super.removeMaximum();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> exclusiveMaximum(boolean val)
+  public NumberChildSchema<P> exclusiveMaximum(boolean val)
   {
-    return (NumberChildSchemaImpl<P>) super.exclusiveMaximum(val);
+    return (NumberChildSchema<P>) super.exclusiveMaximum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeExclusiveMaximum()
+  public NumberChildSchema<P> removeExclusiveMaximum()
   {
-    return (NumberChildSchemaImpl<P>) super.removeExclusiveMaximum();
+    return (NumberChildSchema<P>) super.removeExclusiveMaximum();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> minimum(double val)
+  public NumberChildSchema<P> minimum(double val)
   {
-    return (NumberChildSchemaImpl<P>) super.minimum(val);
+    return (NumberChildSchema<P>) super.minimum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> minimum(float val)
+  public NumberChildSchema<P> minimum(float val)
   {
-    return (NumberChildSchemaImpl<P>) super.minimum(val);
+    return (NumberChildSchema<P>) super.minimum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> minimum(int val)
+  public NumberChildSchema<P> minimum(int val)
   {
-    return (NumberChildSchemaImpl<P>) super.minimum(val);
+    return (NumberChildSchema<P>) super.minimum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> minimum(long val)
+  public NumberChildSchema<P> minimum(long val)
   {
-    return (NumberChildSchemaImpl<P>) super.minimum(val);
+    return (NumberChildSchema<P>) super.minimum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> minimum(BigDecimal val)
+  public NumberChildSchema<P> minimum(BigDecimal val)
   {
-    return (NumberChildSchemaImpl<P>) super.minimum(val);
+    return (NumberChildSchema<P>) super.minimum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> minimum(BigInteger val)
+  public NumberChildSchema<P> minimum(BigInteger val)
   {
-    return (NumberChildSchemaImpl<P>) super.minimum(val);
+    return (NumberChildSchema<P>) super.minimum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeMinimum()
+  public NumberChildSchema<P> removeMinimum()
   {
-    return (NumberChildSchemaImpl<P>) super.removeMinimum();
+    return (NumberChildSchema<P>) super.removeMinimum();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> exclusiveMinimum(boolean val)
+  public NumberChildSchema<P> exclusiveMinimum(boolean val)
   {
-    return (NumberChildSchemaImpl<P>) super.exclusiveMinimum(val);
+    return (NumberChildSchema<P>) super.exclusiveMinimum(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeExclusiveMinimum()
+  public NumberChildSchema<P> removeExclusiveMinimum()
   {
-    return (NumberChildSchemaImpl<P>) super.removeExclusiveMinimum();
+    return (NumberChildSchema<P>) super.removeExclusiveMinimum();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> multipleOf(int val)
+  public NumberChildSchema<P> multipleOf(int val)
   {
-    return (NumberChildSchemaImpl<P>) super.multipleOf(val);
+    return (NumberChildSchema<P>) super.multipleOf(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> multipleOf(long val)
+  public NumberChildSchema<P> multipleOf(long val)
   {
-    return (NumberChildSchemaImpl<P>) super.multipleOf(val);
+    return (NumberChildSchema<P>) super.multipleOf(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> multipleOf(float val)
+  public NumberChildSchema<P> multipleOf(float val)
   {
-    return (NumberChildSchemaImpl<P>) super.multipleOf(val);
+    return (NumberChildSchema<P>) super.multipleOf(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> multipleOf(double val)
+  public NumberChildSchema<P> multipleOf(double val)
   {
-    return (NumberChildSchemaImpl<P>) super.multipleOf(val);
+    return (NumberChildSchema<P>) super.multipleOf(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> multipleOf(BigInteger val)
+  public NumberChildSchema<P> multipleOf(BigInteger val)
   {
-    return (NumberChildSchemaImpl<P>) super.multipleOf(val);
+    return (NumberChildSchema<P>) super.multipleOf(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> multipleOf(BigDecimal val)
+  public NumberChildSchema<P> multipleOf(BigDecimal val)
   {
-    return (NumberChildSchemaImpl<P>) super.multipleOf(val);
+    return (NumberChildSchema<P>) super.multipleOf(val);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeMultipleOf()
+  public NumberChildSchema<P> removeMultipleOf()
   {
-    return (NumberChildSchemaImpl<P>) super.removeMultipleOf();
+    return (NumberChildSchema<P>) super.removeMultipleOf();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> enumValues(Number... vals)
+  public NumberChildSchema<P> enumValues(Number... vals)
   {
-    return (NumberChildSchemaImpl<P>) super.enumValues(vals);
+    return (NumberChildSchema<P>) super.enumValues(vals);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> id(String id)
+  public NumberChildSchema<P> id(String id)
   {
-    return (NumberChildSchemaImpl<P>) super.id(id);
+    return (NumberChildSchema<P>) super.id(id);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeId()
+  public NumberChildSchema<P> removeId()
   {
-    return (NumberChildSchemaImpl<P>) super.removeId();
+    return (NumberChildSchema<P>) super.removeId();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> $schema(String path)
+  public NumberChildSchema<P> $schema(String path)
   {
-    return (NumberChildSchemaImpl<P>) super.$schema(path);
+    return (NumberChildSchema<P>) super.$schema(path);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> remove$Schema()
+  public NumberChildSchema<P> remove$Schema()
   {
-    return (NumberChildSchemaImpl<P>) super.remove$Schema();
+    return (NumberChildSchema<P>) super.remove$Schema();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> $ref(String path)
+  public NumberChildSchema<P> $ref(String path)
   {
-    return (NumberChildSchemaImpl<P>) super.$ref(path);
+    return (NumberChildSchema<P>) super.$ref(path);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> remove$Ref()
+  public NumberChildSchema<P> remove$Ref()
   {
-    return (NumberChildSchemaImpl<P>) super.remove$Ref();
+    return (NumberChildSchema<P>) super.remove$Ref();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> description(String desc)
+  public NumberChildSchema<P> description(String desc)
   {
-    return (NumberChildSchemaImpl<P>) super.description(desc);
+    return (NumberChildSchema<P>) super.description(desc);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeDescription()
+  public NumberChildSchema<P> removeDescription()
   {
-    return (NumberChildSchemaImpl<P>) super.removeDescription();
+    return (NumberChildSchema<P>) super.removeDescription();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> title(String title)
+  public NumberChildSchema<P> title(String title)
   {
-    return (NumberChildSchemaImpl<P>) super.title(title);
+    return (NumberChildSchema<P>) super.title(title);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeTitle()
+  public NumberChildSchema<P> removeTitle()
   {
-    return (NumberChildSchemaImpl<P>) super.removeTitle();
+    return (NumberChildSchema<P>) super.removeTitle();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeDefault()
+  public NumberChildSchema<P> removeDefault()
   {
-    return (NumberChildSchemaImpl<P>) super.removeDefault();
+    return (NumberChildSchema<P>) super.removeDefault();
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeEnum()
+  public NumberChildSchema<P> removeEnum()
   {
-    return (NumberChildSchemaImpl<P>) super.removeEnum();
+    return (NumberChildSchema<P>) super.removeEnum();
   }
 
   @Override
@@ -365,57 +363,57 @@ implements NumberChildSchema<P>
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> definition(String name, SchemaBuilder schema)
+  public NumberChildSchema<P> definition(String name, SchemaBuilder schema)
   {
-    return (NumberChildSchemaImpl<P>) super.definition(name, schema);
+    return (NumberChildSchema<P>) super.definition(name, schema);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeDefinition(String name)
+  public NumberChildSchema<P> removeDefinition(String name)
   {
-    return (NumberChildSchemaImpl<P>) super.removeDefinition(name);
+    return (NumberChildSchema<P>) super.removeDefinition(name);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public NumberChildSchemaImpl<P> removeDefinitions()
+  public NumberChildSchema<P> removeDefinitions()
   {
-    return (NumberChildSchemaImpl<P>) super.removeDefinitions();
+    return (NumberChildSchema<P>) super.removeDefinitions();
   }
 
   @Override
-  public ArrayChildSchemaImpl<P> orAsArray()
+  public ArrayChildSchema<P> orAsArray()
   {
     return new ArrayChildSchemaImpl<>(parent, jax(), copy(), setter);
   }
 
   @Override
-  public BooleanChildSchemaImpl<P> orAsBoolean()
+  public BooleanChildSchema<P> orAsBoolean()
   {
     return new BooleanChildSchemaImpl<>(parent, jax(), copy(), setter);
   }
 
   @Override
-  public IntegerChildSchemaImpl<P> orAsInteger()
+  public IntegerChildSchema<P> orAsInteger()
   {
     return new IntegerChildSchemaImpl<>(parent, jax(), copy(), setter);
   }
 
   @Override
-  public NullChildSchemaImpl<P> orAsNull()
+  public NullChildSchema<P> orAsNull()
   {
     return new NullChildSchemaImpl<>(parent, jax(), copy(), setter);
   }
 
   @Override
-  public ObjectChildSchemaImpl<P> orAsObject()
+  public ObjectChildSchema<P> orAsObject()
   {
     return new ObjectChildSchemaImpl<>(parent, jax(), copy(), setter);
   }
 
   @Override
-  public StringChildSchemaImpl<P> orAsString()
+  public StringChildSchema<P> orAsString()
   {
     return new StringChildSchemaImpl<>(parent, jax(), copy(), setter);
   }
@@ -425,5 +423,12 @@ implements NumberChildSchema<P>
   public NumberChildSchema<P> defaultValue(JsonNode val)
   {
     return (NumberChildSchema<P>) super.defaultValue(val);
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends NumberChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends NumberChildSchema<P>>) super.not();
   }
 }

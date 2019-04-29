@@ -88,12 +88,6 @@ implements UntypedSchema
     return new MultiSchemaImpl(jax(), copy(), ONE_OF);
   }
 
-  @Override
-  public MultiSchema not()
-  {
-    return new MultiSchemaImpl(jax(), copy(), NOT);
-  }
-
   // ┌─────────────────────────────────────────────────────┐
   // │                                                     │
   // │ Return type overrides                               │
@@ -196,5 +190,12 @@ implements UntypedSchema
   public UntypedSchema removeDefault()
   {
     return (UntypedSchema) super.removeDefault();
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends UntypedSchema> not()
+  {
+    return (UntypedChildSchema<? extends UntypedSchema>) super.not();
   }
 }

@@ -240,4 +240,7 @@ extends SchemaNode,
 
   @Override
   StringSchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends StringSchema> not();
 }

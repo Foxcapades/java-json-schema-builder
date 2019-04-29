@@ -359,4 +359,7 @@ extends
 
   @Override
   IntegerSchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends IntegerSchema> not();
 }

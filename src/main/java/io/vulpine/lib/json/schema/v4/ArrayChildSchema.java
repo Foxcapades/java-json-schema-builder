@@ -164,4 +164,7 @@ extends ArraySchema, ChildSchema<P>
 
   @Override
   ArrayChildSchema<P> defaultValue(JsonNode val);
+
+  @Override
+  UntypedChildSchema<? extends ArrayChildSchema<P>> not();
 }

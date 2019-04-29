@@ -36,9 +36,6 @@ extends UntypedSchema, ChildSchema<P>
   @Override
   MultiChildSchema<P> oneOf();
 
-  @Override
-  MultiChildSchema<P> not();
-
   // ┌─────────────────────────────────────────────────────┐
   // │                                                     │
   // │ Return type overrides                               │
@@ -86,4 +83,7 @@ extends UntypedSchema, ChildSchema<P>
 
   @Override
   UntypedChildSchema<P> removeDefinitions();
+
+  @Override
+  UntypedChildSchema<? extends UntypedChildSchema<P>> not();
 }

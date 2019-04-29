@@ -302,6 +302,13 @@ implements ObjectSchema
     return (ObjectSchema) super.defaultValue(val);
   }
 
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends ObjectSchema> not()
+  {
+    return (UntypedChildSchema<? extends ObjectSchema>) super.not();
+  }
+
   // ┌─────────────────────────────────────────────────────┐
   // │                                                     │
   // │ Internal Methods                                    │

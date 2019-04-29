@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.vulpine.lib.json.schema.v4.ObjectChildSchema;
 import io.vulpine.lib.json.schema.SchemaBuilder;
+import io.vulpine.lib.json.schema.v4.ObjectSchema;
 import io.vulpine.lib.json.schema.v4.UntypedChildSchema;
 import io.vulpine.lib.json.schema.v4.impl.lib.Setter;
 
@@ -359,5 +360,12 @@ implements ObjectChildSchema<P>
   public ObjectChildSchema<P> defaultValue(JsonNode val)
   {
     return (ObjectChildSchema<P>) super.defaultValue(val);
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends ObjectChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends ObjectChildSchema<P>>) super.not();
   }
 }

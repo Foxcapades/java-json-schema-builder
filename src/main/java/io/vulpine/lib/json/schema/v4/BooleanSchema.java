@@ -71,4 +71,7 @@ public interface BooleanSchema
 
   @Override
   BooleanSchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends BooleanSchema> not();
 }

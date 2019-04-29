@@ -128,4 +128,7 @@ extends StringSchema, ChildSchema<P>
 
   @Override
   StringChildSchema<P> defaultValue(JsonNode val);
+
+  @Override
+  UntypedChildSchema<? extends StringChildSchema<P>> not();
 }

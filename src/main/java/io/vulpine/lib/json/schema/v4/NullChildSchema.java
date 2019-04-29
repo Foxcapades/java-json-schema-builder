@@ -78,4 +78,7 @@ extends NullSchema, ChildSchema<P>
 
   @Override
   NullChildSchema<P> defaultValue(JsonNode val);
+
+  @Override
+  UntypedChildSchema<? extends NullChildSchema<P>> not();
 }

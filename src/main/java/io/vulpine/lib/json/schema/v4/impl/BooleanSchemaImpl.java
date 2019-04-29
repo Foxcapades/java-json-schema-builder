@@ -132,4 +132,11 @@ implements BooleanSchema
   {
     return (BooleanSchema) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends BooleanSchema> not()
+  {
+    return (UntypedChildSchema<? extends BooleanSchema>) super.not();
+  }
 }

@@ -201,4 +201,11 @@ implements BooleanChildSchema<P>
   {
     return (BooleanChildSchema<P>) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends BooleanChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends BooleanChildSchema<P>>) super.not();
+  }
 }

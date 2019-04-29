@@ -308,4 +308,11 @@ implements StringChildSchema<P>
   {
     return (StringChildSchema<P>) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends StringChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends StringChildSchema<P>>) super.not();
+  }
 }

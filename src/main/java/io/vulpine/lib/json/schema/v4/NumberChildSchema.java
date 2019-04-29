@@ -183,4 +183,7 @@ extends NumberSchema, ChildSchema<P>
 
   @Override
   NumberChildSchema<P> defaultValue(JsonNode val);
+
+  @Override
+  UntypedChildSchema<? extends NumberChildSchema<P>> not();
 }

@@ -471,4 +471,7 @@ extends
 
   @Override
   NumberSchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends NumberSchema> not();
 }

@@ -159,4 +159,7 @@ extends IntegerSchema, ChildSchema<P>
 
   @Override
   IntegerChildSchema<P> defaultValue(JsonNode val);
+
+  @Override
+  UntypedChildSchema<? extends IntegerChildSchema<P>> not();
 }

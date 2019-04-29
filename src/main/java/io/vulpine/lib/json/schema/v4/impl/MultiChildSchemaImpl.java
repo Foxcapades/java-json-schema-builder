@@ -216,4 +216,11 @@ implements MultiChildSchema<P>
   {
     return (MultiChildSchema<P>) super.removeDefault();
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends MultiChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends MultiChildSchema<P>>) super.not();
+  }
 }

@@ -100,15 +100,6 @@ public interface UntypedSchema extends SchemaNode
    */
   MultiSchema oneOf();
 
-  /**
-   * Switches schema type to an {@code "not"}
-   *
-   * @return updated schema builder for the current node
-   *
-   * @since 2.0
-   */
-  MultiSchema not();
-
   // ┌─────────────────────────────────────────────────────┐
   // │                                                     │
   // │ Return type overrides                               │
@@ -162,4 +153,7 @@ public interface UntypedSchema extends SchemaNode
 
   @Override
   UntypedSchema removeDefault();
+
+  @Override
+  UntypedChildSchema<? extends UntypedSchema> not();
 }

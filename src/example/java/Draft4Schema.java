@@ -1,10 +1,15 @@
 import io.vulpine.lib.json.schema.Schema;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.TreeNode;
 
 public class Draft4Schema
 {
   public static void main(String[] args)
   {
     final var schema = Schema.draft4();
+    final var json = new ObjectMapper();
+    final var posInt = Schema.draft4().$ref("#/definitions/positiveInteger");
+    final var posIntDef0 = schema.$ref("#/definitions/positiveIntegerDefault0");
     System.out.println(
       schema.asObject()
         .id("http://json-schema.org/draft-04/schema#")
@@ -12,7 +17,7 @@ public class Draft4Schema
         .definition("schemaArray")
           .asArray()
           .minItems(1)
-          .items(schema.$ref("#"))
+          .items(Schema.draft4().$ref("#"))
           .close()
         .definition("positiveInteger")
           .asInteger()
@@ -20,10 +25,7 @@ public class Draft4Schema
           .close()
         .definition("positiveIntegerDefault0")
           .allOf()
-          .add(
-            schema.$ref("#/definitions/positiveInteger"),
-            schema.asInteger().defaultValue(0)
-          )
+          .add(posInt, schema.asInteger().defaultValue(0))
           .close()
         .definition("simpleTypes")
           .asString()
@@ -63,124 +65,72 @@ public class Draft4Schema
           .asBoolean()
           .defaultValue(false)
           .close()
-        .optionalProperty("maxLength", schema.$ref("#/definitions/positiveInteger"))
-        .optionalProperty("minLength", schema.$ref("#/definitions/positiveIntegerDefault0"))
+        .optionalProperty("maxLength", posInt)
+        .optionalProperty("minLength", posIntDef0)
         .optionalProperty("pattern", schema.asString().format("regex"))
         .optionalProperty("additionalItems")
           .anyOf()
-
-      ]
-    },
-        .stringArray(){
-        .type("array",
-        .items(){ "type("string" },
-        .minItems(1,
-        .uniqueItems(true
-    }
-  },
-        .type("object",
-        .properties(){
-        .id(){
-        .type("string"
-    },
-        .$schema(){
-        .type("string"
-    },
-        .title(){
-        .type("string"
-    },
-        .description(){
-        .type("string"
-    },
-        .default(){},
-        .multipleOf(){
-        .type("number",
-        .minimum(0,
-        .exclusiveMinimum(true
-    },
-        .maximum(){
-        .type("number"
-    },
-        .exclusiveMaximum(){
-        .type("boolean",
-        .default(false
-    },
-        .minimum(){
-        .type("number"
-    },
-        .exclusiveMinimum(){
-        .type("boolean",
-        .default(false
-    },
-        .maxLength(){ "$ref("#/definitions/positiveInteger" },
-        .minLength(){ "$ref("#/definitions/positiveIntegerDefault0" },
-        .pattern(){
-        .type("string",
-        .format("regex"
-    },
-        .additionalItems(){
-        .anyOf([{ "type("boolean" }, { "$ref("#" }],
-        .default(){}
-    },
-        .items(){
-        .anyOf([{ "$ref("#" }, { "$ref("#/definitions/schemaArray" }],
-        .default(){}
-    },
-        .maxItems(){ "$ref("#/definitions/positiveInteger" },
-        .minItems(){ "$ref("#/definitions/positiveIntegerDefault0" },
-        .uniqueItems(){
-        .type("boolean",
-        .default(false
-    },
-        .maxProperties(){ "$ref("#/definitions/positiveInteger" },
-        .minProperties(){ "$ref("#/definitions/positiveIntegerDefault0" },
-        .required(){ "$ref("#/definitions/stringArray" },
-        .additionalProperties(){
-        .anyOf([{ "type("boolean" }, { "$ref("#" }],
-        .default(){}
-    },
-        .definitions(){
-        .type("object",
-        .additionalProperties(){ "$ref("#" },
-        .default(){}
-    },
-        .properties(){
-        .type("object",
-        .additionalProperties(){ "$ref("#" },
-        .default(){}
-    },
-        .patternProperties(){
-        .type("object",
-        .additionalProperties(){ "$ref("#" },
-        .default(){}
-    },
-        .dependencies(){
-        .type("object",
-        .additionalProperties(){
-        .anyOf([{ "$ref("#" }, { "$ref("#/definitions/stringArray" }]
+          .add(schema.asBoolean(), schema.$ref("#"))
+          .defaultValue(json.createObjectNode())
+          .close()
+        .optionalProperty("items")
+          .anyOf()
+          .add(schema, schema.$ref("#/definitions/schemaArray"))
+          .defaultValue(json.createObjectNode())
+          .close()
+        .optionalProperty("maxItems", posInt)
+        .optionalProperty("minItems", posIntDef0)
+        .optionalProperty("uniqueItems", schema.asBoolean().defaultValue(false))
+        .optionalProperty("maxProperties", posInt)
+        .optionalProperty("minProperties", posIntDef0)
+        .optionalProperty("required", Schema.draft4().$ref("#/definitions/stringArray"))
+        .optionalProperty("additionalProperties")
+          .anyOf()
+          .add(schema.asBoolean(), Schema.draft4().$ref("#"))
+          .defaultValue(json.createObjectNode())
+          .close()
+        .optionalProperty("definitions")
+          .asObject()
+          .additionalProperties(Schema.draft4().$ref("#"))
+          .defaultValue(json.createObjectNode())
+          .close()
+        .optionalProperty("properties")
+          .asObject()
+          .additionalProperties(Schema.draft4().$ref("#"))
+          .defaultValue(json.createObjectNode())
+          .close()
+        .optionalProperty("patternProperties")
+          .asObject()
+          .additionalProperties(Schema.draft4().$ref("#"))
+          .defaultValue(json.createObjectNode())
+          .close()
+        .optionalProperty("dependencies")
+          .asObject()
+          .additionalProperties()
+            .anyOf()
+            .add(Schema.draft4().$ref("#"), Schema.draft4().$ref("#/definitions/stringArray"))
+            .close()
+          .close()
+        .optionalProperty("enum")
+          .asArray()
+          .minItems(1)
+          .uniqueItems(true)
+          .close()
+        .optionalProperty("type")
+          .anyOf()
+          .add(Schema.draft4().$ref("#/definitions/simpleTypes"))
+          .addArray()
+            .items(Schema.draft4().$ref("#/definitions/simpleTypes"))
+            .minItems(1)
+            .uniqueItems(true)
+            .close()
+          .close()
+        .optionalProperty("format", schema.asString())
+        .optionalProperty("allOf", Schema.draft4().$ref("#/definitions/schemaArray"))
+        .optionalProperty("anyOf", Schema.draft4().$ref("#/definitions/schemaArray"))
+        .optionalProperty("oneOf", Schema.draft4().$ref("#/definitions/schemaArray"))
+        .optionalProperty("not",   Schema.draft4().$ref("#"))
       }
-    },
-        .enum(){
-        .type("array",
-        .minItems(1,
-        .uniqueItems(true
-    },
-        .type(){
-        .anyOf([
-      { "$ref("#/definitions/simpleTypes" },
-      {
-        .type("array",
-        .items(){ "$ref("#/definitions/simpleTypes" },
-        .minItems(1,
-        .uniqueItems(true
-      }
-      ]
-    },
-        .format(){ "type("string" },
-        .allOf(){ "$ref("#/definitions/schemaArray" },
-        .anyOf(){ "$ref("#/definitions/schemaArray" },
-        .oneOf(){ "$ref("#/definitions/schemaArray" },
-        .not(){ "$ref("#" }
   },
         .dependencies(){
         .exclusiveMaximum(["maximum"],

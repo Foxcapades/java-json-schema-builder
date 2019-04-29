@@ -120,6 +120,13 @@ class SchemaNodeImpl extends SchemaBuilderImpl implements SchemaNode
     return put(DEFAULT, val);
   }
 
+  @Override
+  public UntypedChildSchema<? extends SchemaNode> not()
+  {
+    return new UntypedChildSchemaImpl<>(this, jax(), newObj(),
+      x -> put(NOT, x));
+  }
+
   // ┌─────────────────────────────────────────────────────┐
   // │                                                     │
   // │ Indirect implementations                            │

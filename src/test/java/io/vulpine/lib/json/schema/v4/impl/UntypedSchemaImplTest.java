@@ -113,15 +113,4 @@ class UntypedSchemaImplTest
     assertNotNull(b);
     assertEquals("{\"oneOf\":[{}]}", b.toString());
   }
-
-  @Test
-  void not()
-  {
-    var a = test().not();
-    assertNotNull(a);
-    assertEquals("{}", a.toString());
-    var b = test().not().add(Schema.draft4());
-    assertNotNull(b);
-    assertEquals("{\"not\":[{}]}", b.toString());
-  }
 }

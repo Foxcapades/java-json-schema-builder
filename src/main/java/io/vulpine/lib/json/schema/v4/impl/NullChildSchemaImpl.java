@@ -193,4 +193,11 @@ implements NullChildSchema<P>
   {
     return (NullChildSchema<P>) super.defaultValue(val);
   }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends NullChildSchema<P>> not()
+  {
+    return (UntypedChildSchema<? extends NullChildSchema<P>>) super.not();
+  }
 }

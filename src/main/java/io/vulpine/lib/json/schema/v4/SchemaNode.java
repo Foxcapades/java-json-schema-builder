@@ -197,4 +197,13 @@ public interface SchemaNode extends SchemaBuilder
    * @since 2.0
    */
   SchemaNode removeDefault();
+
+  /**
+   * Switches schema type to an {@code "not"}
+   *
+   * @return updated schema builder for the current node
+   *
+   * @since 2.0
+   */
+  UntypedChildSchema<? extends SchemaNode> not();
 }

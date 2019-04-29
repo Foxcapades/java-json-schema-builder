@@ -190,6 +190,13 @@ class MultiSchemaImpl extends SchemaNodeImpl implements MultiSchema
     return (MultiSchema) super.removeDefault();
   }
 
+  @Override
+  @SuppressWarnings("unchecked")
+  public UntypedChildSchema<? extends MultiSchema> not()
+  {
+    return (UntypedChildSchema<? extends MultiSchema>) super.not();
+  }
+
   // ┌─────────────────────────────────────────────────────┐
   // │                                                     │
   // │ Internal helpers                                    │
