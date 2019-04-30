@@ -167,4 +167,10 @@ extends ArraySchema, ChildSchema<P>
 
   @Override
   UntypedChildSchema<? extends ArrayChildSchema<P>> not();
+
+  @Override
+  ArrayChildSchema<P> maxItems(long val);
+
+  @Override
+  ArrayChildSchema<P> minItems(long val);
 }

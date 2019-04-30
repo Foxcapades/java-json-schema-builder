@@ -60,7 +60,7 @@ System.out.println(writer.writeValueAsString(
 [cols=3]
 |===
 h| Status          h| Feature           h| Notes
- | [red]#*TODO*#    | `"dependencies"`   | Target 2.2
+ | [red]#*TODO*#    | `"dependencies"`   | Target 2.3
  | [green]#*Done*#  | `"not"`            | In 2.0
  | [green]#*Done*#  | `"minProperties"`  | In 1.2
  | [green]#*Done*#  | `"maxProperties"`  | In 1.2

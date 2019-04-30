@@ -205,6 +205,18 @@ extends
    *
    * @since 2.0
    */
+  ArraySchema maxItems(long val);
+
+  /**
+   * Sets the {@code "maxItems"} value for the current {@link ArraySchema}.
+   *
+   * @param val
+   *   maxItems value to set
+   *
+   * @return a modified instance of {@link ArraySchema}
+   *
+   * @since 2.0
+   */
   ArraySchema maxItems(int val);
 
   /**
@@ -230,6 +242,18 @@ extends
    * @since 2.0
    */
   ArraySchema minItems(BigInteger val);
+
+  /**
+   * Sets the {@code "minItems"} value for the current {@link ArraySchema}.
+   *
+   * @param val
+   *   minItems value to set
+   *
+   * @return a modified instance of {@link ArraySchema}
+   *
+   * @since 2.2
+   */
+  ArraySchema minItems(long val);
 
   /**
    * Sets the {@code "minItems"} value for the current {@link ArraySchema}.
