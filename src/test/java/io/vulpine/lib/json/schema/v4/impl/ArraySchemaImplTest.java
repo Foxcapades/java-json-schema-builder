@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vulpine.lib.json.schema.Schema;
 import io.vulpine.lib.json.schema.v4.ArraySchema;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -114,6 +115,7 @@ class ArraySchemaImplTest
   }
 
   @Test
+  @DisplayName("maxItems(int)")
   void maxItems()
   {
     assertSame(test(), test().maxItems(1));
@@ -121,7 +123,16 @@ class ArraySchemaImplTest
   }
 
   @Test
+  @DisplayName("maxItems(long)")
   void maxItems1()
+  {
+    assertSame(test(), test().maxItems(1L));
+    assertEquals("{\"type\":\"array\",\"maxItems\":1}", test().toString());
+  }
+
+  @Test
+  @DisplayName("maxItems(BigInteger)")
+  void maxItems2()
   {
     assertSame(test(), test().maxItems(new BigInteger("1")));
     assertEquals("{\"type\":\"array\",\"maxItems\":1}", test().toString());
@@ -135,6 +146,7 @@ class ArraySchemaImplTest
   }
 
   @Test
+  @DisplayName("minItems(int)")
   void minItems()
   {
     assertSame(test(), test().maxItems(1));
@@ -142,6 +154,15 @@ class ArraySchemaImplTest
   }
 
   @Test
+  @DisplayName("minItems(long)")
+  void minItems_long()
+  {
+    assertSame(test(), test().maxItems(1L));
+    assertEquals("{\"type\":\"array\",\"maxItems\":1}", test().toString());
+  }
+
+  @Test
+  @DisplayName("minItems(BigInteger)")
   void minItems1()
   {
     assertSame(test(), test().minItems(new BigInteger("1")));

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.vulpine.lib.json.schema.JsonType;
 import io.vulpine.lib.json.schema.SchemaBuilder;
 import io.vulpine.lib.json.schema.v4.*;
 
@@ -137,6 +138,12 @@ class ArraySchemaImpl extends SchemaNodeImpl implements ArraySchema
   }
 
   @Override
+  public ArraySchema maxItems(long val)
+  {
+    return put(MAX_ITEMS, val);
+  }
+
+  @Override
   public ArraySchema maxItems(int val)
   {
     return put(MAX_ITEMS, val);
@@ -150,6 +157,12 @@ class ArraySchemaImpl extends SchemaNodeImpl implements ArraySchema
 
   @Override
   public ArraySchema minItems(BigInteger val)
+  {
+    return put(MIN_ITEMS, val);
+  }
+
+  @Override
+  public ArraySchema minItems(long val)
   {
     return put(MIN_ITEMS, val);
   }

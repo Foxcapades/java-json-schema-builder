@@ -141,6 +141,13 @@ implements ArrayChildSchema<P>
 
   @Override
   @SuppressWarnings("unchecked")
+  public ArrayChildSchema<P> maxItems(long val)
+  {
+    return (ArrayChildSchema<P>) super.maxItems(val);
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
   public ArrayChildSchema<P> maxItems(int val)
   {
     return (ArrayChildSchema<P>) super.maxItems(val);
@@ -156,6 +163,13 @@ implements ArrayChildSchema<P>
   @Override
   @SuppressWarnings("unchecked")
   public ArrayChildSchema<P> minItems(BigInteger val)
+  {
+    return (ArrayChildSchema<P>) super.minItems(val);
+  }
+
+  @Override
+  @SuppressWarnings("unchecked")
+  public ArrayChildSchema<P> minItems(long val)
   {
     return (ArrayChildSchema<P>) super.minItems(val);
   }

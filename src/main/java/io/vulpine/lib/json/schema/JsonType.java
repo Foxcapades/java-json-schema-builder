@@ -1,8 +1,7 @@
-package io.vulpine.lib.json.schema.v4;
+package io.vulpine.lib.json.schema;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.TextNode;
 
 import java.util.Arrays;
