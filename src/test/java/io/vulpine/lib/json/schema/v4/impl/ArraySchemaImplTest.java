@@ -149,16 +149,16 @@ class ArraySchemaImplTest
   @DisplayName("minItems(int)")
   void minItems()
   {
-    assertSame(test(), test().maxItems(1));
-    assertEquals("{\"type\":\"array\",\"maxItems\":1}", test().toString());
+    assertSame(test(), test().minItems(1));
+    assertEquals("{\"type\":\"array\",\"minItems\":1}", test().toString());
   }
 
   @Test
   @DisplayName("minItems(long)")
   void minItems_long()
   {
-    assertSame(test(), test().maxItems(1L));
-    assertEquals("{\"type\":\"array\",\"maxItems\":1}", test().toString());
+    assertSame(test(), test().minItems(1L));
+    assertEquals("{\"type\":\"array\",\"minItems\":1}", test().toString());
   }
 
   @Test
